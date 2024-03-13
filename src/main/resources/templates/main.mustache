@@ -3,8 +3,66 @@
 <head>
     <title>Test page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+    table{
+        border: 1px solid #eee;
+        table-layout: fixed;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: 1px solid #dddddd;
+    }
+    table td{
+        padding: 5px 10px;
+        border: 1px solid #eee;
+        text-align: left;
+    }
+    table tbody tr:nth-child(odd){
+        background: #fff;
+    }
+    table tbody tr:nth-child(even){
+        background: #F7F7F7;
+    }
+    </style>
 </head>
 <body>
-<h1>{{text}}</h1>
+    <h2>Send new message</h2>
+    <div>
+        <form method="post" action="/" style="float: left;">
+        <div style="clear:both; text-align:right;">
+           <label for="n">Text</label>
+           <input type="text" id="n" name="text" placeholder="Add your text"/>
+        </div>
+        <div style="clear:both; text-align:right; margin-top: 10px">
+           <label for="n">Tag</label>
+           <input type="text" id="n" name="tag" placeholder="Add your tag"/>
+        </div>
+        <button type="submit" style="margin-top: 20px">Send</button>
+        </form>
+    </div>
+    <h2 style="display: inline-block; width: 100%;"
+    >Messages list</h2>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Text</th>
+          <th scope="col">Tag</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#messages}}
+        <tr>
+          <th scope="row">{{id}}</th>
+          <td>{{text}}</td>
+          <td>{{tag}}</td>
+        </tr>
+      {{/messages}}
+      </tbody>
+    </table>
 </body>
 </html>
