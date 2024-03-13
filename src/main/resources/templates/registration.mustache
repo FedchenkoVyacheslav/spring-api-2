@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>Login page</title>
+    <title>Registration page</title>
 </head>
 <body>
-<span>Sign in</span>
-<form action="/login" method="post">
+{{#message}}
+    {{message}}
+{{/message}}
+<form action="/registration" method="post">
     <div><label> User name: <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     <div><input type="submit" value="Sign In"/></div>
 </form>
-<a href="/registration">Sign up</a>
 </body>
 </html>

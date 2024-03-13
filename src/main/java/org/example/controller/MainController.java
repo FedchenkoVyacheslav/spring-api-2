@@ -1,4 +1,4 @@
-package org.example;
+package org.example.controller;
 
 import org.example.domain.Message;
 import org.example.repository.MessageRepo;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class TestController {
+public class MainController {
     @Autowired
     private MessageRepo messageRepo;
 
