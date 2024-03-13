@@ -32,8 +32,10 @@ public class MainController {
         Message message = new Message(text, tag);
         if (text.trim().length() == 0 || tag.trim().length() == 0) {
             Iterable<Message> messages = messageRepo.findAll();
+            model.put("error", "Empty message or tag!");
             model.put("messages", messages);
         } else {
+            model.remove("error");
             messageRepo.save(message);
         }
 
