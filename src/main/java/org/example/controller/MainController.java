@@ -30,9 +30,7 @@ public class MainController {
     @PostMapping("/main")
     public String sendMessage(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
-        boolean nullText = text.trim().length() == 0;
-        boolean nullTag = tag.trim().length() == 0;
-        if (nullText || nullTag) {
+        if (text.trim().length() == 0 || tag.trim().length() == 0) {
             Iterable<Message> messages = messageRepo.findAll();
             model.put("messages", messages);
         } else {

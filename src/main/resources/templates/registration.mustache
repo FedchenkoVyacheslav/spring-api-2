@@ -4,14 +4,24 @@
     <title>Registration page</title>
 </head>
 <body>
-{{#message}}
-    {{message}}
-{{/message}}
-<form action="/registration" method="post">
-    <div><label> User name: <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<div style="margin: 30px">
+    <div style="margin-top: 20px; margin-bottom: 20px; color: red;">
+        {{#message}}
+            {{message}}
+        {{/message}}
+    </div>
+    <form action="/registration" method="post" style="float: left;">
+        <div style="clear:both; text-align:right;">
+            <label for="n">User name: </label>
+            <input type="text" id="n" name="username" placeholder="Enter email"/>
+        </div>
+        <div style="clear:both; text-align:right; margin-top: 10px">
+            <label for="n">Password: </label>
+            <input type="password" id="n" name="password" placeholder="Enter password"/>
+        </div>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit" style="margin-top: 20px">Sign In</button>
+    </form>
+</div>
 </body>
 </html>
