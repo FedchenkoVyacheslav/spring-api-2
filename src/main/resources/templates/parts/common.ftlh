@@ -42,19 +42,35 @@
         let btn = document.getElementById("search-button");
         let el = document.getElementById("error-el");
         let el2 = document.getElementById("error-el2");
+        let el3 = document.getElementById("message-login");
+        let emailInput = document.getElementById("email-input");
+        let passInput = document.getElementById("password-input");
 
-        function check() {
-            if(input.value.length < 1){
-                el.innerHTML = "Enter your search query..."
-                el2.innerHTML = ""
-            } else {
-                el.innerHTML = ""
+        if (input !== null) {
+            function check() {
+                if(input.value.length < 1){
+                    el.innerHTML = "Enter your search query..."
+                    el2.innerHTML = ""
+                } else {
+                    el.innerHTML = ""
+                }
             }
+            input.addEventListener('input', check);
+            check();
         }
 
-        input.addEventListener('input', check);
-
-        check();
+        if (emailInput !== null && passInput !== null) {
+            function check2() {
+                if(emailInput.value.length < 1 && passInput.value.length < 1){
+                    el3.innerHTML = "Enter your credentials"
+                } else {
+                    el3.innerHTML = ""
+                }
+            }
+            emailInput.addEventListener('input', check2);
+            passInput.addEventListener('input', check2);
+            check2();
+        }
     </script>
     </html>
 </#macro>

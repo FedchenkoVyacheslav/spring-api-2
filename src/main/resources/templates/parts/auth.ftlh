@@ -2,11 +2,11 @@
     <form action="${path1}" method="post" style="float: left;">
         <div style="clear:both; text-align:right;">
             <label for="n">User name: </label>
-            <input type="email" id="n" name="username" placeholder="Enter email"/>
+            <input type="email" id="email-input" name="username" placeholder="Enter email" />
         </div>
         <div style="clear:both; text-align:right; margin-top: 10px">
             <label for="n">Password: </label>
-            <input type="password" id="n" name="password" placeholder="Enter password"/>
+            <input type="password" id="password-input" name="password" placeholder="Enter password"/>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" style="margin: 20px auto; display: block;">${button}</button>
