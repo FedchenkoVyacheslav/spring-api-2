@@ -1,10 +1,8 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/auth.ftlh" as a>
 <@c.page>
     <div>
-        <form action="/logout" method="post" style="text-align: right; margin: 20px" ;>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <@a.logout/>
     </div>
     <h2>Send new message</h2>
     <div>

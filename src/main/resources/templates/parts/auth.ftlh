@@ -12,12 +12,19 @@
         <button type="submit" style="margin: 20px auto; display: block;">${button}</button>
     </form>
     <a href="${path2}" style="margin: 20px auto;
-    display: block;
-    width: max-content;
-    font-size: 18px;
-    color: ${linkColor};
-    text-decoration: none;
-    font-weight: bold;">
+            display: block;
+            width: max-content;
+            font-size: 18px;
+            color: ${linkColor};
+            text-decoration: none;
+            font-weight: bold;">
         ${link}</a>
     </div>
+</#macro>
+
+<#macro logout>
+    <form action="/logout" method="post" style="text-align: right; margin: 20px" ;>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
 </#macro>
