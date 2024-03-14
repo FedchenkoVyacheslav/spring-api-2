@@ -52,12 +52,12 @@
             <input type="text" id="n" name="tag" placeholder="Add your tag"/>
         </div>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-        <div style="display: table; margin-top: 10px; color: red;">
+        <div style="display: table; margin-top: 10px; color: red; position: absolute">
             {{#error}}
                 {{error}}
             {{/error}}
         </div>
-        <button type="submit" style="margin-top: 20px">Send</button>
+        <button type="submit" style="margin-top: 40px">Send</button>
     </form>
 </div>
 <div style="display: inline-block;
@@ -71,7 +71,12 @@
             <input type="text" id="n" name="filter" placeholder="Search for"/>
         </div>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-        <button type="submit" style="margin-top: 20px; margin-bottom: 20px">Search</button>
+        <div style="display: table; margin-top: 10px; color: red; position: absolute">
+            {{#searchError}}
+                {{searchError}}
+            {{/searchError}}
+        </div>
+        <button type="submit" style="margin-top: 40px; margin-bottom: 20px">Search</button>
     </form>
     <table>
         <thead>

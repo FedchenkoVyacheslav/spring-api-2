@@ -50,7 +50,9 @@ public class MainController {
         Iterable<Message> messages;
         if (filter != null && !(filter.trim().length() == 0) && !filter.isEmpty()) {
             messages = messageRepo.findByTag(filter);
+            model.remove("searchError");
         } else {
+            model.put("searchError", "Empty search query!");
             messages = messageRepo.findAll();
         }
         model.put("messages", messages);
