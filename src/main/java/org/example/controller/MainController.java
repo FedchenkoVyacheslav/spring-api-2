@@ -34,6 +34,7 @@ public class MainController {
             Iterable<Message> messages = messageRepo.findAll();
             model.put("error", "Empty message or tag!");
             model.put("messages", messages);
+            return "main";
         } else {
             model.remove("error");
             messageRepo.save(message);
@@ -42,7 +43,7 @@ public class MainController {
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
 
-        return "main";
+        return "redirect:main";
     }
 
     @PostMapping("filter")
