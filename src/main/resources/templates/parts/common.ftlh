@@ -37,5 +37,24 @@
     <body style="background-color: lightblue;">
     <#nested>
     </body>
+    <script type="text/javascript">
+        let input = document.getElementById("search-input");
+        let btn = document.getElementById("search-button");
+        let el = document.getElementById("error-el");
+        let el2 = document.getElementById("error-el2");
+
+        function check() {
+            if(input.value.length < 1){
+                el.innerHTML = "Enter your search query..."
+                el2.innerHTML = ""
+            } else {
+                el.innerHTML = ""
+            }
+        }
+
+        input.addEventListener('input', check);
+
+        check();
+    </script>
     </html>
 </#macro>

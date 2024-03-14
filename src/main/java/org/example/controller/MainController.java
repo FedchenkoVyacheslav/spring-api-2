@@ -18,14 +18,21 @@ public class MainController {
     private MessageRepo messageRepo;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String greeting() {
         return "greeting";
     }
 
     @GetMapping("/main")
-    public String getMessage(Map<String, Object> model) {
-        Iterable<Message> messages = messageRepo.findAll();
+    public String getMessage(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model) {
+        Iterable<Message> messages;
+        if (filter != null && !filter.isEmpty()) {
+            messages = messageRepo.findByTag(filter);
+        } else {
+            messages = messageRepo.findAll();
+        }
         model.put("messages", messages);
+        model.put("filter", filter);
+
         return "main";
     }
 
@@ -49,19 +56,5 @@ public class MainController {
         model.put("messages", messages);
 
         return "redirect:main";
-    }
-
-    @PostMapping("filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
-        if (filter != null && !(filter.trim().length() == 0) && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
-            model.remove("searchError");
-        } else {
-            model.put("searchError", "Empty search query!");
-            messages = messageRepo.findAll();
-        }
-        model.put("messages", messages);
-        return "main";
     }
 }
