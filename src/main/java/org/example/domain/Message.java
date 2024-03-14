@@ -1,9 +1,9 @@
 package org.example.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
 @Entity
 public class Message {
     @Id
@@ -12,24 +12,20 @@ public class Message {
     private String text;
     private String tag;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "identity_id")
+    private Identity author;
+
     public Message() {
     }
 
-    public Message(String text, String tag) {
+    public Message(String text, String tag, Identity author) {
+        this.author = author;
         this.text = text;
         this.tag = tag;
     }
 
-    public String getText() {
-        return text;
-    }
-    public void setText(String text) {
-        this.text = text;
-    }
-    public String getTag() {
-        return tag;
-    }
-    public void setTag(String tag) {
-        this.tag = tag;
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "No author";
     }
 }

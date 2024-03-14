@@ -1,74 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Test page</title>
+    <title>Main page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style>
-    table{
-        border: 1px solid #eee;
-        table-layout: fixed;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    table th {
-        font-weight: bold;
-        padding: 5px;
-        background: #efefef;
-        border: 1px solid #dddddd;
-    }
-    table td{
-        padding: 5px 10px;
-        border: 1px solid #eee;
-        text-align: left;
-    }
-    table tbody tr:nth-child(odd){
-        background: #fff;
-    }
-    table tbody tr:nth-child(even){
-        background: #F7F7F7;
-    }
+        table {
+            border: 1px solid #eee;
+            table-layout: fixed;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table th {
+            font-weight: bold;
+            padding: 5px;
+            background: #efefef;
+            border: 1px solid #dddddd;
+        }
+
+        table td {
+            padding: 5px 10px;
+            border: 1px solid #eee;
+            text-align: left;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #F7F7F7;
+        }
     </style>
 </head>
-<body>
-    <h2>Send new message</h2>
-    <div>
-        <form method="post" action="/" style="float: left;">
+<body style="background-color: cadetblue;">
+<div>
+    <form action="/logout" method="post" style="text-align: right; margin: 20px";>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<h2>Send new message</h2>
+<div>
+    <form method="post" action="/main" style="float: left;">
         <div style="clear:both; text-align:right;">
-           <label for="n">Text</label>
-           <input type="text" id="n" name="text" placeholder="Add your text"/>
+            <label for="n">Text</label>
+            <input type="text" id="n" name="text" placeholder="Add your text"/>
         </div>
         <div style="clear:both; text-align:right; margin-top: 10px">
-           <label for="n">Tag</label>
-           <input type="text" id="n" name="tag" placeholder="Add your tag"/>
+            <label for="n">Tag</label>
+            <input type="text" id="n" name="tag" placeholder="Add your tag"/>
         </div>
-        <button type="submit" style="margin-top: 20px">Send</button>
-        </form>
-    </div>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <div style="display: table; margin-top: 10px; color: red; position: absolute">
+            {{#error}}
+                {{error}}
+            {{/error}}
+        </div>
+        <button type="submit" style="margin-top: 40px">Send</button>
+    </form>
+</div>
+<div style="display: inline-block;
+    background-color: lightblue;
+    margin-top: 30px;
+    padding: 10px;">
     <h2 style="display: inline-block; width: 100%;"
     >Messages list</h2>
-    <form method="post" action="filter" style="float: left;">
+    <form method="post" action="/filter" style="float: left;">
         <div style="clear:both; text-align:right;">
-           <input type="text" id="n" name="filter" placeholder="Search for"/>
+            <input type="text" id="n" name="filter" placeholder="Search for"/>
         </div>
-        <button type="submit" style="margin-top: 20px; margin-bottom: 20px">Search</button>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <div style="display: table; margin-top: 10px; color: red; position: absolute">
+            {{#searchError}}
+                {{searchError}}
+            {{/searchError}}
+        </div>
+        <button type="submit" style="margin-top: 40px; margin-bottom: 20px">Search</button>
     </form>
     <table>
-      <thead>
+        <thead>
         <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Text</th>
-          <th scope="col">Tag</th>
+            <th scope="col">Id</th>
+            <th scope="col">Text</th>
+            <th scope="col">Tag</th>
+            <th scope="col">Author</th>
         </tr>
-      </thead>
-      <tbody>
-      {{#messages}}
-        <tr>
-          <th scope="row">{{id}}</th>
-          <td>{{text}}</td>
-          <td>{{tag}}</td>
-        </tr>
-      {{/messages}}
-      </tbody>
+        </thead>
+        <tbody>
+        {{#messages}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td>{{text}}</td>
+                <td>{{tag}}</td>
+                <td>{{authorName}}</td>
+            </tr>
+        {{/messages}}
+        </tbody>
     </table>
+</div>
 </body>
 </html>
