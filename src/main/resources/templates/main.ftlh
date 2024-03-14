@@ -22,7 +22,6 @@
     </div>
     <div style="display: inline-block;
     background-color: lightblue;
-    margin-top: 30px;
     padding: 10px;">
         <h2 style="display: inline-block; width: 100%;"
         >Messages list</h2>
