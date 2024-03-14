@@ -1,29 +1,10 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/auth.ftlh" as a>
 <@c.page>
-    <div style="position: absolute;
+<div style="position: absolute;
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);">
-        <form action="/login" method="post" style="float: left;">
-            <div style="clear:both; text-align:right;">
-                <label for="n">User name: </label>
-                <input type="email" id="n" name="username" placeholder="Enter email"/>
-            </div>
-            <div style="clear:both; text-align:right; margin-top: 10px">
-                <label for="n">Password: </label>
-                <input type="password" id="n" name="password" placeholder="Enter password"/>
-            </div>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button type="submit" style="margin: 20px auto; display: block;">LOGIN</button>
-        </form>
-        <a href="/registration" style="margin: 20px auto;
-    display: block;
-    width: max-content;
-    font-size: 18px;
-    color: crimson;
-    text-decoration: none;
-    font-weight: bold;">
-            I don't have an account</a>
-    </div>
+<@a.auth "/login" "/registration" "LOGIN" "I don't have an account" "crimson"/>
 </@c.page>
