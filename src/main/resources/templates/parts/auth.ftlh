@@ -2,7 +2,7 @@
     <form action="${path1}" method="post" name="auth" style="float: left;">
         <div style="clear:both; text-align:right; margin-bottom: 30px">
             <label for="n">User name: </label>
-            <input type="text" name="username" placeholder="Enter email" />
+            <input type="text" name="username" placeholder="Enter email"/>
         </div>
         <div style="clear:both; text-align:right; margin-bottom: 30px">
             <label for="n">Password: </label>
@@ -18,8 +18,8 @@
             color: ${linkColor};
             text-decoration: none;
             font-weight: bold;">
-        ${link}</a>
-    </div>
+        ${link}
+    </a>
 </#macro>
 
 <#macro logout>

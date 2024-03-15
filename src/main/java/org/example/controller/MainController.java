@@ -42,7 +42,7 @@ public class MainController {
                               @RequestParam String tag,
                               Map<String, Object> model) {
         Message message = new Message(text, tag, author);
-        if (text.trim().length() == 0 || tag.trim().length() == 0) {
+        if (text.trim().isEmpty() || tag.trim().isEmpty()) {
             Iterable<Message> messages = messageRepo.findAll();
             model.put("error", "Empty message or tag!");
             model.put("messages", messages);
