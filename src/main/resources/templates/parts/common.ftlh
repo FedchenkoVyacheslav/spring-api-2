@@ -38,11 +38,10 @@
                 position: absolute;
                 font-size: 14px;
                 line-height: 16px;
-                color: red;
             }
 
             .invalid-text {
-                color: red;
+                color: crimson;
             }
 
             .valid-text {
@@ -51,12 +50,12 @@
 
             .invalid-input {
                 border-style: solid;
-                border-color: red;
+                border-color: crimson;
             }
 
             .valid-input {
                 border-style: solid;
-                border-color: lime;
+                border-color: olivedrab;
             }
         </style>
     </head>
