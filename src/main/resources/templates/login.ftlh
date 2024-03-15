@@ -6,6 +6,5 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);">
-    <div id="message-login" style="position: absolute; top: -35px; left: 76px;"></div>
     <@a.auth "/login" "/registration" "LOGIN" "I don't have an account" "crimson"/>
 </@c.page>
