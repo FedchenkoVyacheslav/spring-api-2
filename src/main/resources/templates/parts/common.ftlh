@@ -60,7 +60,7 @@
             }
         </style>
     </head>
-    <body style="background-color: lightblue;">
+    <body style="background-color: lightblue; padding: 50px">
     <#nested>
     </body>
     <script type="text/javascript">

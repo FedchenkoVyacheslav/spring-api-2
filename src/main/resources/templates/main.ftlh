@@ -21,8 +21,7 @@
         </form>
     </div>
     <div style="display: inline-block;
-    background-color: lightblue;
-    padding: 10px;">
+    background-color: lightblue;">
         <h2 style="display: inline-block; width: 100%;"
         >Messages list</h2>
         <form method="get" action="/main" style="float: left;">
