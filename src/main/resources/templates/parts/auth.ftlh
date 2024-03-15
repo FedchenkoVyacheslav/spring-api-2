@@ -1,12 +1,12 @@
 <#macro auth path1 path2 button link linkColor>
-    <form action="${path1}" method="post" style="float: left;">
-        <div style="clear:both; text-align:right;">
+    <form action="${path1}" method="post" name="auth" style="float: left;">
+        <div style="clear:both; text-align:right; margin-bottom: 30px">
             <label for="n">User name: </label>
-            <input type="email" id="n" name="username" placeholder="Enter email"/>
+            <input type="text" name="username" placeholder="Enter email" />
         </div>
-        <div style="clear:both; text-align:right; margin-top: 10px">
+        <div style="clear:both; text-align:right; margin-bottom: 30px">
             <label for="n">Password: </label>
-            <input type="password" id="n" name="password" placeholder="Enter password"/>
+            <input type="password" name="password" placeholder="Enter password"/>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" style="margin: 20px auto; display: block;">${button}</button>
