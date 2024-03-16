@@ -2,7 +2,7 @@
 <@c.page>
     <h2 style="display: inline-block; width: 100%;"
     >Edit user</h2>
-    <form action="/user" method="post" name="auth" style="float: left;">
+    <form action="/user" method="post" style="float: left;">
         <div style="clear:both; text-align:right; margin-bottom: 20px">
             <label for="n">Set new email: </label>
             <input type="text" name="username" value="${user.username}" placeholder="Enter email"/>
