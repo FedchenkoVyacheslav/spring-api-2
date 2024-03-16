@@ -77,6 +77,7 @@
                     el.innerHTML = ""
                 }
             }
+
             input.addEventListener('input', check);
             check();
         }
@@ -160,38 +161,39 @@
         }
 
         let formAuth = document.forms["auth"];
+        if (formAuth !== undefined) {
+            (function () {
+                formAuth.onsubmit = (event) => {
+                    event.preventDefault();
+                    let isValid = true;
+                    const form = event.target;
+                    const values = getValuesForm(form);
+                    let errors = {};
 
-        (function () {
-            formAuth.onsubmit = (event) => {
-                event.preventDefault();
-                let isValid = true;
-                const form = event.target;
-                const values = getValuesForm(form);
-                let errors = {};
+                    if (values.username === null || values.username === "") {
+                        errors.username = "This field is required";
+                        isValid = false;
+                    } else if (!mailCheck(values.username)) {
+                        errors.username = "Invalid email";
+                        isValid = false;
+                    }
 
-                if (values.username === null || values.username === "") {
-                    errors.username = "This field is required";
-                    isValid = false;
-                } else if (!mailCheck(values.username)) {
-                    errors.username = "Invalid email";
-                    isValid = false;
+                    if (values.password === null || values.password === "") {
+                        errors.password = 'This field is required';
+                        setFormErrors(form, errors);
+                        isValid = false;
+                    } else if (values.password.length < 4) {
+                        errors.password = 'Too short password';
+                        setFormErrors(form, errors);
+                        isValid = false;
+                    }
+
+                    if (isValid) {
+                        event.currentTarget.submit();
+                    }
                 }
-
-                if (values.password === null || values.password === "") {
-                    errors.password = 'This field is required';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                } else if (values.password.length < 4) {
-                    errors.password = 'Too short password';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                }
-
-                if (isValid) {
-                    event.currentTarget.submit();
-                }
-            }
-        })();
+            })();
+        }
     </script>
     </html>
 </#macro>
