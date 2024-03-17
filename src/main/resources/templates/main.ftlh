@@ -21,7 +21,7 @@
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <div style="display: table; margin-top: 10px; color: red; position: absolute">${error!" "}</div>
-            <button type="submit" id="message-btn" style="margin-top: 40px">Send</button>
+            <button type="submit" id="message-btn" style="margin-top: 20px">Send</button>
         </form>
     </div>
     <div style="display: inline-block;
