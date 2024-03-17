@@ -15,6 +15,7 @@ public class Message {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "identity_id")
     private Identity author;
+    private String filename;
 
     public Message() {
     }

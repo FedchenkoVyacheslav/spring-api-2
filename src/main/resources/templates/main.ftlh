@@ -7,7 +7,7 @@
     </div>
     <h2>Send new message</h2>
     <div>
-        <form method="post" action="/main" style="float: left;">
+        <form method="post" action="/main" enctype="multipart/form-data" style="float: left;">
             <div style="clear:both; text-align:right;">
                 <label for="n">Text</label>
                 <input type="text" id="n" name="text" placeholder="Add your text"/>
@@ -15,6 +15,9 @@
             <div style="clear:both; text-align:right; margin-top: 10px">
                 <label for="n">Tag</label>
                 <input type="text" id="n" name="tag" placeholder="Add your tag"/>
+            </div>
+            <div style="clear:both; text-align:right; margin-top: 10px; width: 100px;">
+                <input type="file" id="n" name="file"/>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <div style="display: table; margin-top: 10px; color: red; position: absolute">${error!" "}</div>
@@ -41,6 +44,7 @@
                 <th scope="col">Text</th>
                 <th scope="col">Tag</th>
                 <th scope="col">Author</th>
+                <th scope="col">File</th>
             </tr>
             </thead>
             <tbody>
@@ -50,6 +54,11 @@
                     <td>${message.text}</td>
                     <td>${message.tag}</td>
                     <td>${message.authorName}</td>
+                    <td>
+                        <#if message.filename??>
+                            <img src="/img/${message.filename}" style="width: 100%">
+                        </#if>
+                    </td>
                 </tr>
             <#else>
                 <div style="position: relative">

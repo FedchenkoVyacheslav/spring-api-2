@@ -17,6 +17,11 @@
                 padding: 5px;
                 background: #efefef;
                 border: 1px solid #dddddd;
+                width: 5%;
+            }
+
+            table th:nth-child(5) {
+                width: 30%;
             }
 
             table td {
