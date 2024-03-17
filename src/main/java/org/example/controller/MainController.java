@@ -51,9 +51,9 @@ public class MainController {
                               @RequestParam Map<String, Object> model,
                               @RequestParam("file") MultipartFile file
     ) throws IOException {
-        Message message = new Message(text, tag, author);
+        Message message = new Message(text.trim(), tag.trim(), author);
 
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
+        if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -66,18 +66,8 @@ public class MainController {
             message.setFilename(resFileName);
         }
 
-        if (text.trim().isEmpty() || tag.trim().isEmpty()) {
-            Iterable<Message> messages = messageRepo.findAll();
-            model.put("error", "Empty message or tag!");
-            model.put("messages", messages);
-            return "main";
-        } else {
-            model.remove("error");
-            messageRepo.save(message);
-        }
-
-        Iterable<Message> messages = messageRepo.findAll();
-        model.put("messages", messages);
+        messageRepo.save(message);
+        model.put("messages", messageRepo.findAll());
 
         return "redirect:main";
     }

@@ -10,18 +10,18 @@
         <form method="post" action="/main" enctype="multipart/form-data" style="float: left;">
             <div style="clear:both; text-align:right;">
                 <label for="n">Text</label>
-                <input type="text" id="n" name="text" placeholder="Add your text"/>
+                <input type="text" id="message-text" name="text" placeholder="Add your text"/>
             </div>
             <div style="clear:both; text-align:right; margin-top: 10px">
                 <label for="n">Tag</label>
-                <input type="text" id="n" name="tag" placeholder="Add your tag"/>
+                <input type="text" id="message-tag" name="tag" placeholder="Add your tag"/>
             </div>
             <div style="clear:both; text-align:right; margin-top: 10px; width: 100px;">
                 <input type="file" id="n" name="file"/>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <div style="display: table; margin-top: 10px; color: red; position: absolute">${error!" "}</div>
-            <button type="submit" style="margin-top: 40px">Send</button>
+            <button type="submit" id="message-btn" style="margin-top: 40px">Send</button>
         </form>
     </div>
     <div style="display: inline-block;
@@ -57,6 +57,8 @@
                     <td>
                         <#if message.filename??>
                             <img src="/img/${message.filename}" style="width: 100%">
+                        <#else>
+                            <span>Empty</span>
                         </#if>
                     </td>
                 </tr>

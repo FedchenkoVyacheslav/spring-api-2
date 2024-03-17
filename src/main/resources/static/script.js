@@ -1,12 +1,17 @@
 let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
+let messageText = document.getElementById("message-text");
+let messageTag = document.getElementById("message-tag");
+let messageBtn = document.getElementById("message-btn");
 
 if (input !== null) {
     function check() {
         if (input.value.length < 1) {
             el.innerHTML = "Enter your search query..."
-            el2.innerHTML = ""
+            if (el2 !== null) {
+                el2.innerHTML = ""
+            }
         } else {
             el.innerHTML = ""
         }
@@ -14,6 +19,15 @@ if (input !== null) {
 
     input.addEventListener('input', check);
     check();
+}
+
+if (messageText !== null && messageTag !== null) {
+    const check2 = () => messageBtn.disabled =
+        messageText.value.trim(" ").length < 1  ||  messageTag.value.trim(" ").length < 1;
+
+    messageText.addEventListener('input', check2);
+    messageTag.addEventListener('input', check2);
+    check2();
 }
 
 function getValuesForm(form) {
