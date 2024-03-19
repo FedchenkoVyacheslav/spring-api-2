@@ -1,9 +1,6 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div style="display: flex; justify-content: end;">
-        <button><a href="/user" style="text-decoration: none; color: black;">User roles</a></button>
-    </div>
     <h2>Send new message</h2>
     <div>
         <form method="post" action="/main" enctype="multipart/form-data" style="float: left;">
