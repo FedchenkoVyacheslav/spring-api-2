@@ -45,7 +45,7 @@
             <#list messages as message>
                 <div class="card my-3">
                     <#if message.filename??>
-                        <img class="card-img-top" src="/img/${message.filename}" style="width: 100%">
+                        <img class="card-img-top py-2 px-2" src="/img/${message.filename}" style="width: 100%">
                     <#else>
                         <img class="card-img-top" src="../static/pic/no-img.png" style="width: 100%">
                     </#if>

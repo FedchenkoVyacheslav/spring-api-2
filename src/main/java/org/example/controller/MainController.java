@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
@@ -35,6 +36,12 @@ public class MainController {
         Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTitle(filter);
+            if (messages != null) {
+                int size = ((Collection<?>) messages).size();
+                if (size == 0) {
+                    messages = messageRepo.findByText(filter);
+                }
+            }
         } else {
             messages = messageRepo.findAll();
         }
