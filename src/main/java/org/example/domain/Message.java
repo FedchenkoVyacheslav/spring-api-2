@@ -10,7 +10,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String text;
-    private String tag;
+    private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "identity_id")
@@ -20,10 +20,10 @@ public class Message {
     public Message() {
     }
 
-    public Message(String text, String tag, Identity author) {
+    public Message(String text, String title, Identity author) {
         this.author = author;
         this.text = text;
-        this.tag = tag;
+        this.title = title;
     }
 
     public String getAuthorName() {

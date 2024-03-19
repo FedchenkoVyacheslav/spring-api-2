@@ -34,7 +34,7 @@ public class MainController {
     public String getMessage(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model) {
         Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
+            messages = messageRepo.findByTitle(filter);
         } else {
             messages = messageRepo.findAll();
         }
@@ -47,11 +47,11 @@ public class MainController {
     @PostMapping("/main")
     public String sendMessage(@AuthenticationPrincipal Identity author,
                               @RequestParam String text,
-                              @RequestParam String tag,
+                              @RequestParam String title,
                               @RequestParam Map<String, Object> model,
                               @RequestParam("file") MultipartFile file
     ) throws IOException {
-        Message message = new Message(text.trim(), tag.trim(), author);
+        Message message = new Message(text.trim(), title.trim(), author);
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);

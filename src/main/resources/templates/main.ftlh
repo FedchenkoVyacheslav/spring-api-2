@@ -21,10 +21,10 @@
         <div class="form-group mt-3">
             <form method="post" action="/main" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" id="message-text" class="form-control" name="text" placeholder="Add your text"/>
+                    <input type="text" id="message-title" class="form-control" name="title" placeholder="Add a message title"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="message-tag" class="form-control" name="tag" placeholder="Add your tag"/>
+                    <input type="text" id="message-text" class="form-control" name="text" placeholder="Add message text"/>
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
@@ -50,7 +50,7 @@
                         <img class="card-img-top" src="../static/pic/no-img.png" style="width: 100%">
                     </#if>
                     <div class="card-body">
-                        <h5 class="card-title">${message.tag}</h5>
+                        <h5 class="card-title">${message.title}</h5>
                         <span class="card-text">${message.text}</span>
                     </div>
                     <div class="card-footer text-muted">

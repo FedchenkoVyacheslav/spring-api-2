@@ -2,7 +2,7 @@ let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
 let messageText = document.getElementById("message-text");
-let messageTag = document.getElementById("message-tag");
+let messageTitle = document.getElementById("message-title");
 let messageBtn = document.getElementById("message-btn");
 
 if (input !== null) {
@@ -21,12 +21,12 @@ if (input !== null) {
     check();
 }
 
-if (messageText !== null && messageTag !== null) {
+if (messageText !== null && messageTitle !== null) {
     const check2 = () => messageBtn.disabled =
-        messageText.value.trim(" ").length < 1  ||  messageTag.value.trim(" ").length < 1;
+        messageText.value.trim(" ").length < 1  ||  messageTitle.value.trim(" ").length < 1;
 
     messageText.addEventListener('input', check2);
-    messageTag.addEventListener('input', check2);
+    messageTitle.addEventListener('input', check2);
     check2();
 }
 
