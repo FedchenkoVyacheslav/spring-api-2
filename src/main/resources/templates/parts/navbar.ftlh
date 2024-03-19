@@ -9,14 +9,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/main">Messages</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/user">Edit users</a>
-                </li>
+                <#if isAdmin>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/user">Edit users</a>
+                    </li>
+                </#if>
             </ul>
         </div>
         <div class="navbar-text">${name}</div>
