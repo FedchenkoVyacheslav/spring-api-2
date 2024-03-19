@@ -35,11 +35,11 @@ public class MainController {
     public String getMessage(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model) {
         Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTitle(filter);
+            messages = messageRepo.findByTitleContainingIgnoreCase(filter);
             if (messages != null) {
                 int size = ((Collection<?>) messages).size();
                 if (size == 0) {
-                    messages = messageRepo.findByText(filter);
+                    messages = messageRepo.findByTextContainingIgnoreCase(filter);
                 }
             }
         } else {
