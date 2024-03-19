@@ -12,5 +12,11 @@
                 window.location = "/main";
             }, 2000);
         </script>
+    <#else>
+        <script>
+            setTimeout(function () {
+                window.location = "/login";
+            }, 2000);
+        </script>
     </#if>
 </@c.page>
