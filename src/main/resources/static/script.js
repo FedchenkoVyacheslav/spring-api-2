@@ -4,6 +4,8 @@ let el2 = document.getElementById("error-el2");
 let messageText = document.getElementById("message-text");
 let messageTitle = document.getElementById("message-title");
 let messageBtn = document.getElementById("message-btn");
+let editEmail = document.getElementById("edit-email");
+let editBtn = document.getElementById("edit-btn");
 
 if (input !== null) {
     function check() {
@@ -19,6 +21,14 @@ if (input !== null) {
 
     input.addEventListener('input', check);
     check();
+}
+
+if (editEmail !== null) {
+    const check3 = () => editBtn.disabled =
+        editEmail.value.trim(" ").length < 1;
+
+    editEmail.addEventListener('input', check3);
+    check3();
 }
 
 if (messageText !== null && messageTitle !== null) {

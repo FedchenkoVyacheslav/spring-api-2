@@ -4,8 +4,8 @@
     <form action="/user" method="post">
         <div class="form-row">
             <div class="form-group col-md-5 mr-5">
-                <label for="formName">Set new email</label>
-                <input type="text" id="formName" class="form-control" name="username" value="${user.username}"
+                <label for="edit-email">Set new email</label>
+                <input type="text" id="edit-email" class="form-control" name="username" value="${user.username}"
                        placeholder="Enter email"/>
             </div>
             <div class="form-group col-md-6 mx-auto">
@@ -22,7 +22,7 @@
             <input type="hidden" name="identityId" value="${user.id}"/>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary ml-1 mt-2">Save changes</button>
+                <button type="submit" id="edit-btn" class="btn btn-primary ml-1 mt-2">Save changes</button>
             </div>
         </div>
     </form>
