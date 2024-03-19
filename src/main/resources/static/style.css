@@ -1,41 +1,46 @@
-table {
-    border: 1px solid #eee;
-    table-layout: fixed;
-    width: 100%;
-    margin-bottom: 20px;
+body {
+    background-color: lightblue;
 }
 
-table th {
-    font-weight: bold;
-    padding: 5px;
-    background: #efefef;
-    border: 1px solid #dddddd;
-    width: 5%;
+.reg-error{
+    position: absolute;
+    top: -35px;
+    left: auto;
+    color: red;
 }
 
-table th:nth-child(5) {
-    width: 30%;
+.main-container {
+    position: relative;
 }
 
-table td {
-    padding: 5px 10px;
-    border: 1px solid #eee;
-    text-align: left;
+.greeting-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
-table tbody tr:nth-child(odd) {
-    background: #fff;
+.greeting-title {
+    text-align: center
 }
 
-table tbody tr:nth-child(even) {
-    background: #F7F7F7;
+.greeting-text {
+    text-align: center;
+    font-size: 25px;
+    color: cornflowerblue;
+}
+
+.btn:disabled {
+    background-color: gray;
+    border-color: gray;
 }
 
 .invalid-text, .valid-text {
-    margin: 5px 0 5px 76px;
+    margin: 5px 0;
     position: absolute;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 15px;
+    line-height: 19px;
 }
 
 .invalid-text {
@@ -47,11 +52,10 @@ table tbody tr:nth-child(even) {
 }
 
 .invalid-input {
-    border-style: solid;
     border-color: crimson;
 }
 
 .valid-input {
-    border-style: solid;
+    bborder-width: revert;
     border-color: olivedrab;
 }

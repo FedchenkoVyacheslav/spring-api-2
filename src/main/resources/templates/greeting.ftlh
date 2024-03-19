@@ -1,17 +1,22 @@
+<#include "parts/security.ftlh">
 <#import "parts/common.ftlh" as c>
+
 <@c.page>
-    <div style="position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);">
-        <h1 style="text-align: center;">Welcome!</h1>
-        <a href="/main" style="display: block;
-    text-align: center;
-    font-size: 25px;
-    color: cornflowerblue;
-    text-decoration: none;">
-            Main page
-        </a>
+    <div class="greeting-container">
+        <h1 class="greeting-title">Welcome!</h1>
+        <h5 class="greeting-text">This is simple spring boot mvc App</h5>
     </div>
+    <#if user??>
+        <script>
+            setTimeout(function () {
+                window.location = "/main";
+            }, 2000);
+        </script>
+    <#else>
+        <script>
+            setTimeout(function () {
+                window.location = "/login";
+            }, 2000);
+        </script>
+    </#if>
 </@c.page>

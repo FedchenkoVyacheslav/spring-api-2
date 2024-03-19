@@ -1,73 +1,65 @@
 <#import "parts/common.ftlh" as c>
-<#import "parts/auth.ftlh" as a>
+
 <@c.page>
-    <div style="display: flex; justify-content: end;">
-        <button><a href="/user" style="text-decoration: none; color: black;">User roles</a></button>
-        <@a.logout/>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <form method="get" action="/main" class="form-inline">
+                <input type="text" class="form-control" name="filter" id="search-input" value="${filter!""}"
+                       placeholder="Search for ..."/>
+                <div id="error-el" style="position: absolute; top: -34px;"></div>
+                <button type="submit" class="btn btn-primary ml-2" id="search-button">Search
+                </button>
+            </form>
+        </div>
     </div>
-    <h2>Send new message</h2>
-    <div>
-        <form method="post" action="/main" enctype="multipart/form-data" style="float: left;">
-            <div style="clear:both; text-align:right;">
-                <label for="n">Text</label>
-                <input type="text" id="message-text" name="text" placeholder="Add your text"/>
-            </div>
-            <div style="clear:both; text-align:right; margin-top: 10px">
-                <label for="n">Tag</label>
-                <input type="text" id="message-tag" name="tag" placeholder="Add your tag"/>
-            </div>
-            <div style="clear:both; text-align:right; margin-top: 10px; width: 100px;">
-                <input type="file" id="n" name="file"/>
-            </div>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <div style="display: table; margin-top: 10px; color: red; position: absolute">${error!" "}</div>
-            <button type="submit" id="message-btn" style="margin-top: 20px">Send</button>
-        </form>
-    </div>
-    <div style="display: inline-block;
-    background-color: lightblue;">
-        <h2 style="display: inline-block; width: 100%;"
-        >Messages list</h2>
-        <form method="get" action="/main" style="float: left;">
-            <div style="clear:both; text-align:right;">
-                <input type="text" name="filter" id="search-input" value="${filter!""}" placeholder="Search for"/>
-            </div>
-            <div style="position: relative">
-                <div id="error-el" style="position: absolute; top: 12px;"></div>
-            </div>
-            <button type="submit" id="search-button" style="margin-top: 40px; margin-bottom: 20px">Search</button>
-        </form>
-        <table>
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Text</th>
-                <th scope="col">Tag</th>
-                <th scope="col">Author</th>
-                <th scope="col">File</th>
-            </tr>
-            </thead>
-            <tbody>
-            <#list messages as message>
-                <tr>
-                    <th scope="row">${message.id}</th>
-                    <td>${message.text}</td>
-                    <td>${message.tag}</td>
-                    <td>${message.authorName}</td>
-                    <td>
-                        <#if message.filename??>
-                            <img src="/img/${message.filename}" style="width: 100%">
-                        <#else>
-                            <span>Empty</span>
-                        </#if>
-                    </td>
-                </tr>
-            <#else>
-                <div style="position: relative">
-                    <div id="error-el2" style="color: red; position: absolute; top: 31px;">No results found!</div>
+
+    <a class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+       aria-controls="messageForm">
+        Add new message
+    </a>
+    <div class="collapse" id="messageForm">
+        <div class="form-group mt-3">
+            <form method="post" action="/main" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" id="message-title" class="form-control" name="title" placeholder="Add a message title"/>
                 </div>
+                <div class="form-group">
+                    <input type="text" id="message-text" class="form-control" name="text" placeholder="Add message text"/>
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" id="formFile" name="file"/>
+                        <label style="cursor: pointer;" class="custom-file-label" for="formFile">Choose file...</label>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <div class="form-group">
+                    <button type="submit" id="message-btn" class="btn btn-primary">Send message
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div class="card-columns" style="position: relative">
+            <#list messages as message>
+                <div class="card my-3">
+                    <#if message.filename??>
+                        <img class="card-img-top" src="/img/${message.filename}" style="width: 100%">
+                    <#else>
+                        <img class="card-img-top" src="../static/pic/no-img.png" style="width: 100%">
+                    </#if>
+                    <div class="card-body">
+                        <h5 class="card-title">${message.title}</h5>
+                        <span class="card-text">${message.text}</span>
+                    </div>
+                    <div class="card-footer text-muted">
+                        ${message.authorName}
+                    </div>
+                </div>
+            <#else>
+                <div id="error-el2" style="color: red; position: absolute; top: 31px;">No results found!</div>
             </#list>
-            </tbody>
-        </table>
+        </div>
     </div>
 </@c.page>

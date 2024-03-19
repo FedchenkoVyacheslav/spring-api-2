@@ -1,30 +1,29 @@
 <#macro auth path1 path2 button link linkColor>
-    <form action="${path1}" method="post" name="auth" style="float: left;">
-        <div style="clear:both; text-align:right; margin-bottom: 30px">
-            <label for="n">User name: </label>
-            <input type="text" name="username" placeholder="Enter email"/>
+    <form action="${path1}" method="post" name="auth">
+        <div class="form-group row mb-4">
+            <div class="col-sm-4 mb-2">
+                <input type="text" class="form-control" name="username" placeholder="Enter email"/>
+            </div>
         </div>
-        <div style="clear:both; text-align:right; margin-bottom: 30px">
-            <label for="n">Password: </label>
-            <input type="password" name="password" placeholder="Enter password"/>
+        <div class="form-group row mb-4">
+            <div class="col-sm-4 mb-2">
+                <input type="password" class="form-control" name="password" placeholder="Enter password"/>
+            </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit" style="margin: 20px auto; display: block;">${button}</button>
+        <button type="submit" class="btn btn-primary mb-4">${button}</button>
     </form>
-    <a href="${path2}" style="margin: 20px auto;
-            display: block;
-            width: max-content;
-            font-size: 18px;
+    <a href="${path2}" style="
             color: ${linkColor};
             text-decoration: none;
-            font-weight: bold;">
+            font-weight: 600;">
         ${link}
     </a>
 </#macro>
 
 <#macro logout>
-    <form action="/logout" method="post" style="text-align: right; padding-left: 20px" ;>
+    <form action="/logout" method="post" style=" text-align: right; padding-left: 20px" ;>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <input type="submit" value="Sign Out"/>
+        <button type="submit" class="btn btn-primary">Sign out</button>
     </form>
 </#macro>
