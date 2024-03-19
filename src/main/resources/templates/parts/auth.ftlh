@@ -1,14 +1,12 @@
 <#macro auth path1 path2 button link linkColor>
     <form action="${path1}" method="post" name="auth">
         <div class="form-group row mb-4">
-            <label for="n" class="col-sm-2 col-form-label">User name: </label>
-            <div class="col-sm-6 mb-2">
+            <div class="col-sm-4 mb-2">
                 <input type="text" class="form-control" name="username" placeholder="Enter email"/>
             </div>
         </div>
         <div class="form-group row mb-4">
-            <label for="n" class="col-sm-2 col-form-label">Password: </label>
-            <div class="col-sm-6 mb-2">
+            <div class="col-sm-4 mb-2">
                 <input type="password" class="form-control" name="password" placeholder="Enter password"/>
             </div>
         </div>

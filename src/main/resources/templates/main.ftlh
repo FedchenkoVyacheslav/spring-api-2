@@ -32,7 +32,6 @@
                     </div>
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <div style="display: table; margin-top: 10px; color: red; position: absolute">${error!" "}</div>
                 <div class="form-group">
                     <button type="submit" id="message-btn" class="btn btn-primary">Send message
                     </button>
