@@ -1,9 +1,8 @@
 <#import "parts/common.ftlh" as c>
-<#import "parts/auth.ftlh" as a>
+
 <@c.page>
     <div style="display: flex; justify-content: end;">
         <button><a href="/user" style="text-decoration: none; color: black;">User roles</a></button>
-        <@a.logout/>
     </div>
     <h2>Send new message</h2>
     <div>

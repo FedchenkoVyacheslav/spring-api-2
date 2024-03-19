@@ -1,4 +1,6 @@
 <#include "security.ftlh">
+<#import "auth.ftlh" as a>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Spring-boot App</a>
@@ -21,6 +23,7 @@
                 </#if>
             </ul>
         </div>
-        <div class="navbar-text">${name}</div>
+        <div class="navbar-text mr-3">${name}</div>
+        <@a.logout/>
     </div>
 </nav>

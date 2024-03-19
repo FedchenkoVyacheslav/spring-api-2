@@ -31,6 +31,21 @@
 /*    background: #F7F7F7;*/
 /*}*/
 
+body {
+    background-color: lightblue;
+}
+
+.reg-error{
+    position: absolute;
+    top: -35px;
+    left: auto;
+    color: red;
+}
+
+.main-container {
+    position: relative;
+}
+
 .invalid-text, .valid-text {
     margin: 5px 0;
     position: absolute;
