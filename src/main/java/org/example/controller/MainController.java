@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.domain.Identity;
+import org.example.domain.User;
 import org.example.domain.Message;
 import org.example.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String sendMessage(@AuthenticationPrincipal Identity author,
+    public String sendMessage(@AuthenticationPrincipal User author,
                               @RequestParam String text,
                               @RequestParam String title,
                               @RequestParam Map<String, Object> model,

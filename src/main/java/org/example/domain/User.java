@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "identity")
-public class Identity implements UserDetails {
+@Table(name = "user")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -19,7 +19,7 @@ public class Identity implements UserDetails {
     private String password;
     private boolean active;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "identity_role", joinColumns = @JoinColumn(name = "identity_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 

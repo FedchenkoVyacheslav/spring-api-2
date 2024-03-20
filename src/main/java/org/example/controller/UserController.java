@@ -1,8 +1,8 @@
 package org.example.controller;
 
-import org.example.domain.Identity;
+import org.example.domain.User;
 import org.example.domain.Role;
-import org.example.repository.IdentityRepo;
+import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
-    private IdentityRepo identityRepo;
+    private UserRepo UserRepo;
 
     @GetMapping
     public String userList(Model model){
-        model.addAttribute("users", identityRepo.findAll());
+        model.addAttribute("users", UserRepo.findAll());
         return "userList";
     }
 
     @GetMapping("{user}")
-    public String userEditForm(@PathVariable Identity user, Model model){
+    public String userEditForm(@PathVariable User user, Model model){
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "editUser";
@@ -38,7 +38,7 @@ public class UserController {
     public String saveUser(
             @RequestParam String username,
             @RequestParam Map<String, String> form,
-            @RequestParam("identityId") Identity user
+            @RequestParam("userId") User user
     ){
         user.setUsername(username);
         Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
@@ -50,7 +50,7 @@ public class UserController {
             }
         }
 
-        identityRepo.save(user);
+        UserRepo.save(user);
 
         return "redirect:/user";
     }
