@@ -33,12 +33,28 @@ if (editEmail !== null) {
 
 if (messageText !== null && messageTitle !== null) {
     const check2 = () => messageBtn.disabled =
-        messageText.value.trim(" ").length < 1  ||  messageTitle.value.trim(" ").length < 1;
+        messageText.value.trim(" ").length < 1 || messageTitle.value.trim(" ").length < 1;
 
     messageText.addEventListener('input', check2);
     messageTitle.addEventListener('input', check2);
     check2();
 }
+
+$(document).ready(function () {
+
+    $('[data-toggle="collapse"]').click(function () {
+        $(this).toggleClass("active");
+        if ($(this).hasClass("active")) {
+            $(this).text("Hide message form");
+        } else {
+            $(this).text("Add new message");
+        }
+    });
+
+
+// document ready
+});
+
 
 function getValuesForm(form) {
     let body = {};

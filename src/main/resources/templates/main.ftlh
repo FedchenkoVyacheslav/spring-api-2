@@ -13,10 +13,10 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+    <button class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
        aria-controls="messageForm">
         Add new message
-    </a>
+    </button>
     <div class="collapse" id="messageForm">
         <div class="form-group mt-3">
             <form method="post" action="/main" enctype="multipart/form-data">
