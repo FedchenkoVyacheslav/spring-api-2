@@ -59,3 +59,21 @@ body {
     bborder-width: revert;
     border-color: olivedrab;
 }
+
+.profile-img-box {
+    position: relative;
+    overflow: hidden;
+    height: 470px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+.profile-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: none;
+    min-width: 100.5%;
+    height: 100%;
+    width: initial;
+}

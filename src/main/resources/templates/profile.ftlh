@@ -1,11 +1,11 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
     <div style="display: flex">
-        <div class="card mr-4" style="width: 60%">
+        <div class="profile-img-box card bg-secondary mr-5 mt-2" style="width: 60%">
             <#if user.photoUrl??>
-                <img class="card-img-top py-2 px-2" src="/img/${user.photoUrl}" style="width: 100%">
+                <img class="profile-img card-img-top" src="/img/${user.photoUrl!""}">
             <#else>
-                <img class="card-img-top" src="../static/pic/no-img.png" style="width: 100%">
+                <img class="profile-img card-img-top" src="../static/pic/no-img.png">
             </#if>
         </div>
         <form action="/user" method="post" enctype="multipart/form-data">
