@@ -41,7 +41,6 @@ if (messageText !== null && messageTitle !== null) {
 }
 
 $(document).ready(function () {
-
     $('[data-toggle="collapse"]').click(function () {
         $(this).toggleClass("active");
         if ($(this).hasClass("active")) {
@@ -51,8 +50,10 @@ $(document).ready(function () {
         }
     });
 
-
-// document ready
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
 });
 
 
