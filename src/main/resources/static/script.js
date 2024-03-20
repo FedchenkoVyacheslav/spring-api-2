@@ -51,7 +51,7 @@ $(document).ready(function () {
     });
 
     $('input[type="file"]').change(function(e){
-        var fileName = e.target.files[0].name;
+        var fileName = e.target.files[0].name.substring(0,20) + "...";
         $('.custom-file-label').html(fileName);
     });
 });

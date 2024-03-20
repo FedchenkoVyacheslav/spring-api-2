@@ -4,5 +4,5 @@
     <div class="main-container">
         <div class="reg-error">${message!""}</div>
     </div>
-    <@a.auth "/registration" "/login" "SIGN UP" "I have an account" "olivedrab"/>
+    <@a.auth "/registration" "/login" "SIGN UP" "I have an account" "Sign up a new account"/>
 </@c.page>
