@@ -22,7 +22,7 @@
             </#if>
         </ul>
     </div>
-    <div class="navbar-text mr-3">${name}</div>
+    <div class="navbar-text mr-3">${email}</div>
     <#if user??>
         <@a.logout/>
     </#if>

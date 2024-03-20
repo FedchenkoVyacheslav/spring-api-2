@@ -3,7 +3,7 @@
 
 <@c.page>
     <div class="greeting-container">
-        <h1 class="greeting-title">Welcome ${name}!</h1>
+        <h1 class="greeting-title">Welcome ${email}!</h1>
         <h5 class="greeting-text">This is simple spring boot mvc App</h5>
     </div>
     <#if user??>
