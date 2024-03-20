@@ -144,11 +144,11 @@ if (formAuth !== undefined) {
             const values = getValuesForm(form);
             let errors = {};
 
-            if (values.username === null || values.username === "") {
-                errors.username = "This field is required";
+            if (values.email === null || values.email === "") {
+                errors.email = "This field is required";
                 isValid = false;
-            } else if (!mailCheck(values.username)) {
-                errors.username = "Invalid email";
+            } else if (!mailCheck(values.email)) {
+                errors.email = "Invalid email";
                 isValid = false;
             }
 

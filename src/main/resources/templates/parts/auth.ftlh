@@ -2,7 +2,7 @@
     <form action="${path1}" method="post" name="auth">
         <div class="form-group row mb-4">
             <div class="col-sm-4 mb-2">
-                <input type="text" class="form-control" name="username" placeholder="Enter email"/>
+                <input type="text" class="form-control" name="email" placeholder="Enter email"/>
             </div>
         </div>
         <div class="form-group row mb-4">

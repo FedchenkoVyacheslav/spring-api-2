@@ -54,7 +54,7 @@
                         <span class="card-text">${message.text}</span>
                     </div>
                     <div class="card-footer text-muted">
-                        ${message.authorName}
+                        ${message.authorEmail}
                     </div>
                 </div>
             <#else>

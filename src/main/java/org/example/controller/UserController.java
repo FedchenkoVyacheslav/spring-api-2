@@ -36,11 +36,11 @@ public class UserController {
 
     @PostMapping
     public String saveUser(
-            @RequestParam String username,
+            @RequestParam String email,
             @RequestParam Map<String, String> form,
             @RequestParam("userId") User user
     ){
-        user.setUsername(username);
+        user.setEmail(email);
         Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
 
         user.getRoles().clear();

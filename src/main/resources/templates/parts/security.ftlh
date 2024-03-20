@@ -5,7 +5,7 @@ known = SPRING_SECURITY_CONTEXT??
 <#if known>
     <#assign
     user = SPRING_SECURITY_CONTEXT.authentication.principal
-    name = user.getUsername()
+    name = user.getEmail()
     isAdmin = user.isAdmin()
     currentUserId = user.getId()
     >

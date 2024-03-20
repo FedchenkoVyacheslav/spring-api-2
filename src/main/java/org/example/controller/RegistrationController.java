@@ -23,8 +23,8 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
-        User userDB = UserRepo.findByUsername(user.getUsername());
-        if (user.getUsername().trim().isEmpty() || user.getPassword().trim().isEmpty()) {
+        User userDB = UserRepo.findByEmail(user.getEmail());
+        if (user.getEmail().trim().isEmpty() || user.getPassword().trim().isEmpty()) {
             model.put("message", "Empty email or password!");
             return "registration";
         }
