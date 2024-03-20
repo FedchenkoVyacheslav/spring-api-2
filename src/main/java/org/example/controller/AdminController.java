@@ -15,9 +15,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin")
 @PreAuthorize("hasAuthority('ADMIN')")
-public class UserController {
+public class AdminController {
     @Autowired
     private UserRepo UserRepo;
 
@@ -52,6 +52,6 @@ public class UserController {
 
         UserRepo.save(user);
 
-        return "redirect:/user";
+        return "redirect:/admin";
     }
 }

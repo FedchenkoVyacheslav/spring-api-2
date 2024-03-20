@@ -1,7 +1,7 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
 
-    <form action="/user" method="post">
+    <form action="/admin" method="post">
         <div class="form-row">
             <div class="form-group col-md-5 mr-5">
                 <label for="edit-email">Set new email</label>

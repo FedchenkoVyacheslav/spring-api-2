@@ -14,7 +14,7 @@
             </li>
             <#if isAdmin>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user">Admin dashboard</a>
+                    <a class="nav-link" href="/admin">Admin dashboard</a>
                 </li>
             </#if>
         </ul>
