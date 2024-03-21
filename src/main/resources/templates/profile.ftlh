@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group col-md-5 mr-5">
                     <label for="edit-age">Age</label>
-                    <input type="text" id="edit-age" class="form-control" name="age" value="${user.age!""}"
+                    <input type="number" id="edit-age" class="form-control" name="age" value="${user.age!""}"
                            placeholder="Enter your age"/>
                 </div>
                 <div class="form-group col-md-5 mr-5 mt-4">

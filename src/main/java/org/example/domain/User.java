@@ -23,7 +23,7 @@ public class User implements UserDetails {
     private String name;
     private String surname;
     private String location;
-    private int age;
+    private Integer age;
     private String photoUrl;
     private boolean active;
     @CreationTimestamp
