@@ -34,8 +34,15 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.card-title, .card-text {
+.card-title, .card-text, .card-date {
     color: black;
+}
+
+.card-date {
+    float: right;
+    font-size: 11px;
+    color: dimgray;
+    line-height: 27px;
 }
 
 .greeting-title {
