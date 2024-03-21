@@ -45,13 +45,15 @@ $(document).ready(function () {
         $(this).toggleClass("active");
         if ($(this).hasClass("active")) {
             $(this).text("Hide message form");
+            $(document.body).addClass("opened");
         } else {
             $(this).text("Add new message");
+            $(document.body).removeClass("opened")
         }
     });
 
     $('input[type="file"]').change(function(e){
-        var fileName = e.target.files[0].name.substring(0,20) + "...";
+        let fileName = e.target.files[0].name.substring(0,20) + "...";
         $('.custom-file-label').html(fileName);
     });
 });

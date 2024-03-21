@@ -7,8 +7,12 @@ html {
 body {
     background: url(pic/background.jpg) no-repeat center center fixed;
     margin: 0;
-    height: calc(100% + 200px);
+    height: 100%;
     color: white;
+}
+
+.opened {
+    height: calc(100% + 200px);
 }
 
 .reg-error{
@@ -28,6 +32,17 @@ body {
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+}
+
+.card-title, .card-text, .card-date {
+    color: black;
+}
+
+.card-date {
+    float: right;
+    font-size: 11px;
+    color: dimgray;
+    line-height: 27px;
 }
 
 .greeting-title {

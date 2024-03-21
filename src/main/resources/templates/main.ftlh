@@ -54,6 +54,7 @@
                     </div>
                     <div class="card-footer text-muted">
                         ${message.authorEmail}
+                        <span class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</span>
                     </div>
                 </div>
             <#else>
