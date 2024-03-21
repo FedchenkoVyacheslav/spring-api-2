@@ -6,7 +6,7 @@
             <form method="get" action="/main" class="form-inline">
                 <input type="text" class="form-control" name="filter" id="search-input" value="${filter!""}"
                        placeholder="Search for ..."/>
-                <div id="error-el" style="position: absolute; top: -34px;"></div>
+                <div id="error-el" style="position: absolute; top: -34px; color: white"></div>
                 <button type="submit" class="btn btn-primary ml-2" id="search-button">Search
                 </button>
             </form>
