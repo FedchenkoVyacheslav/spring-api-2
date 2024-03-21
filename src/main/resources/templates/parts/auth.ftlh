@@ -12,7 +12,7 @@
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-primary mb-4">${button}</button>
+        <button type="submit" class="btn btn-info mb-4">${button}</button>
     </form>
     <a href="${path2}" style="
             color: white;
@@ -25,6 +25,6 @@
 <#macro logout>
     <form action="/logout" method="post" style=" text-align: right; padding-left: 20px" ;>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-primary">Sign out</button>
+        <button type="submit" class="btn btn-info">Sign out</button>
     </form>
 </#macro>

@@ -41,7 +41,7 @@
                 <input type="hidden" name="userId" value="${user.id}"/>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="form-group mt-3">
-                    <button type="submit" id="edit-btn" class="btn btn-primary ml-1 mt-2">Save changes</button>
+                    <button type="submit" id="edit-btn" class="btn btn-info ml-1 mt-2">Save changes</button>
                 </div>
             </div>
         </form>

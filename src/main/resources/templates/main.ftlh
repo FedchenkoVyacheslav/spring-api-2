@@ -7,12 +7,12 @@
                 <input type="text" class="form-control" name="filter" id="search-input" value="${filter!""}"
                        placeholder="Search for ..."/>
                 <div id="error-el" style="position: absolute; top: -34px; color: white"></div>
-                <button type="submit" class="btn btn-primary ml-2" id="search-button">Search
+                <button type="submit" class="btn btn-info ml-2" id="search-button">Search
                 </button>
             </form>
         </div>
     </div>
-    <button class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+    <button class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
        aria-controls="messageForm">
         Add new message
     </button>
@@ -33,7 +33,7 @@
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="form-group">
-                    <button type="submit" id="message-btn" class="btn btn-primary">Send message
+                    <button type="submit" id="message-btn" class="btn btn-info">Send message
                     </button>
                 </div>
             </form>
