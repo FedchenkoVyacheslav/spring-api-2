@@ -6,17 +6,16 @@
             <form method="get" action="/main" class="form-inline">
                 <input type="text" class="form-control" name="filter" id="search-input" value="${filter!""}"
                        placeholder="Search for ..."/>
-                <div id="error-el" style="position: absolute; top: -34px;"></div>
+                <div id="error-el" style="position: absolute; top: -34px; color: white"></div>
                 <button type="submit" class="btn btn-primary ml-2" id="search-button">Search
                 </button>
             </form>
         </div>
     </div>
-
-    <a class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+    <button class="btn btn-primary" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
        aria-controls="messageForm">
         Add new message
-    </a>
+    </button>
     <div class="collapse" id="messageForm">
         <div class="form-group mt-3">
             <form method="post" action="/main" enctype="multipart/form-data">
@@ -45,7 +44,7 @@
             <#list messages as message>
                 <div class="card my-3">
                     <#if message.filename??>
-                        <img class="card-img-top" src="/img/${message.filename}" style="width: 100%">
+                        <img class="card-img-top py-2 px-2" src="/img/${message.filename}" style="width: 100%">
                     <#else>
                         <img class="card-img-top" src="../static/pic/no-img.png" style="width: 100%">
                     </#if>
@@ -54,7 +53,7 @@
                         <span class="card-text">${message.text}</span>
                     </div>
                     <div class="card-footer text-muted">
-                        ${message.authorName}
+                        ${message.authorEmail}
                     </div>
                 </div>
             <#else>

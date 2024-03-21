@@ -1,5 +1,13 @@
+html {
+    background: rgb(92 125 122) no-repeat center center fixed;
+    margin: 0;
+    height: 100%;
+}
+
 body {
-    background-color: lightblue;
+    background: url(pic/background.jpg) no-repeat center center fixed;
+    margin: 0;
+    height: calc(100% + 200px);
 }
 
 .reg-error{
@@ -28,12 +36,12 @@ body {
 .greeting-text {
     text-align: center;
     font-size: 25px;
-    color: cornflowerblue;
+    color: white;
 }
 
 .btn:disabled {
-    background-color: gray;
-    border-color: gray;
+    background-color: #606060;
+    border-color: #606060;
 }
 
 .invalid-text, .valid-text {
@@ -44,18 +52,36 @@ body {
 }
 
 .invalid-text {
-    color: crimson;
+    color: red;
 }
 
 .valid-text {
-    color: olivedrab;
+    color: lime;
 }
 
 .invalid-input {
-    border-color: crimson;
+    border-color: red;
 }
 
 .valid-input {
     bborder-width: revert;
-    border-color: olivedrab;
+    border-color: lime;
+}
+
+.profile-img-box {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.55);
+}
+
+.profile-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: none;
+    min-width: 100.5%;
+    height: 100%;
+    width: initial;
 }

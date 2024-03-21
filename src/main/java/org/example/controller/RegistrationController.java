@@ -1,8 +1,8 @@
 package org.example.controller;
 
-import org.example.domain.Identity;
+import org.example.domain.User;
 import org.example.domain.Role;
-import org.example.repository.IdentityRepo;
+import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class RegistrationController {
     @Autowired
-    private IdentityRepo identityRepo;
+    private UserRepo UserRepo;
 
     @GetMapping("/registration")
     public String registration() {
@@ -22,19 +22,19 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(Identity identity, Map<String, Object> model) {
-        Identity identityDB = identityRepo.findByUsername(identity.getUsername());
-        if (identity.getUsername().trim().isEmpty() || identity.getPassword().trim().isEmpty()) {
+    public String addUser(User user, Map<String, Object> model) {
+        User userDB = UserRepo.findByEmail(user.getEmail());
+        if (user.getEmail().trim().isEmpty() || user.getPassword().trim().isEmpty()) {
             model.put("message", "Empty email or password!");
             return "registration";
         }
-        if (identityDB != null) {
+        if (userDB != null) {
             model.put("message", "User exists!");
             return "registration";
         }
-        identity.setActive(true);
-        identity.setRoles(Collections.singleton(Role.USER));
-        identityRepo.save(identity);
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
+        UserRepo.save(user);
 
         return "redirect:/login";
     }

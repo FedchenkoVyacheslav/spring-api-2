@@ -13,20 +13,20 @@ public class Message {
     private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "identity_id")
-    private Identity author;
+    @JoinColumn(name = "user_id")
+    private User author;
     private String filename;
 
     public Message() {
     }
 
-    public Message(String text, String title, Identity author) {
+    public Message(String text, String title, User author) {
         this.author = author;
         this.text = text;
         this.title = title;
     }
 
-    public String getAuthorName() {
-        return author != null ? author.getUsername() : "No author";
+    public String getAuthorEmail() {
+        return author != null ? author.getEmail() : "No author";
     }
 }

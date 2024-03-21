@@ -4,6 +4,8 @@ let el2 = document.getElementById("error-el2");
 let messageText = document.getElementById("message-text");
 let messageTitle = document.getElementById("message-title");
 let messageBtn = document.getElementById("message-btn");
+let editEmail = document.getElementById("edit-email");
+let editBtn = document.getElementById("edit-btn");
 
 if (input !== null) {
     function check() {
@@ -21,14 +23,39 @@ if (input !== null) {
     check();
 }
 
+if (editEmail !== null) {
+    const check3 = () => editBtn.disabled =
+        editEmail.value.trim(" ").length < 1;
+
+    editEmail.addEventListener('input', check3);
+    check3();
+}
+
 if (messageText !== null && messageTitle !== null) {
     const check2 = () => messageBtn.disabled =
-        messageText.value.trim(" ").length < 1  ||  messageTitle.value.trim(" ").length < 1;
+        messageText.value.trim(" ").length < 1 || messageTitle.value.trim(" ").length < 1;
 
     messageText.addEventListener('input', check2);
     messageTitle.addEventListener('input', check2);
     check2();
 }
+
+$(document).ready(function () {
+    $('[data-toggle="collapse"]').click(function () {
+        $(this).toggleClass("active");
+        if ($(this).hasClass("active")) {
+            $(this).text("Hide message form");
+        } else {
+            $(this).text("Add new message");
+        }
+    });
+
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name.substring(0,20) + "...";
+        $('.custom-file-label').html(fileName);
+    });
+});
+
 
 function getValuesForm(form) {
     let body = {};
@@ -118,11 +145,11 @@ if (formAuth !== undefined) {
             const values = getValuesForm(form);
             let errors = {};
 
-            if (values.username === null || values.username === "") {
-                errors.username = "This field is required";
+            if (values.email === null || values.email === "") {
+                errors.email = "This field is required";
                 isValid = false;
-            } else if (!mailCheck(values.username)) {
-                errors.username = "Invalid email";
+            } else if (!mailCheck(values.email)) {
+                errors.email = "Invalid email";
                 isValid = false;
             }
 

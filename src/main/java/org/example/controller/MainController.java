@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.domain.Identity;
+import org.example.domain.User;
 import org.example.domain.Message;
 import org.example.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
@@ -34,7 +35,13 @@ public class MainController {
     public String getMessage(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model) {
         Iterable<Message> messages;
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTitle(filter);
+            messages = messageRepo.findByTitleContainingIgnoreCase(filter);
+            if (messages != null) {
+                int size = ((Collection<?>) messages).size();
+                if (size == 0) {
+                    messages = messageRepo.findByTextContainingIgnoreCase(filter);
+                }
+            }
         } else {
             messages = messageRepo.findAll();
         }
@@ -45,7 +52,7 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String sendMessage(@AuthenticationPrincipal Identity author,
+    public String sendMessage(@AuthenticationPrincipal User author,
                               @RequestParam String text,
                               @RequestParam String title,
                               @RequestParam Map<String, Object> model,

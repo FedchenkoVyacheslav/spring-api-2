@@ -1,57 +1,62 @@
 package org.example.controller;
 
-import org.example.domain.Identity;
-import org.example.domain.Role;
-import org.example.repository.IdentityRepo;
+import org.example.domain.User;
+import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
-    private IdentityRepo identityRepo;
+    private UserRepo UserRepo;
 
-    @GetMapping
-    public String userList(Model model){
-        model.addAttribute("users", identityRepo.findAll());
-        return "userList";
-    }
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @GetMapping("{user}")
-    public String userEditForm(@PathVariable Identity user, Model model){
+    public String userEditForm(@PathVariable User user, Model model){
         model.addAttribute("user", user);
-        model.addAttribute("roles", Role.values());
-        return "editUser";
+        return "profile";
     }
 
     @PostMapping
     public String saveUser(
-            @RequestParam String username,
-            @RequestParam Map<String, String> form,
-            @RequestParam("identityId") Identity user
-    ){
-        user.setUsername(username);
-        Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam String location,
+            @RequestParam int age,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("userId") User user
+    ) throws IOException {
+        user.setName(name);
+        user.setSurname(surname);
+        user.setLocation(location);
+        user.setAge(age);
 
-        user.getRoles().clear();
-        for (String key : form.keySet()) {
-            if(roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
+        if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdir();
             }
+            String uuidFileUUID = UUID.randomUUID().toString();
+            String resFileName = uuidFileUUID + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resFileName));
+
+            user.setPhotoUrl(resFileName);
         }
 
-        identityRepo.save(user);
+        UserRepo.save(user);
 
-        return "redirect:/user";
+        return "redirect:/main";
     }
 }
