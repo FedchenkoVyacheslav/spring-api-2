@@ -8,6 +8,7 @@ body {
     background: url(pic/background.jpg) no-repeat center center fixed;
     margin: 0;
     height: calc(100% + 200px);
+    color: white;
 }
 
 .reg-error{
@@ -30,13 +31,13 @@ body {
 }
 
 .greeting-title {
-    text-align: center
+    text-align: center;
+    color: black;
 }
 
 .greeting-text {
     text-align: center;
     font-size: 25px;
-    color: white;
 }
 
 .btn:disabled {
