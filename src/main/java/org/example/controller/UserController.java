@@ -23,7 +23,7 @@ public class UserController {
     private String uploadPath;
 
     @GetMapping("{user}")
-    public String userEditForm(@PathVariable User user, Model model){
+    public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
         return "profile";
     }
@@ -33,14 +33,18 @@ public class UserController {
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam String location,
-            @RequestParam int age,
+            @RequestParam(required = false, defaultValue = "") Integer age,
             @RequestParam("file") MultipartFile file,
             @RequestParam("userId") User user
     ) throws IOException {
         user.setName(name);
         user.setSurname(surname);
         user.setLocation(location);
-        user.setAge(age);
+        if (age == null) {
+            user.setAge(0);
+        } else {
+            user.setAge(age);
+        }
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             String resFileName = MainController.uploadedDir(file, uploadPath);
