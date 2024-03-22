@@ -45,10 +45,8 @@ $(document).ready(function () {
         $(this).toggleClass("active");
         if ($(this).hasClass("active")) {
             $(this).text("Hide message form");
-            $(document.body).addClass("opened");
         } else {
             $(this).text("Add new message");
-            $(document.body).removeClass("opened")
         }
     });
 

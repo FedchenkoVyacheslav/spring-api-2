@@ -43,18 +43,9 @@ public class UserController {
         user.setAge(age);
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String uuidFileUUID = UUID.randomUUID().toString();
-            String resFileName = uuidFileUUID + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resFileName));
-
+            String resFileName = MainController.uploadedDir(file, uploadPath);
             user.setPhotoUrl(resFileName);
         }
-
         UserRepo.save(user);
 
         return "redirect:/main";

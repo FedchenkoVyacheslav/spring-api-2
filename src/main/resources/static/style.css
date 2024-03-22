@@ -1,18 +1,6 @@
-html {
-    background: rgb(92 125 122) no-repeat center center fixed;
-    margin: 0;
-    height: 100%;
-}
-
 body {
     background: url(pic/background.jpg) no-repeat center center fixed;
-    margin: 0;
-    height: auto;
     color: white;
-}
-
-.opened {
-    height: auto;
 }
 
 .reg-error{

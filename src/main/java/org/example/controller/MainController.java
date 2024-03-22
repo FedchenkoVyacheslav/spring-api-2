@@ -61,15 +61,7 @@ public class MainController {
         Message message = new Message(text.trim(), title.trim(), author);
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-            String uuidFileUUID = UUID.randomUUID().toString();
-            String resFileName = uuidFileUUID + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resFileName));
-
+            String resFileName = uploadedDir(file, uploadPath);
             message.setFilename(resFileName);
         }
 
@@ -77,5 +69,17 @@ public class MainController {
         model.put("messages", messageRepo.findAll());
 
         return "redirect:main";
+    }
+
+    static String uploadedDir(@RequestParam("file") MultipartFile file, String uploadPath) throws IOException {
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+        String uuidFileUUID = UUID.randomUUID().toString();
+        String resFileName = uuidFileUUID + "." + file.getOriginalFilename();
+
+        file.transferTo(new File(uploadPath + "/" + resFileName));
+        return resFileName;
     }
 }
