@@ -7,12 +7,12 @@ html {
 body {
     background: url(pic/background.jpg) no-repeat center center fixed;
     margin: 0;
-    height: 100%;
+    height: auto;
     color: white;
 }
 
 .opened {
-    height: calc(100% + 200px);
+    height: auto;
 }
 
 .reg-error{
