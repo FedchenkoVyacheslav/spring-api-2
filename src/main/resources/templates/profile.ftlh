@@ -5,7 +5,7 @@
             <#if user.photoUrl??>
                 <img class="profile-img card-img-top" src="/img/${user.photoUrl!""}">
             <#else>
-                <img class="profile-img card-img-top" src="../static/pic/no-img.png">
+                <img class="profile-img card-img-top" src="../static/pic/profile-empty.jpg">
             </#if>
         </div>
         <form action="/user" method="post" enctype="multipart/form-data">

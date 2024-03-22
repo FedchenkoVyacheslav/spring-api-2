@@ -33,14 +33,18 @@ public class Message {
     }
 
     public String getAuthorEmail() {
-        return author != null ? author.getEmail() : "No author";
+        return author.getEmail();
     }
 
     public String getAuthorName() {
-        return author != null ? author.getName() : "No author";
+        return author.getName();
     }
 
     public String getAuthorSurname() {
-        return author != null ? author.getSurname() : "No author";
+        return author.getSurname();
+    }
+
+    public String getAuthorAvatar() {
+        return author.getPhotoUrl();
     }
 }

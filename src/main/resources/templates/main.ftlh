@@ -13,17 +13,19 @@
         </div>
     </div>
     <button class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
-       aria-controls="messageForm">
+            aria-controls="messageForm">
         Add new message
     </button>
     <div class="collapse" id="messageForm">
         <div class="form-group mt-3">
             <form method="post" action="/main" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" id="message-title" class="form-control" name="title" placeholder="Add a message title"/>
+                    <input type="text" id="message-title" class="form-control" name="title"
+                           placeholder="Add a message title"/>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="message-text" class="form-control" name="text" placeholder="Add message text"/>
+                    <input type="text" id="message-text" class="form-control" name="text"
+                           placeholder="Add message text"/>
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
@@ -53,11 +55,18 @@
                         <span class="card-text">${message.text}</span>
                     </div>
                     <div class="card-footer text-muted">
-                        <div>
+                        <div class="card-footer-image-box">
+                            <#if message.authorAvatar??>
+                                <img src="/img/${message.authorAvatar}">
+                            <#else>
+                                <img src="../static/pic/profile-empty.jpg">
+                            </#if>
+                        </div>
+                        <div class="card-author">
                             <span>${message.authorName} ${message.authorSurname}</span>
                             <span>${message.authorEmail}</span>
                         </div>
-                        <span class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</span>
+                        <p class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
                     </div>
                 </div>
             <#else>
