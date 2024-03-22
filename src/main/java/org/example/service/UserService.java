@@ -10,15 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo UserRepo;
-
-//    @Autowired
-//    private MailSender mailSender;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -36,18 +32,8 @@ public class UserService implements UserDetailsService {
         }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-//        user.setActivationCode(UUID.randomUUID().toString());
 
         UserRepo.save(user);
-//        String message = String.format(
-//                "Hello, %s %s! \n" +
-//                        "Welcome to Sweater. Please, visit next link: http://localhost:8082/activate/%s",
-//                user.getName(),
-//                user.getSurname(),
-//                user.getActivationCode()
-//        );
-//        mailSender.send(user.getEmail(), "Activation code", message);
-
         return true;
     }
 }
