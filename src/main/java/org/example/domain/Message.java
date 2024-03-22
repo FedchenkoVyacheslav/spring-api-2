@@ -35,4 +35,12 @@ public class Message {
     public String getAuthorEmail() {
         return author != null ? author.getEmail() : "No author";
     }
+
+    public String getAuthorName() {
+        return author != null ? author.getName() : "No author";
+    }
+
+    public String getAuthorSurname() {
+        return author != null ? author.getSurname() : "No author";
+    }
 }

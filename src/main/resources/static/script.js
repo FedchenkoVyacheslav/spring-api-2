@@ -6,6 +6,8 @@ let messageTitle = document.getElementById("message-title");
 let messageBtn = document.getElementById("message-btn");
 let editEmail = document.getElementById("edit-email");
 let editBtn = document.getElementById("edit-btn");
+let nameReg = document.getElementById("name-register");
+let surnameReg = document.getElementById("surname-register");
 
 if (input !== null) {
     function check() {
@@ -50,8 +52,8 @@ $(document).ready(function () {
         }
     });
 
-    $('input[type="file"]').change(function(e){
-        let fileName = e.target.files[0].name.substring(0,20) + "...";
+    $('input[type="file"]').change(function (e) {
+        let fileName = e.target.files[0].name.substring(0, 20) + "...";
         $('.custom-file-label').html(fileName);
     });
 });
@@ -67,27 +69,10 @@ function getValuesForm(form) {
     return body;
 }
 
-function errorMessageCreater(input, text) {
+function errorMessageCreator(input, text) {
     let message = document.createElement("div");
     message.classList.add("invalid-text");
     message.innerText = text;
-
-    let nextMessage = input.nextElementSibling;
-    if (nextMessage != null) {
-        return;
-    }
-
-    input.insertAdjacentElement("afterend", message);
-    input.addEventListener("input", function handlerInput(event) {
-        message.remove();
-        input.removeEventListener("input", handlerInput);
-    });
-}
-
-function rightMessageCreater(input, text) {
-    let message = document.createElement("div");
-    message.classList.add("valid-text");
-    message.innerText = 'All right';
 
     let nextMessage = input.nextElementSibling;
     if (nextMessage != null) {
@@ -109,24 +94,13 @@ function setInvalidInput(input) {
     });
 }
 
-function setValidInput(input) {
-    input.classList.add("valid-input");
-    input.addEventListener("input", function handlerInput(event) {
-        input.classList.remove("valid-input");
-        input.removeEventListener("input", handlerInput);
-    });
-}
-
 function setFormErrors(form, errors) {
     const inputs = form.querySelectorAll("input");
     for (let i = 0; i < inputs.length; i++) {
         const input = inputs[i];
         if (errors[input.name]) {
             setInvalidInput(input);
-            errorMessageCreater(input, errors[input.name]);
-        } else {
-            setValidInput(input);
-            rightMessageCreater(input, errors[input.name]);
+            errorMessageCreator(input, errors[input.name]);
         }
     }
 }
@@ -135,16 +109,15 @@ function mailCheck(field) {
     return field.match(/^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+))/i);
 }
 
-let formAuth = document.forms["auth"];
-if (formAuth !== undefined) {
+let auth = document.forms["auth"];
+if (auth !== undefined) {
     (function () {
-        formAuth.onsubmit = (event) => {
+        auth.onsubmit = (event) => {
             event.preventDefault();
             let isValid = true;
             const form = event.target;
             const values = getValuesForm(form);
             let errors = {};
-
             if (values.email === null || values.email === "") {
                 errors.email = "This field is required";
                 isValid = false;
@@ -152,7 +125,6 @@ if (formAuth !== undefined) {
                 errors.email = "Invalid email";
                 isValid = false;
             }
-
             if (values.password === null || values.password === "") {
                 errors.password = 'This field is required';
                 setFormErrors(form, errors);
@@ -162,7 +134,26 @@ if (formAuth !== undefined) {
                 setFormErrors(form, errors);
                 isValid = false;
             }
-
+            if (nameReg !== null && surnameReg !== null) {
+                if (values.name === null || values.name === "") {
+                    errors.name = 'This field is required';
+                    setFormErrors(form, errors);
+                    isValid = false;
+                } else if (values.name.length < 3) {
+                    errors.name = 'Too short name';
+                    setFormErrors(form, errors);
+                    isValid = false;
+                }
+                if (values.surname === null || values.surname === "") {
+                    errors.surname = 'This field is required';
+                    setFormErrors(form, errors);
+                    isValid = false;
+                } else if (values.surname.length < 3) {
+                    errors.surname = 'Too short surname';
+                    setFormErrors(form, errors);
+                    isValid = false;
+                }
+            }
             if (isValid) {
                 event.currentTarget.submit();
             }

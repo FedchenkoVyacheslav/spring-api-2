@@ -5,7 +5,7 @@
     <div class="greeting-container">
         <h1 class="greeting-title">
             <#if user??>
-                Welcome ${email}!
+                Welcome ${name} ${surname}!
             <#else>
                 Please log in
             </#if>

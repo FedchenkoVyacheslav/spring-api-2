@@ -26,6 +26,7 @@ public class User implements UserDetails {
     private Integer age;
     private String photoUrl;
     private boolean active;
+    private String activationCode;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;

@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-.reg-error{
+.reg-error {
     position: absolute;
     top: -35px;
     left: auto;
@@ -27,10 +27,26 @@ body {
 }
 
 .card-date {
-    float: right;
     font-size: 11px;
     color: dimgray;
-    line-height: 27px;
+}
+
+.card-footer {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.card-footer span {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.card-footer div {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
 }
 
 .greeting-title {
@@ -59,17 +75,8 @@ body {
     color: red;
 }
 
-.valid-text {
-    color: lime;
-}
-
 .invalid-input {
     border-color: red;
-}
-
-.valid-input {
-    bborder-width: revert;
-    border-color: lime;
 }
 
 .profile-img-box {

@@ -53,7 +53,10 @@
                         <span class="card-text">${message.text}</span>
                     </div>
                     <div class="card-footer text-muted">
-                        ${message.authorEmail}
+                        <div>
+                            <span>${message.authorName} ${message.authorSurname}</span>
+                            <span>${message.authorEmail}</span>
+                        </div>
                         <span class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</span>
                     </div>
                 </div>
