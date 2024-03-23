@@ -8,25 +8,25 @@
                 <img class="profile-img card-img-top" src="../static/pic/profile-empty.jpg">
             </#if>
         </div>
-        <form action="/user" method="post" enctype="multipart/form-data">
+        <form action="/user" method="post" enctype="multipart/form-data" name="profile">
             <div class="form-row">
-                <div class="form-group col-md-5 mr-5">
+                <div class="form-group col-md-5 mr-5 mb-4">
                     <label for="edit-name">Name</label>
                     <input type="text" id="edit-name" class="form-control" name="name" value="${user.name!""}"
                            placeholder="Enter your name"/>
                 </div>
-                <div class="form-group col-md-5 mr-5">
+                <div class="form-group col-md-5 mr-5 mb-4">
                     <label for="edit-surname">Surname</label>
                     <input type="text" id="edit-surname" class="form-control" name="surname" value="${user.surname!""}"
                            placeholder="Enter your surname"/>
                 </div>
-                <div class="form-group col-md-5 mr-5">
+                <div class="form-group col-md-5 mr-5 mb-4">
                     <label for="edit-location">Location</label>
                     <input type="text" id="edit-location" class="form-control" name="location"
                            value="${user.location!""}"
                            placeholder="Enter your location"/>
                 </div>
-                <div class="form-group col-md-5 mr-5">
+                <div class="form-group col-md-5 mr-5 mb-4">
                     <label for="edit-age">Age</label>
                     <input type="number" id="edit-age" class="form-control" name="age" value="${user.age!""}"
                            placeholder="Enter your age"/>

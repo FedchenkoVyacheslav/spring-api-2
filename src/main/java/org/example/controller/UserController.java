@@ -40,11 +40,7 @@ public class UserController {
         user.setName(name);
         user.setSurname(surname);
         user.setLocation(location);
-        if (age == null) {
-            user.setAge(0);
-        } else {
-            user.setAge(age);
-        }
+        user.setAge(age);
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             String resFileName = MainController.uploadedDir(file, uploadPath);

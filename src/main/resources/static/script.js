@@ -160,3 +160,37 @@ if (auth !== undefined) {
         }
     })();
 }
+
+let profile = document.forms["profile"];
+if (profile !== undefined) {
+    (function () {
+        profile.onsubmit = (event) => {
+            event.preventDefault();
+            let isValid = true;
+            const form = event.target;
+            const values = getValuesForm(form);
+            let errors = {};
+            if (values.name === null || values.name === "") {
+                errors.name = 'This field is required';
+                setFormErrors(form, errors);
+                isValid = false;
+            } else if (values.name.length < 3) {
+                errors.name = 'Too short name';
+                setFormErrors(form, errors);
+                isValid = false;
+            }
+            if (values.surname === null || values.surname === "") {
+                errors.surname = 'This field is required';
+                setFormErrors(form, errors);
+                isValid = false;
+            } else if (values.surname.length < 3) {
+                errors.surname = 'Too short surname';
+                setFormErrors(form, errors);
+                isValid = false;
+            }
+            if (isValid) {
+                event.currentTarget.submit();
+            }
+        }
+    })();
+}
