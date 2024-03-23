@@ -27,7 +27,7 @@ public class User implements UserDetails {
     private String photoUrl;
     private boolean active;
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at")

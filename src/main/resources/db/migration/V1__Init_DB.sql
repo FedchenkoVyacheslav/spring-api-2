@@ -1,7 +1,7 @@
 create table message
 (
     id         bigint     not null auto_increment,
-    created_at datetime(6) not null,
+    created_at datetime(6),
     user_id    bigint,
     filename   varchar(255),
     text       varchar(2084) not null,
@@ -21,7 +21,7 @@ create table user
 (
     active     bit         not null,
     age        integer,
-    created_at datetime(6) not null,
+    created_at datetime(6),
     id         bigint      not null auto_increment,
     updated_at datetime(6),
     email      varchar(255) not null,
