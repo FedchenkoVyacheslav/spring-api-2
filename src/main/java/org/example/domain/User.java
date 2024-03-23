@@ -17,7 +17,7 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String email;
     private String password;
     private String name;
@@ -27,7 +27,7 @@ public class User implements UserDetails {
     private String photoUrl;
     private boolean active;
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at")
