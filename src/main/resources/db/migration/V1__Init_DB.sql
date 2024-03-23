@@ -7,12 +7,12 @@ create table message
     text       varchar(2084) not null,
     title      varchar(255),
     primary key (id)
-) engine = InnoDB;
+);
 
 create table message_seq
 (
     next_val bigint
-) engine = InnoDB;
+);
 
 insert into message_seq
 values (1);
@@ -31,13 +31,13 @@ create table user
     photo_url  varchar(255),
     surname    varchar(255),
     primary key (id)
-) engine = InnoDB;
+);
 
 create table user_role
 (
     user_id bigint not null,
     roles   enum ('USER','ADMIN')
-) engine = InnoDB;
+);
 
 alter table message
     add constraint message_user_fk foreign key (user_id) references user (id);
