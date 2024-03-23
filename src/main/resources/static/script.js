@@ -132,9 +132,11 @@ if (auth !== undefined) {
             let errors = {};
             if (values.email === null || values.email === "") {
                 errors.email = "This field is required";
+                setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
                 errors.email = "Invalid email";
+                setFormErrors(form, errors);
                 isValid = false;
             }
             if (values.password === null || values.password === "") {
@@ -197,6 +199,31 @@ if (profile !== undefined) {
                 isValid = false;
             } else if (values.surname.length < 3) {
                 errors.surname = 'Too short surname';
+                setFormErrors(form, errors);
+                isValid = false;
+            }
+            if (isValid) {
+                event.currentTarget.submit();
+            }
+        }
+    })();
+}
+
+let admin = document.forms["admin"];
+if (admin !== undefined) {
+    (function () {
+        admin.onsubmit = (event) => {
+            event.preventDefault();
+            let isValid = true;
+            const form = event.target;
+            const values = getValuesForm(form);
+            let errors = {};
+            if (editEmail.value === editEmail.getAttribute('oldValue')) {
+                errors.email = "New email the same as before";
+                setFormErrors(form, errors);
+                isValid = false;
+            } else if (!mailCheck(values.email)) {
+                errors.email = "Invalid email";
                 setFormErrors(form, errors);
                 isValid = false;
             }
