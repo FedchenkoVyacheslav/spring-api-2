@@ -12,7 +12,7 @@
                 <p class="mb-1">Set role</p>
                 <#list roles as role>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox"
+                        <input class="form-check-input" type="checkbox" id="check-role"
                                name="${role}" ${user.roles?seq_contains(role)?string("checked", "")}/>
                         ${role}
                         <label class="form-check-label"></label>

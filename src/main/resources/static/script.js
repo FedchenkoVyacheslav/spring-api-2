@@ -8,6 +8,7 @@ let editEmail = document.getElementById("edit-email");
 let editBtn = document.getElementById("edit-btn");
 let nameReg = document.getElementById("name-register");
 let surnameReg = document.getElementById("surname-register");
+let checkboxes = document.querySelectorAll("input[type=checkbox][id=check-role]");
 
 if (input !== null) {
     function check() {
@@ -32,6 +33,17 @@ if (editEmail !== null) {
     editEmail.addEventListener('input', check3);
     check3();
 }
+
+let enabledSettings = []
+checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+        enabledSettings =
+            Array.from(checkboxes)
+                .filter(i => i.checked)
+                .map(i => i.value)
+        editBtn.disabled = enabledSettings.length === 0 || editEmail.value.trim(" ").length < 1;
+    })
+});
 
 if (messageText !== null && messageTitle !== null) {
     const check2 = () => messageBtn.disabled =
