@@ -81,7 +81,7 @@ public class MainController {
         return "redirect:main";
     }
 
-    static String uploadedDir(@RequestParam("file") MultipartFile file, String uploadPath) throws IOException {
+    public static String uploadedDir(@RequestParam("file") MultipartFile file, String uploadPath) throws IOException {
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();

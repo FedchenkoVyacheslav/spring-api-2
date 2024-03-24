@@ -8,7 +8,7 @@
                 <img class="profile-img card-img-top" src="../static/pic/profile-empty.jpg">
             </#if>
         </div>
-        <form action="/user" method="post" enctype="multipart/form-data" name="profile">
+        <form method="post" enctype="multipart/form-data" name="profile">
             <div class="form-row">
                 <div class="form-group col-md-5 mr-5 mb-4">
                     <label for="edit-name">Name</label>
