@@ -73,8 +73,6 @@ public class UserService implements UserDetailsService {
         user.setSurname(surname);
         user.setLocation(location);
         user.setAge(age);
-        user.setEmail(user.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             String resFileName = MainController.uploadedDir(file, uploadPath);

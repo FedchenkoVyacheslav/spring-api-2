@@ -23,14 +23,6 @@ if (input !== null) {
     check();
 }
 
-if (editEmail !== null) {
-    const check3 = () => editBtn.disabled =
-        editEmail.value.trim(" ").length < 1;
-
-    editEmail.addEventListener('input', check3);
-    check3();
-}
-
 let enabledSettings = []
 checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('change', function () {
@@ -38,7 +30,7 @@ checkboxes.forEach(function (checkbox) {
             Array.from(checkboxes)
                 .filter(i => i.checked)
                 .map(i => i.value)
-        editBtn.disabled = enabledSettings.length === 0 || editEmail.value.trim(" ").length < 1;
+        editBtn.disabled = enabledSettings.length === 0;
     })
 });
 
@@ -206,8 +198,8 @@ if (admin !== undefined) {
             const form = event.target;
             const values = getValuesForm(form);
             let errors = {};
-            if (editEmail.value === editEmail.getAttribute('oldValue')) {
-                errors.email = "New email the same as before";
+            if (values.email === null || values.email === "") {
+                errors.email = "This field is required";
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
