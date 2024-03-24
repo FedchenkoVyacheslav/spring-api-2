@@ -1,6 +1,8 @@
 package org.example.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,9 +20,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Email(message = "Email is not correct")
+    @NotBlank(message = "Email cannot be empty")
     private String email;
+    @NotBlank(message = "Password cannot be empty")
     private String password;
+    @Transient
+    @NotBlank(message = "Password confirmation cannot be empty")
+    private String password2;
+    @NotBlank(message = "Name cannot bee empty")
     private String name;
+    @NotBlank(message = "Surname cannot bee empty")
     private String surname;
     private String location;
     private Integer age;

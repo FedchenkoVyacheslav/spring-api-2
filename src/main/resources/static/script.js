@@ -1,9 +1,6 @@
 let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
-let messageText = document.getElementById("message-text");
-let messageTitle = document.getElementById("message-title");
-let messageBtn = document.getElementById("message-btn");
 let editEmail = document.getElementById("edit-email");
 let editBtn = document.getElementById("edit-btn");
 let nameReg = document.getElementById("name-register");
@@ -44,15 +41,6 @@ checkboxes.forEach(function (checkbox) {
         editBtn.disabled = enabledSettings.length === 0 || editEmail.value.trim(" ").length < 1;
     })
 });
-
-if (messageText !== null && messageTitle !== null) {
-    const check2 = () => messageBtn.disabled =
-        messageText.value.trim(" ").length < 1 || messageTitle.value.trim(" ").length < 1;
-
-    messageText.addEventListener('input', check2);
-    messageTitle.addEventListener('input', check2);
-    check2();
-}
 
 $(document).ready(function () {
     $('[data-toggle="collapse"]').click(function () {
@@ -135,7 +123,7 @@ if (auth !== undefined) {
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
-                errors.email = "Invalid email";
+                errors.email = "Email is not correct";
                 setFormErrors(form, errors);
                 isValid = false;
             }
@@ -223,7 +211,7 @@ if (admin !== undefined) {
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
-                errors.email = "Invalid email";
+                errors.email = "Email is not correct";
                 setFormErrors(form, errors);
                 isValid = false;
             }
