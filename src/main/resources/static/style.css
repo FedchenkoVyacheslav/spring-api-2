@@ -10,10 +10,6 @@ body {
     color: red;
 }
 
-.main-container {
-    position: relative;
-}
-
 .greeting-container {
     position: absolute;
     top: 50%;
@@ -75,6 +71,11 @@ body {
 .greeting-text {
     text-align: center;
     font-size: 25px;
+}
+
+.invalid-feedback {
+    margin: 5px 0;
+    position: absolute;
 }
 
 .btn:disabled {
