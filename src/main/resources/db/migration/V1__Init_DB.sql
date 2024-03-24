@@ -5,7 +5,7 @@ create table message
     user_id    bigint,
     filename   varchar(255),
     text       varchar(2084) not null,
-    title      varchar(255),
+    title      varchar(255) not null,
     primary key (id)
 );
 

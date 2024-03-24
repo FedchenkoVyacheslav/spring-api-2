@@ -6,7 +6,7 @@
             <div class="form-group col-md-5 mr-5">
                 <label for="edit-email">Set new email</label>
                 <input type="text" id="edit-email" class="form-control" name="email" value="${user.email}"
-                       placeholder="Enter email" onfocus="this.setAttribute('oldValue', this.value);"/>
+                       placeholder="Enter email"/>
             </div>
             <div class="form-group col-md-6 mx-auto">
                 <p class="mb-1">Set role</p>

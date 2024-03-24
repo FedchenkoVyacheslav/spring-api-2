@@ -1,8 +1,10 @@
 package org.example.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
@@ -12,12 +14,15 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Please fill the message")
+    @Length(max = 2048, message = "Message too long")
     private String text;
+    @NotBlank(message = "Please fill the message")
+    @Length(max = 255, message = "Title too long")
     private String title;
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private Date createdAt;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;

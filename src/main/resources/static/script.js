@@ -1,9 +1,6 @@
 let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
-let messageText = document.getElementById("message-text");
-let messageTitle = document.getElementById("message-title");
-let messageBtn = document.getElementById("message-btn");
 let editEmail = document.getElementById("edit-email");
 let editBtn = document.getElementById("edit-btn");
 let nameReg = document.getElementById("name-register");
@@ -26,14 +23,6 @@ if (input !== null) {
     check();
 }
 
-if (editEmail !== null) {
-    const check3 = () => editBtn.disabled =
-        editEmail.value.trim(" ").length < 1;
-
-    editEmail.addEventListener('input', check3);
-    check3();
-}
-
 let enabledSettings = []
 checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('change', function () {
@@ -41,18 +30,9 @@ checkboxes.forEach(function (checkbox) {
             Array.from(checkboxes)
                 .filter(i => i.checked)
                 .map(i => i.value)
-        editBtn.disabled = enabledSettings.length === 0 || editEmail.value.trim(" ").length < 1;
+        editBtn.disabled = enabledSettings.length === 0;
     })
 });
-
-if (messageText !== null && messageTitle !== null) {
-    const check2 = () => messageBtn.disabled =
-        messageText.value.trim(" ").length < 1 || messageTitle.value.trim(" ").length < 1;
-
-    messageText.addEventListener('input', check2);
-    messageTitle.addEventListener('input', check2);
-    check2();
-}
 
 $(document).ready(function () {
     $('[data-toggle="collapse"]').click(function () {
@@ -83,7 +63,7 @@ function getValuesForm(form) {
 
 function errorMessageCreator(input, text) {
     let message = document.createElement("div");
-    message.classList.add("invalid-text");
+    message.classList.add("invalid-feedback");
     message.innerText = text;
 
     let nextMessage = input.nextElementSibling;
@@ -99,9 +79,9 @@ function errorMessageCreator(input, text) {
 }
 
 function setInvalidInput(input) {
-    input.classList.add("invalid-input");
+    input.classList.add("is-invalid");
     input.addEventListener("input", function handlerInput(event) {
-        input.classList.remove("invalid-input");
+        input.classList.remove("is-invalid");
         input.removeEventListener("input", handlerInput);
     });
 }
@@ -135,7 +115,7 @@ if (auth !== undefined) {
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
-                errors.email = "Invalid email";
+                errors.email = "Email is not correct";
                 setFormErrors(form, errors);
                 isValid = false;
             }
@@ -218,12 +198,12 @@ if (admin !== undefined) {
             const form = event.target;
             const values = getValuesForm(form);
             let errors = {};
-            if (editEmail.value === editEmail.getAttribute('oldValue')) {
-                errors.email = "New email the same as before";
+            if (values.email === null || values.email === "") {
+                errors.email = "This field is required";
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
-                errors.email = "Invalid email";
+                errors.email = "Email is not correct";
                 setFormErrors(form, errors);
                 isValid = false;
             }
