@@ -3,6 +3,10 @@ body {
     color: white;
 }
 
+.hidden {
+    display: none;
+}
+
 .reg-error {
     position: absolute;
     top: -35px;

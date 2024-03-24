@@ -1,10 +1,11 @@
 let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
-let editEmail = document.getElementById("edit-email");
 let editBtn = document.getElementById("edit-btn");
 let nameReg = document.getElementById("name-register");
 let surnameReg = document.getElementById("surname-register");
+let alert = document.querySelector('.alert-danger');
+let authEmail = document.getElementById("auth-email");
 let checkboxes = document.querySelectorAll("input[type=checkbox][id=check-role]");
 
 if (input !== null) {
@@ -95,6 +96,12 @@ function setFormErrors(form, errors) {
             errorMessageCreator(input, errors[input.name]);
         }
     }
+}
+
+if (alert !== null) {
+    authEmail.addEventListener('click', function () {
+        alert.classList.add("hidden")
+    });
 }
 
 function mailCheck(field) {

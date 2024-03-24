@@ -15,7 +15,7 @@
         </#if>
         <div class="form-group row mb-4">
             <div class="col-sm-4 mb-2">
-                <input type="text" name="email" placeholder="Enter your email"
+                <input type="text" id="auth-email" name="email" placeholder="Enter your email"
                        class="form-control ${(message??)?string('is-invalid', '')}"/>
                 <#if message??>
                     <div class="invalid-feedback">
