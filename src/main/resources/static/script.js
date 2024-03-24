@@ -71,7 +71,7 @@ function getValuesForm(form) {
 
 function errorMessageCreator(input, text) {
     let message = document.createElement("div");
-    message.classList.add("invalid-text");
+    message.classList.add("invalid-feedback");
     message.innerText = text;
 
     let nextMessage = input.nextElementSibling;
@@ -87,9 +87,9 @@ function errorMessageCreator(input, text) {
 }
 
 function setInvalidInput(input) {
-    input.classList.add("invalid-input");
+    input.classList.add("is-invalid");
     input.addEventListener("input", function handlerInput(event) {
-        input.classList.remove("invalid-input");
+        input.classList.remove("is-invalid");
         input.removeEventListener("input", handlerInput);
     });
 }
