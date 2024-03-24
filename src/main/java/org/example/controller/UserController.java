@@ -4,20 +4,22 @@ import org.example.domain.User;
 import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserRepo UserRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -41,6 +43,7 @@ public class UserController {
         user.setSurname(surname);
         user.setLocation(location);
         user.setAge(age);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
             String resFileName = MainController.uploadedDir(file, uploadPath);
