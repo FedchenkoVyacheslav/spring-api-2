@@ -58,6 +58,11 @@
         </div>
         <div class="mb-4">
             <div class="g-recaptcha" data-sitekey="6LeF8aQpAAAAAEz-U17EM4iz79UJ-dCAa7aphn67"></div>
+            <#if captchaError??>
+                <div class="alert alert-danger col-sm-4" role="alert">
+                    ${captchaError}
+                </div>
+            </#if>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-info mb-4">${button}</button>
