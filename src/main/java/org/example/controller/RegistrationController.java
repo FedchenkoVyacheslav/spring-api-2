@@ -43,7 +43,7 @@ public class RegistrationController {
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
         if (!response.isSuccess()) {
-            model.addAttribute("captchaError", "Fill captcha");
+            model.addAttribute("captchaError", "Fill the captcha!");
         }
 
         if (bindingResult.hasErrors() || !response.isSuccess()) {
