@@ -25,9 +25,6 @@ public class User implements UserDetails {
     private String email;
     @NotBlank(message = "Password cannot be empty")
     private String password;
-//    @Transient
-//    @NotBlank(message = "Password confirmation cannot be empty")
-//    private String password2;
     @NotBlank(message = "Name cannot bee empty")
     private String name;
     @NotBlank(message = "Surname cannot bee empty")

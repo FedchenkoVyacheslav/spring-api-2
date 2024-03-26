@@ -3,15 +3,15 @@ body {
     color: white;
 }
 
+.hidden {
+    display: none;
+}
+
 .reg-error {
     position: absolute;
     top: -35px;
     left: auto;
     color: red;
-}
-
-.main-container {
-    position: relative;
 }
 
 .greeting-container {
@@ -75,6 +75,11 @@ body {
 .greeting-text {
     text-align: center;
     font-size: 25px;
+}
+
+.invalid-feedback {
+    margin: 5px 0;
+    position: absolute;
 }
 
 .btn:disabled {

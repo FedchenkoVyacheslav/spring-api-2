@@ -13,7 +13,7 @@
                 <td>${user.email}</td>
                 <td>
                     <#list user.roles as role>${role}<#sep>, </#list>
-                    <a href="/admin/${user.id}" style="text-decoration: none; float: right; color: red; font-weight: bold;">Edit role</a>
+                    <a href="/admin/${user.id}" style="text-decoration: none; float: right; color: black; font-weight: bold;">Edit</a>
                 </td>
             </tr>
         </#list>

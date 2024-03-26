@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepo.findByEmail(email);
         if (user == null) {
-            throw new UsernameNotFoundException("Not found!");
+            throw new UsernameNotFoundException("User not found!");
         }
         return user;
     }
