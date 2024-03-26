@@ -35,8 +35,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@Valid User user,
-                          @RequestParam("g-recaptcha-response") String captchaResponse,
+    public String addUser(@RequestParam("g-recaptcha-response") String captchaResponse,
+                          @Valid User user,
                           BindingResult bindingResult,
                           Model model) {
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
