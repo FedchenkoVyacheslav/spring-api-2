@@ -48,7 +48,7 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String senMessage(
+    public String sendMessage(
             @AuthenticationPrincipal User user,
             @Valid Message message,
             BindingResult bindingResult,
@@ -58,9 +58,9 @@ public class MainController {
         message.setAuthor(user);
 
         if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
 
-            model.mergeAttributes(errorsMap);
+            model.mergeAttributes(errors);
             model.addAttribute("message", message);
             Iterable<Message> messages = messageRepo.findAll();
             model.addAttribute("messages", messages);

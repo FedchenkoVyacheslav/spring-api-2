@@ -9,6 +9,7 @@
               crossorigin="anonymous">
         <title>Spring-web-app</title>
         <link rel="stylesheet" href="/static/style.css">
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
     <#include "navbar.ftlh">

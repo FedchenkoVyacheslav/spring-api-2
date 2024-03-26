@@ -2,8 +2,6 @@ let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
 let editBtn = document.getElementById("edit-btn");
-let nameReg = document.getElementById("name-register");
-let surnameReg = document.getElementById("surname-register");
 let alert = document.querySelector('.alert-danger');
 let authEmail = document.getElementById("auth-email");
 let checkboxes = document.querySelectorAll("input[type=checkbox][id=check-role]");
@@ -118,7 +116,7 @@ if (auth !== undefined) {
             const values = getValuesForm(form);
             let errors = {};
             if (values.email === null || values.email === "") {
-                errors.email = "This field is required";
+                errors.email = "Email cannot be empty";
                 setFormErrors(form, errors);
                 isValid = false;
             } else if (!mailCheck(values.email)) {
@@ -127,33 +125,9 @@ if (auth !== undefined) {
                 isValid = false;
             }
             if (values.password === null || values.password === "") {
-                errors.password = 'This field is required';
+                errors.password = 'Password cannot be empty';
                 setFormErrors(form, errors);
                 isValid = false;
-            } else if (values.password.length < 4) {
-                errors.password = 'Too short password';
-                setFormErrors(form, errors);
-                isValid = false;
-            }
-            if (nameReg !== null && surnameReg !== null) {
-                if (values.name === null || values.name === "") {
-                    errors.name = 'This field is required';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                } else if (values.name.length < 3) {
-                    errors.name = 'Too short name';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                }
-                if (values.surname === null || values.surname === "") {
-                    errors.surname = 'This field is required';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                } else if (values.surname.length < 3) {
-                    errors.surname = 'Too short surname';
-                    setFormErrors(form, errors);
-                    isValid = false;
-                }
             }
             if (isValid) {
                 event.currentTarget.submit();
