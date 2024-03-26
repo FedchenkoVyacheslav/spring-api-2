@@ -35,6 +35,11 @@
                        <#if !isRegisterForm>
                             ${(SPRING_SECURITY_LAST_EXCEPTION??)?string('is-invalid', '')}
                        </#if>"/>
+                <#if message??>
+                    <div class="invalid-feedback">
+                        ${message}
+                    </div>
+                </#if>
                 <#if emailError??>
                     <div class="invalid-feedback">
                         ${emailError}

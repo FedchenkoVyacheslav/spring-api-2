@@ -5,6 +5,7 @@ let editBtn = document.getElementById("edit-btn");
 let alert = document.querySelector('.alert-danger');
 let authEmail = document.getElementById("auth-email");
 let checkboxes = document.querySelectorAll("input[type=checkbox][id=check-role]");
+let inputs = document.querySelectorAll("input");
 
 if (input !== null) {
     function check() {
@@ -84,6 +85,12 @@ function setInvalidInput(input) {
         input.removeEventListener("input", handlerInput);
     });
 }
+inputs.forEach(function (input) {
+    input.addEventListener("input", function handlerInput(event) {
+        input.classList.remove("is-invalid");
+        input.removeEventListener("input", handlerInput);
+    });
+})
 
 function setFormErrors(form, errors) {
     const inputs = form.querySelectorAll("input");
