@@ -2,7 +2,7 @@
 <#import "parts/auth.ftlh" as a>
 <@c.page>
     <#if SPRING_SECURITY_LAST_EXCEPTION??>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger col-sm-4" role="alert">
             User not found!
         </div>
     </#if>
