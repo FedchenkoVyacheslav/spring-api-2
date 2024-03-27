@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -40,7 +42,7 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .usernameParameter("email")
                         .permitAll()
-                )
+                ).rememberMe(withDefaults())
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();
