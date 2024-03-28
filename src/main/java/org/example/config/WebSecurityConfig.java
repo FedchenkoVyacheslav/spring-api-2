@@ -42,7 +42,7 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .usernameParameter("email")
                         .permitAll()
-                ).rememberMe(withDefaults())
+                )
                 .logout(LogoutConfigurer::permitAll);
 
         return http.build();
