@@ -77,6 +77,10 @@ body {
     color: black;
 }
 
+.card-img-top {
+    width: 100%;
+}
+
 .card-date {
     font-size: 11px;
     color: dimgray;
@@ -116,6 +120,22 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.custom-file-label {
+    cursor: pointer;
+}
+
+#error-el {
+    position: absolute;
+    top: -34px;
+    color: white
+}
+
+#error-el2 {
+    color: red;
+    position: absolute;
+    top: 31px;
 }
 
 .invalid-feedback {
@@ -214,6 +234,18 @@ body {
     max-width: initial;
 }
 
+#search-button {
+    margin-top: 15px;
+    margin-left: 0 !important;
+}
+
+@media (min-width: 575px) {
+    #search-button {
+        margin-top: 0;
+        margin-left: .5rem !important;
+    }
+}
+
 @media (min-width: 768px) {
     .col-sm-4 {
         -ms-flex: 0 0 50%;
@@ -227,5 +259,33 @@ body {
         -ms-flex: 0 0 33.333333%;
         flex: 0 0 33.333333%;
         max-width: 33.333333%;
+    }
+}
+
+.card-columns {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+        -webkit-column-gap: 1.25rem;
+        -moz-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+        orphans: 1;
+        widows: 1;
     }
 }
