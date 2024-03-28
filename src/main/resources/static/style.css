@@ -154,6 +154,10 @@ body {
     overflow: hidden;
     height: 350px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.55);
+    width: 100%;
+    min-width: 50%;
+    margin-bottom: 20px;
+    border-radius: .25rem;
 }
 
 .profile-img {
@@ -165,6 +169,40 @@ body {
     min-width: 100.5%;
     height: 100%;
     width: initial;
+}
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-row {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 995px) {
+    .profile-row {
+        -ms-flex: 0 0 41.666667%;
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+
+    .profile-img-box {
+        min-width: initial;
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .profile-wrapper {
+        flex-direction: row;
+    }
+
+    .profile-img-box {
+        width: 60%;
+    }
 }
 
 .admin-edit-btn, .admin-edit-btn:hover {
