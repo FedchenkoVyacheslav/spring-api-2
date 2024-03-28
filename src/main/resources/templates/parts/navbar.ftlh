@@ -20,10 +20,14 @@
                     <a class="nav-link" href="/admin">Admin dashboard</a>
                 </li>
             </#if>
+            <li class="nav-email">
+                <div class="navbar-text mr-3">${email}</div>
+            </li>
+            <li class="nav-btn">
+                <#if user??>
+                    <@a.logout/>
+                </#if>
+            </li>
         </ul>
     </div>
-    <div class="navbar-text mr-3">${email}</div>
-    <#if user??>
-        <@a.logout/>
-    </#if>
 </nav>

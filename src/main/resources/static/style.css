@@ -7,6 +7,33 @@ body {
     display: none;
 }
 
+.auth-title {
+    color: white;
+}
+
+#auth-error {
+    color: #dc3545;
+    position: absolute;
+    top: -28px
+}
+
+.auth-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.captcha-error {
+    color: #dc3545;
+    position: absolute;
+    font-size: 80%;
+}
+
 .reg-error {
     position: absolute;
     top: -35px;
@@ -52,7 +79,7 @@ body {
     margin-left: 50px
 }
 
-.card-footer-image-box{
+.card-footer-image-box {
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
@@ -61,7 +88,7 @@ body {
     position: absolute;
 }
 
-.card-footer-image-box img{
+.card-footer-image-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -103,4 +130,81 @@ body {
     min-width: 100.5%;
     height: 100%;
     width: initial;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.nav-email {
+    flex-grow: initial;
+    text-align: initial;
+}
+
+.nav-btn form {
+    margin-top: 20px;
+    text-align: left;
+    padding-left: 0;
+}
+
+@media (min-width: 768px) {
+    .navbar-expand-lg .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .navbar-expand-lg .navbar-toggler {
+        display: none;
+    }
+
+    .navbar-expand-lg {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+    .navbar-expand-lg .navbar-collapse {
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .nav-email {
+        flex-grow: 1;
+        text-align: right
+    }
+
+    .nav-btn form {
+        text-align: right;
+        padding-left: 20px;
+        margin-top: 0;
+    }
+}
+
+.col-sm-4 {
+    flex: initial;
+    max-width: initial;
+}
+
+@media (min-width: 768px) {
+    .col-sm-4 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .col-sm-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
 }

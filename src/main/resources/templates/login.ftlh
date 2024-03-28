@@ -3,7 +3,7 @@
 <@c.page>
     <#if SPRING_SECURITY_LAST_EXCEPTION??>
         <div style="position: relative">
-            <div id="auth-error" class="mt-0" style="color: #dc3545; position: absolute; top: -28px">
+            <div id="auth-error" class="mt-0">
                 That combination of email and password is not recognized
             </div>
         </div>

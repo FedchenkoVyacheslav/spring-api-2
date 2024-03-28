@@ -35,7 +35,7 @@ checkboxes.forEach(function (checkbox) {
 });
 
 $(document).ready(function () {
-    $('[data-toggle="collapse"]').click(function () {
+    $('[id="add-message"]').click(function () {
         $(this).toggleClass("active");
         if ($(this).hasClass("active")) {
             $(this).text("Hide message form");
