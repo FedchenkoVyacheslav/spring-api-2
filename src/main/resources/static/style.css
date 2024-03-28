@@ -158,6 +158,7 @@ body {
     min-width: 50%;
     margin-bottom: 20px;
     border-radius: .25rem;
+    margin-right: 2rem !important;
 }
 
 .profile-img {
@@ -192,6 +193,7 @@ body {
     .profile-img-box {
         min-width: initial;
         margin-bottom: 0;
+        margin-right: 3rem !important;
     }
 }
 
@@ -199,7 +201,9 @@ body {
     .profile-wrapper {
         flex-direction: row;
     }
+}
 
+@media (min-width: 400px) {
     .profile-img-box {
         width: 60%;
     }
