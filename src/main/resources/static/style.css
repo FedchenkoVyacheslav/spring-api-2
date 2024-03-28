@@ -200,6 +200,9 @@ body {
         flex-direction: row;
     }
 
+}
+
+@media (min-width: 400px) {
     .profile-img-box {
         width: 60%;
     }
