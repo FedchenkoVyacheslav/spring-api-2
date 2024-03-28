@@ -2,7 +2,7 @@ let input = document.getElementById("search-input");
 let el = document.getElementById("error-el");
 let el2 = document.getElementById("error-el2");
 let editBtn = document.getElementById("edit-btn");
-let alert = document.querySelector('.alert-danger');
+let authError = document.getElementById("auth-error");
 let authEmail = document.getElementById("auth-email");
 let checkboxes = document.querySelectorAll("input[type=checkbox][id=check-role]");
 let inputs = document.querySelectorAll("input");
@@ -35,7 +35,7 @@ checkboxes.forEach(function (checkbox) {
 });
 
 $(document).ready(function () {
-    $('[data-toggle="collapse"]').click(function () {
+    $('[id="add-message"]').click(function () {
         $(this).toggleClass("active");
         if ($(this).hasClass("active")) {
             $(this).text("Hide message form");
@@ -103,9 +103,9 @@ function setFormErrors(form, errors) {
     }
 }
 
-if (alert !== null) {
+if (authError !== null) {
     authEmail.addEventListener('click', function () {
-        alert.classList.add("hidden")
+        authError.classList.add("hidden")
     });
 }
 

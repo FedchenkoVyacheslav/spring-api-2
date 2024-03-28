@@ -1,5 +1,5 @@
 <#macro auth path1 path2 button link header isRegisterForm>
-    <h4 style="color: white" class="mb-4">${header}</h4>
+    <h4 class="auth-title mb-4">${header}</h4>
     <form action="${path1}" method="post" <#if !isRegisterForm> name="auth"</#if>>
         <#if isRegisterForm>
             <div class="form-group row mb-4">
@@ -66,7 +66,7 @@
             <div class="mb-4">
                 <div class="g-recaptcha" data-sitekey="6LeF8aQpAAAAAEz-U17EM4iz79UJ-dCAa7aphn67"></div>
                 <#if captchaError??>
-                    <div class="mt-0" style="color: #dc3545; position: absolute; font-size: 80%;">
+                    <div class="mt-0 captcha-error">
                         ${captchaError}
                     </div>
                 </#if>
@@ -75,16 +75,13 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-info mb-4">${button}</button>
     </form>
-    <a href="${path2}" style="
-            color: white;
-            text-decoration: none;
-            font-weight: 600;">
+    <a class="auth-link" href="${path2}">
         ${link}
     </a>
 </#macro>
 
 <#macro logout>
-    <form action="/logout" method="post" style=" text-align: right; padding-left: 20px" ;>
+    <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-info">Sign out</button>
     </form>
