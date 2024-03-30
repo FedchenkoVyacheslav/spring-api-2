@@ -1,7 +1,5 @@
-<button id="add-message" class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
-        aria-controls="messageForm">
-    Add new message
-</button>
+<#macro edit buttonName>
+
 <div class="collapse <#if message??>show</#if>" id="messageForm">
     <div class="form-group mt-3">
         <form method="post" action="/main" enctype="multipart/form-data">
@@ -34,9 +32,10 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input type="hidden" name="id" value="<#if message??>${message.id}</#if>"/>
             <div class="form-group">
-                <button type="submit" id="message-btn" class="btn btn-info">Send message
+                <button type="submit" id="message-btn" class="btn btn-info">${buttonName}
                 </button>
             </div>
         </form>
     </div>
 </div>
+</#macro>

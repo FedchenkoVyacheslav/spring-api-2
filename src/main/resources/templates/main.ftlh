@@ -1,4 +1,5 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/messageEdit.ftlh" as m>
 
 <@c.page>
     <div class="form-row">
@@ -12,6 +13,10 @@
             </form>
         </div>
     </div>
-    <#include "parts/messageEdit.ftlh" />
+    <button id="add-message" class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+            aria-controls="messageForm">
+        Add new message
+    </button>
+    <@m.edit "Add new message"/>
     <#include "parts/messageList.ftlh" />
 </@c.page>
