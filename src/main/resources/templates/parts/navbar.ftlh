@@ -9,12 +9,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/main">Messages</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/profile">Profile</a>
-            </li>
+            <#if user??>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user-messages/${currentUserId}">My messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile">Profile</a>
+                </li>
+            </#if>
             <#if isAdmin>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Admin dashboard</a>
