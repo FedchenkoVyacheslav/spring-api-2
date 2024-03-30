@@ -24,7 +24,7 @@
                     <div class="card-author">
                         <span>${message.authorName} ${message.authorSurname}</span>
                         <a class="user-messages" href="/user-messages/${message.author.id}">${message.authorEmail}</a>
-                        <p class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
+                        <p class="card-date">${message.updatedAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
                         <#if message.author.id == currentUserId>
                             <a class="edit-message" href="/user-messages/${message.author.id}?message=${message.id}">
                                 <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">

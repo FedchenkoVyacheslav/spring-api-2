@@ -3,6 +3,7 @@ create table message
     id         bigint     not null auto_increment,
     created_at datetime(6),
     user_id    bigint,
+    updated_at datetime(6),
     filename   varchar(255),
     text       varchar(2084) not null,
     title      varchar(255) not null,
