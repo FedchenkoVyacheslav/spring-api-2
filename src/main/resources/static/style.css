@@ -22,6 +22,11 @@ body {
     top: -44px
 }
 
+.user-messages, .user-messages:hover {
+    text-decoration: none;
+    color: tomato;
+}
+
 .greeting-title {
     text-align: center;
     color: black;

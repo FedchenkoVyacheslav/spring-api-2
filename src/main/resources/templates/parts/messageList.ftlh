@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-author">
                         <span>${message.authorName} ${message.authorSurname}</span>
-                        <span>${message.authorEmail}</span>
+                        <a class="user-messages" href="/user-messages/${message.author.id}">${message.authorEmail}</a>
                     </div>
                     <p class="card-date">${message.createdAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
                 </div>
