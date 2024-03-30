@@ -27,6 +27,14 @@ body {
     color: tomato;
 }
 
+.edit-message {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: 20px;
+    bottom: 17px;
+}
+
 .greeting-title {
     text-align: center;
     color: black;
@@ -88,9 +96,10 @@ body {
 }
 
 .card-date {
-    font-size: 11px;
+    font-size: 0.6rem;
+    line-height: normal;
     color: dimgray;
-    margin: 0;
+    margin: 2px 0;
 }
 
 .card-footer {
@@ -104,22 +113,24 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 13px;
+    line-height: normal;
 }
 
 .card-author {
     display: flex;
     flex-direction: column;
     font-size: 13px;
-    margin-left: 50px
+    margin-left: 60px
 }
 
 .card-footer-image-box {
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
-    width: 37px;
-    height: 37px;
+    width: 47px;
+    height: 47px;
     position: absolute;
+    margin-bottom: 2px;
 }
 
 .card-footer-image-box img {
@@ -330,7 +341,7 @@ body {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
     .card-columns {
         -webkit-column-count: 3;
         -moz-column-count: 3;
