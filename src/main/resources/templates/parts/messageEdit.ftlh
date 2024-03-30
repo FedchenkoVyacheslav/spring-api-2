@@ -2,7 +2,7 @@
 
 <div class="collapse <#if message??>show</#if>" id="messageForm">
     <div class="form-group mt-3">
-        <form method="post" action="/main" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="text" id="message-title" class="form-control ${(titleError??)?string('is-invalid', '')}"
                        value="<#if message??>${message.title}</#if>" name="title"
