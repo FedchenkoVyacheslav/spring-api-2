@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -46,6 +47,10 @@ public class User implements UserDetails {
     private Set<Role> roles;
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messages;
+
+    public Set<Message> getMessage (Long id) {
+        return getMessages().stream().filter(e -> e.getId().equals(id)).collect(Collectors.toSet());
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,7 +61,6 @@ public class User implements UserDetails {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id);
     }
 

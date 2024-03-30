@@ -103,8 +103,13 @@ public class MainController {
             Model model,
             @RequestParam(required = false) Message message
     ) {
-        Set<Message> messages = user.getMessages();
+        Set<Message> messages;
+        if (!StringUtils.isEmpty(message)) {
+            messages = user.getMessage(message.getId());
+        } else {
+            messages = user.getMessages();
 
+        }
         model.addAttribute("messages", messages);
         model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
