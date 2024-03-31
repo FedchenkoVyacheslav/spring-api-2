@@ -9,10 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -48,9 +45,14 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messages;
 
-    public Set<Message> getMessage (Long id) {
+    public Set<Message> getMessages() {
+        return messages.stream().sorted(Comparator.comparing(Message::getCreatedAt).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    public Set<Message> getMessage(Long id) {
         return getMessages().stream().filter(e -> e.getId().equals(id)).collect(Collectors.toSet());
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

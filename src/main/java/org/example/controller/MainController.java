@@ -108,7 +108,6 @@ public class MainController {
             messages = user.getMessage(message.getId());
         } else {
             messages = user.getMessages();
-
         }
         model.addAttribute("messages", messages);
         model.addAttribute("message", message);
