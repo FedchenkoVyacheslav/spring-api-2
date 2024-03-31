@@ -3,7 +3,7 @@
 <div class="collapse <#if message??>show</#if>" id="messageForm">
     <div class="form-group mt-3">
         <form method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <input type="text" id="message-title" class="form-control ${(titleError??)?string('is-invalid', '')}"
                        value="<#if message??>${message.title}</#if>" name="title"
                        placeholder="Add a message title"/>
@@ -13,7 +13,7 @@
                     </div>
                 </#if>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <input type="text" id="message-text" class="form-control ${(textError??)?string('is-invalid', '')}"
                        value="<#if message??>${message.text}</#if>" name="text"
                        placeholder="Add message text"/>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <input type="hidden" name="id" value="<#if message??>${message.id}</#if>"/>
+            <input type="hidden" name="id" value="<#if message??>${message.id!""}</#if>"/>
             <div class="form-group">
                 <button type="submit" id="message-btn" class="btn btn-info">${buttonName}
                 </button>
