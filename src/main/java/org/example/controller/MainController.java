@@ -42,7 +42,7 @@ public class MainController {
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTextAndTitle(filter);
         } else {
-            messages = messageRepo.findAll();
+            messages = messageRepo.findAllByOrderByCreatedAtDesc();
         }
         model.put("messages", messages);
         model.put("filter", filter);
@@ -65,7 +65,7 @@ public class MainController {
 
             model.mergeAttributes(errors);
             model.addAttribute("message", message);
-            Iterable<Message> messages = messageRepo.findAll();
+            Iterable<Message> messages = messageRepo.findAllByOrderByCreatedAtDesc();
             model.addAttribute("messages", messages);
             return "main";
         } else {
@@ -78,7 +78,7 @@ public class MainController {
             messageRepo.save(message);
         }
 
-        Iterable<Message> messages = messageRepo.findAll();
+        Iterable<Message> messages = messageRepo.findAllByOrderByCreatedAtDesc();
         model.addAttribute("messages", messages);
 
         return "redirect:main";
