@@ -152,7 +152,13 @@ body {
 #error-el2 {
     color: red;
     position: absolute;
-    top: 31px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    margin-top: 35vh;
+    font-size: 30px;
 }
 
 .invalid-feedback {

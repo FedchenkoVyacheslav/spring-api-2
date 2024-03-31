@@ -1,5 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <#import "parts/messageEdit.ftlh" as m>
+<#import "parts/messageList.ftlh" as ms>
 
 <@c.page>
     <div class="form-row">
@@ -18,5 +19,5 @@
         Add new message
     </button>
     <@m.edit "Add new message"/>
-    <#include "parts/messageList.ftlh" />
+    <@ms.messageList "No results found!"/>
 </@c.page>
