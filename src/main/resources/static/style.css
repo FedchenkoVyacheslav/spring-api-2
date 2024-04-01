@@ -31,8 +31,16 @@ body {
     position: absolute;
     height: 20px;
     width: 20px;
+    right: 53px;
+    bottom: 18px;
+}
+
+.delete-message {
+    position: absolute;
+    height: 20px;
+    width: 20px;
     right: 20px;
-    bottom: 17px;
+    bottom: 19px;
 }
 
 .greeting-title {
