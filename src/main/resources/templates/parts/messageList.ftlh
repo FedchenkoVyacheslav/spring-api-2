@@ -27,8 +27,8 @@
                             <a class="user-messages"
                                href="/user-messages/${message.author.id}">${message.authorEmail}</a>
                             <p class="card-date">${message.updatedAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
-                            <#if message.author.id == currentUserId>
-                                <a class="delete-message" href="/del-user-messages/${message.author.id}?message=${message.id}">
+                            <#if message.author.id == currentUserId && springMacroRequestContext.requestUri?contains("/user-messages/")>
+                                <a data-toggle="modal" data-target="#deleteModal" class="delete-message">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          version="1.1" viewBox="0 0 256 256"
                                          xml:space="preserve">
@@ -56,6 +56,30 @@
                                         </g>
                                     </svg>
                                 </a>
+                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="deleteModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModal">Delete message</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="modal-text">A you sure you want to delete this message?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <a href="/del-user-messages/${message.author.id}?message=${message.id}"
+                                                   type="button" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a class="edit-message"
                                    href="/user-messages/${message.author.id}?message=${message.id}">
                                     <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
