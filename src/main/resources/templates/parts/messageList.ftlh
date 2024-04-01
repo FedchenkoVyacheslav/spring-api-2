@@ -68,7 +68,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="modal-text">A you sure you want to delete this message?</p>
+                                                <p class="modal-text">A you sure you want to delete message "${message.title}"?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
