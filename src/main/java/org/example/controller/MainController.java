@@ -141,4 +141,12 @@ public class MainController {
 
         return "redirect:/user-messages/" + user;
     }
+    @GetMapping("/del-user-messages/{user}")
+    public String deleteMessage(
+            @PathVariable Long user,
+            @RequestParam Message message
+    ) {
+        messageRepo.delete(message);
+        return "redirect:/user-messages/" + user;
+    }
 }

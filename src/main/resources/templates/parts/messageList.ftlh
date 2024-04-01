@@ -28,7 +28,7 @@
                                href="/user-messages/${message.author.id}">${message.authorEmail}</a>
                             <p class="card-date">${message.updatedAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
                             <#if message.author.id == currentUserId>
-                                <a class="delete-message" href="">
+                                <a class="delete-message" href="/del-user-messages/${message.author.id}?message=${message.id}">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          version="1.1" viewBox="0 0 256 256"
                                          xml:space="preserve">
