@@ -28,7 +28,7 @@
                                href="/user-messages/${message.author.id}">${message.authorEmail}</a>
                             <p class="card-date">${message.updatedAt?datetime?string("dd.MM.yyyy HH:mm")}</p>
                             <#if message.author.id == currentUserId && springMacroRequestContext.requestUri?contains("/user-messages/")>
-                                <a data-toggle="modal" data-target="#deleteModal" class="delete-message">
+                                <a data-toggle="modal" data-target="#deleteModal-${message.id}" class="delete-message">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                          version="1.1" viewBox="0 0 256 256"
                                          xml:space="preserve">
@@ -56,8 +56,8 @@
                                         </g>
                                     </svg>
                                 </a>
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="deleteModal" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal-${message.id}" tabindex="-1" role="dialog"
+                                     aria-labelledby="deleteModal-${message.id}" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
