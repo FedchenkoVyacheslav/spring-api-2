@@ -405,7 +405,7 @@ body {
 }
 
 .subscribe-text {
-    font-size: 13px;
+    font-size: 15px;
     color: gray;
     margin: 0;
 }
@@ -416,9 +416,9 @@ body {
 }
 
 .subscribe-link, .subscribe-link:hover {
-    font-size: 13px;
+    font-size: 15px;
     text-decoration: none;
-    color: gray;
+    color: tomato;
 }
 
 .subscribe-image-box {
@@ -437,7 +437,7 @@ body {
 
 .title-subscribe-list {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 400;
     display: inline-block;
 }
 
@@ -448,5 +448,5 @@ body {
 .link-subscribe-list, .link-subscribe-list:hover {
     font-size: 15px;
     text-decoration: none;
-    color: gray;
+    color: tomato;
 }
