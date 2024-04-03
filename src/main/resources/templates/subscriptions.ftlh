@@ -2,7 +2,7 @@
 
 <@c.page>
     <div class="title-subscribe-list" class="mb-3">
-        <p class="title-subscribe-list mr-1">${userChannel.username}</p>
+        <p class="title-subscribe-list mr-1">${userChannel.name}'s</p>
         <span class="">${type}</span>
     </div>
     <#if (users?size = 0)>
