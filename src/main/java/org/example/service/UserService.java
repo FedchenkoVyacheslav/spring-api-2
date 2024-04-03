@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService {
 
         user.getRoles().clear();
         for (String key : form.keySet()) {
-            if(roles.contains(key)) {
+            if (roles.contains(key)) {
                 user.getRoles().add(Role.valueOf(key));
             }
         }
@@ -78,6 +78,18 @@ public class UserService implements UserDetailsService {
             String resFileName = MainController.uploadedDir(file, uploadPath);
             user.setPhotoUrl(resFileName);
         }
+        userRepo.save(user);
+    }
+
+    public void subscribe(User currentUser, User user) {
+        user.getSubscribers().add(currentUser);
+
+        userRepo.save(user);
+    }
+
+    public void unsubscribe(User currentUser, User user) {
+        user.getSubscribers().remove(currentUser);
+
         userRepo.save(user);
     }
 }
