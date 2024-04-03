@@ -26,9 +26,9 @@
                                    href="/user/subscriptions/${userChannel.id}/list">${subscriptionsCount}</a>
                             </div>
                             <div class="subscribe-wrapper">
-                                <div class="subscribe-text mr-2">Subscribers:</div>
+                                <div class="subscribe-text mr-2">Followers:</div>
                                 <a class="subscribe-link"
-                                   href="/user/subscribers/${userChannel.id}/list">${subscribersCount}</a>
+                                   href="/user/followers/${userChannel.id}/list">${followersCount}</a>
                             </div>
                         </div>
                     </div>

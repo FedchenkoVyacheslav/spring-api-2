@@ -50,7 +50,7 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "channel_id")},
             inverseJoinColumns = {@JoinColumn(name = "subscriber_id")}
     )
-    private Set<User> subscribers = new HashSet<>();
+    private Set<User> followers = new HashSet<>();
     @ManyToMany
     @JoinTable(
             name = "user_subscriptions",
