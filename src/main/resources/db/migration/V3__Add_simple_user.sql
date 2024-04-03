@@ -5,4 +5,5 @@ values (2, 'bs@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFn
         'London', '2023-08-12 12:54:44.560000', '2023-08-12 12:54:44.560000', true);
 
 insert into user_role (user_id, roles)
-values (2, 'USER');
+values (2, 'USER'),
+       (3, 'USER');

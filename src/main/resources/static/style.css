@@ -378,3 +378,31 @@ body {
 .remember-me-text {
     display: inline;
 }
+
+.subscribe-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subscribe-text {
+    font-size: 13px;
+    color: gray;
+    margin: 0;
+}
+
+.subscribe-email{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.subscribe-link, .subscribe-link:hover {
+    font-size: 13px;
+    text-decoration: none;
+    color: gray;
+}
