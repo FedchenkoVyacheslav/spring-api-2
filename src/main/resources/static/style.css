@@ -385,9 +385,23 @@ body {
 }
 
 .subscribe-body {
-    display: flex;
+    display: initial;
     justify-content: space-between;
     align-items: center;
+}
+
+.subscribe-btn {
+    margin-top: 20px;
+}
+
+@media (min-width: 550px) {
+    .subscribe-body {
+        display: flex;
+    }
+
+    .subscribe-btn {
+        margin-top: 0;
+    }
 }
 
 .subscribe-text {
@@ -405,4 +419,18 @@ body {
     font-size: 13px;
     text-decoration: none;
     color: gray;
+}
+
+.subscribe-image-box {
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 47px;
+    height: 47px;
+}
+
+.subscribe-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

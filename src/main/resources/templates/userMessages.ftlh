@@ -8,6 +8,13 @@
             <div class="card subscribe">
                 <div class="card-body subscribe-body">
                     <div class="subscribe-wrapper">
+                        <div class="subscribe-image-box mr-3">
+                            <#if userChannel.photoUrl??>
+                                <img src="/img/${userChannel.photoUrl}">
+                            <#else>
+                                <img src="../static/pic/profile-empty.jpg">
+                            </#if>
+                        </div>
                         <div class="mr-4">
                             <p class="subscribe-text subscribe-email">${userChannel.email}</p>
                             <p class="subscribe-text">${userChannel.name} ${userChannel.surname}</p>
@@ -27,7 +34,7 @@
                     </div>
                     <#if !isCurrentUser>
                         <#if isSubscriber>
-                            <a class="btn btn-info ml-3"
+                            <a class="subscribe-btn btn btn-info"
                                href="/user/unsubscribe/${userChannel.id}">Unsubscribe</a>
                         <#else>
                             <a class="btn btn-info ml-3" href="/user/subscribe/${userChannel.id}">Subscribe</a>
