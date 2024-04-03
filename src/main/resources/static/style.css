@@ -434,3 +434,19 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+.title-subscribe-list {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.title-subscribe-list span {
+    font-size: 1.25rem;
+}
+
+.link-subscribe-list, .link-subscribe-list:hover {
+    font-size: 15px;
+    text-decoration: none;
+    color: gray;
+}
