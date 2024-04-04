@@ -82,13 +82,13 @@ public class UserService implements UserDetailsService {
     }
 
     public void subscribe(User currentUser, User user) {
-        user.getSubscribers().add(currentUser);
+        user.getFollowers().add(currentUser);
 
         userRepo.save(user);
     }
 
     public void unsubscribe(User currentUser, User user) {
-        user.getSubscribers().remove(currentUser);
+        user.getFollowers().remove(currentUser);
 
         userRepo.save(user);
     }
