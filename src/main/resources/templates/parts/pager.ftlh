@@ -14,10 +14,10 @@
     <#else>
         <#assign body = 1..page.getTotalPages()>
     </#if>
-    <div class="mt-3">
+    <div class="pagination-wrapper mt-3">
         <ul class="pagination">
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Pages</a>
+                <a class="page-link" href="#" tabindex="-1">Page</a>
             </li>
             <#list body as p>
                 <#if (p - 1) == page.getNumber()>
@@ -38,9 +38,9 @@
 
         <ul class="pagination">
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Elements on page</a>
+                <a class="page-link" href="#" tabindex="-1">Messages per page</a>
             </li>
-            <#list [5, 10, 20] as c>
+            <#list [5, 10] as c>
                 <#if c == page.getSize()>
                     <li class="page-item active">
                         <a class="page-link" href="#" tabindex="-1">${c}</a>

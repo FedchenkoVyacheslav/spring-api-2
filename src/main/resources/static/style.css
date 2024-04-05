@@ -468,7 +468,14 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(58,176,195,.5);
 }
 
-/*.pagination > li.active > a {*/
-/*    background: purple;*/
-/*    color: #fff;*/
-/*}*/
+.pagination-wrapper {
+    display: block;
+}
+
+
+@media (min-width: 768px) {
+    .pagination-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
