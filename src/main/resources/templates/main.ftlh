@@ -14,10 +14,11 @@
             </form>
         </div>
     </div>
-    <button id="add-message" class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button" aria-expanded="false"
+    <button id="add-message" class="btn btn-info" data-toggle="collapse" href="#messageForm" role="button"
+            aria-expanded="false"
             aria-controls="messageForm">
         Add new message
     </button>
     <@m.edit "Add new message"/>
-    <@ms.messageList "No results found!", page.content, true/>
+    <@ms.messageList "No results found!"/>
 </@c.page>

@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.example.domain.User;
 import org.example.domain.Message;
 import org.example.repository.MessageRepo;
+import org.example.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -24,13 +25,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 @Controller
-public class MainController {
+public class MessageController {
     @Autowired
     private MessageRepo messageRepo;
+
+    @Autowired
+    private MessageService messageService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -45,12 +48,8 @@ public class MainController {
                              Model model,
                              @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<Message> page;
-        if (filter != null && !filter.isEmpty()) {
-            page = messageRepo.findByTextContainingIgnoreCase(filter, pageable);
-        } else {
-            page = messageRepo.findAll(pageable);
-        }
+        Page<Message> page = messageService.messageList(pageable, filter);
+
         model.addAttribute("page", page);
         model.addAttribute("url", "/main");
         model.addAttribute("filter", filter);
@@ -64,7 +63,8 @@ public class MainController {
             @Valid Message message,
             BindingResult bindingResult,
             Model model,
-            @RequestParam("file") MultipartFile file
+            @RequestParam("file") MultipartFile file,
+            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
     ) throws IOException {
         message.setAuthor(user);
 
@@ -73,7 +73,7 @@ public class MainController {
 
             model.mergeAttributes(errors);
             model.addAttribute("message", message);
-            Iterable<Message> messages = messageRepo.findAllByOrderByCreatedAtDesc();
+            Page<Message> messages = messageRepo.findAll(pageable);
             model.addAttribute("messages", messages);
             return "main";
         } else {
@@ -86,7 +86,7 @@ public class MainController {
             messageRepo.save(message);
         }
 
-        Iterable<Message> messages = messageRepo.findAllByOrderByCreatedAtDesc();
+        Page<Message> messages = messageRepo.findAll(pageable);
         model.addAttribute("messages", messages);
 
         return "redirect:main";
@@ -104,35 +104,37 @@ public class MainController {
         return resFileName;
     }
 
-    @GetMapping("/user-messages/{user}")
+    @GetMapping("/user-messages/{author}")
     public String userMessages(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable User user,
+            @PathVariable User author,
             Model model,
-            @RequestParam(required = false) Message message
+            @RequestParam(required = false) Message message,
+            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Set<Message> messages;
+        Page<Message> page;
 
         if (!StringUtils.isEmpty(message)) {
-            messages = user.getMessage(message.getId());
+            page = messageService.messageById(pageable, author, message.getId());
         } else {
-            messages = user.getMessages();
+            page = messageService.messageListForUser(pageable, author);
         }
-        model.addAttribute("userChannel", user);
-        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
-        model.addAttribute("followersCount", user.getFollowers().size());
-        model.addAttribute("isSubscriber", user.getFollowers().contains(currentUser));
-        model.addAttribute("messages", messages);
+        model.addAttribute("userChannel", author);
+        model.addAttribute("subscriptionsCount", author.getSubscriptions().size());
+        model.addAttribute("followersCount", author.getFollowers().size());
+        model.addAttribute("isSubscriber", author.getFollowers().contains(currentUser));
+        model.addAttribute("page", page);
         model.addAttribute("message", message);
-        model.addAttribute("isCurrentUser", currentUser.equals(user));
+        model.addAttribute("isCurrentUser", currentUser.equals(author));
+        model.addAttribute("url", "/user-messages/" + author.getId());
 
         return "userMessages";
     }
 
-    @PostMapping("/user-messages/{user}")
+    @PostMapping("/user-messages/{author}")
     public String updateMessage(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable Long user,
+            @PathVariable Long author,
             @RequestParam("id") Message message,
             @RequestParam("title") String title,
             @RequestParam("text") String text,
@@ -152,15 +154,15 @@ public class MainController {
             messageRepo.save(message);
         }
 
-        return "redirect:/user-messages/" + user;
+        return "redirect:/user-messages/" + author;
     }
 
-    @GetMapping("/del-user-messages/{user}")
+    @GetMapping("/del-user-messages/{author}")
     public String deleteMessage(
-            @PathVariable Long user,
+            @PathVariable Long author,
             @RequestParam Message message
     ) {
         messageRepo.delete(message);
-        return "redirect:/user-messages/" + user;
+        return "redirect:/user-messages/" + author;
     }
 }

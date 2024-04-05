@@ -59,14 +59,6 @@ public class User implements UserDetails {
     )
     private Set<User> subscriptions = new HashSet<>();
 
-    public Set<Message> getMessages() {
-        return messages.stream().sorted(Comparator.comparing(Message::getCreatedAt).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
-    }
-
-    public Set<Message> getMessage(Long id) {
-        return getMessages().stream().filter(e -> e.getId().equals(id)).collect(Collectors.toSet());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

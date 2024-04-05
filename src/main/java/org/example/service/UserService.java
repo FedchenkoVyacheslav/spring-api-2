@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.controller.MainController;
+import org.example.controller.MessageController;
 import org.example.domain.Role;
 import org.example.domain.User;
 import org.example.repository.UserRepo;
@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService {
         user.setAge(age);
 
         if (!file.isEmpty() && !file.getOriginalFilename().isEmpty()) {
-            String resFileName = MainController.uploadedDir(file, uploadPath);
+            String resFileName = MessageController.uploadedDir(file, uploadPath);
             user.setPhotoUrl(resFileName);
         }
         userRepo.save(user);

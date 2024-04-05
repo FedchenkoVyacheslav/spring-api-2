@@ -1,14 +1,13 @@
 <#include "security.ftlh">
 <#import "pager.ftlh" as p>
 
-<#macro messageList errorMessage messages mainPage>
-    <#if mainPage>
+<#macro messageList errorMessage>
+    <#if !message??>
         <@p.pager url page />
     </#if>
-    <#assign messages = messages>
     <div>
         <div class="card-columns">
-            <#list messages as message>
+            <#list page.content as message>
                 <div class="card my-3">
                     <#if message.filename??>
                         <img class="card-img-top py-2 px-2" src="/img/${message.filename}">
