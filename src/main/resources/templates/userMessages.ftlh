@@ -47,5 +47,5 @@
     <#if isCurrentUser>
         <@m.edit "Save the changes"/>
     </#if>
-    <@ms.messageList "You have no created messages"/>
+    <@ms.messageList "You have no created messages", messages, false/>
 </@c.page>

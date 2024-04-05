@@ -6,6 +6,10 @@ import org.example.domain.Message;
 import org.example.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,15 +41,19 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String getMessage(@RequestParam(required = false, defaultValue = "") String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
+    public String getMessage(@RequestParam(required = false, defaultValue = "") String filter,
+                             Model model,
+                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<Message> page;
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTextAndTitle(filter);
+            page = messageRepo.findByTextContainingIgnoreCase(filter, pageable);
         } else {
-            messages = messageRepo.findAllByOrderByCreatedAtDesc();
+            page = messageRepo.findAll(pageable);
         }
-        model.put("messages", messages);
-        model.put("filter", filter);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/main");
+        model.addAttribute("filter", filter);
 
         return "main";
     }
@@ -146,6 +154,7 @@ public class MainController {
 
         return "redirect:/user-messages/" + user;
     }
+
     @GetMapping("/del-user-messages/{user}")
     public String deleteMessage(
             @PathVariable Long user,

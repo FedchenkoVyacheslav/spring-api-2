@@ -1,6 +1,11 @@
 <#include "security.ftlh">
+<#import "pager.ftlh" as p>
 
-<#macro messageList errorMessage>
+<#macro messageList errorMessage messages mainPage>
+    <#if mainPage>
+        <@p.pager url page />
+    </#if>
+    <#assign messages = messages>
     <div>
         <div class="card-columns">
             <#list messages as message>
@@ -68,7 +73,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="modal-text">A you sure you want to delete message "${message.title}"?</p>
+                                                <p class="modal-text">A you sure you want to delete message
+                                                    "${message.title}"?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">

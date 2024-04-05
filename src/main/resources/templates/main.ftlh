@@ -19,5 +19,5 @@
         Add new message
     </button>
     <@m.edit "Add new message"/>
-    <@ms.messageList "No results found!"/>
+    <@ms.messageList "No results found!", page.content, true/>
 </@c.page>
