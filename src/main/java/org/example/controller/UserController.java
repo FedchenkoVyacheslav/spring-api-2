@@ -40,9 +40,11 @@ public class UserController {
     @GetMapping("subscribe/{author}")
     public String subscribe(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable User author
+            @PathVariable User author,
+            Model model
     ) {
         userService.subscribe(currentUser, author);
+        model.addAttribute("isCurrentUser", currentUser.equals(author));
 
         return "redirect:/user-messages/" + author.getId();
     }
@@ -50,21 +52,25 @@ public class UserController {
     @GetMapping("unsubscribe/{author}")
     public String unsubscribe(
             @AuthenticationPrincipal User currentUser,
-            @PathVariable User author
+            @PathVariable User author,
+            Model model
     ) {
         userService.unsubscribe(currentUser, author);
+        model.addAttribute("isCurrentUser", currentUser.equals(author));
 
         return "redirect:/user-messages/" + author.getId();
     }
 
     @GetMapping("{type}/{author}/list")
     public String userList(
-            Model model,
+            @AuthenticationPrincipal User currentUser,
             @PathVariable User author,
-            @PathVariable String type
+            @PathVariable String type,
+            Model model
     ) {
         model.addAttribute("userChannel", author);
         model.addAttribute("type", type);
+        model.addAttribute("isCurrentUser", currentUser.equals(author));
 
         if ("subscriptions".equals(type)) {
             model.addAttribute("users", author.getSubscriptions());
