@@ -73,7 +73,6 @@
             </div>
         </#if>
         <#if !isRegisterForm>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <div class="form-group row mb-2">
             <div class="col-sm-4 mb-2">
                 <input class="mr-2" type="checkbox" name="remember-me" aria-label="Remember me"/>
@@ -81,6 +80,7 @@
             </div>
         </div>
         </#if>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <button type="submit" class="btn btn-info mb-4">${button}</button>
     </form>
     <a class="auth-link" href="${path2}">

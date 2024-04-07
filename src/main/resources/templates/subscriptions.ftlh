@@ -12,7 +12,7 @@
         <#list users as user>
             <li class="list-group-item subscribe-wrapper">
                 <div class="subscribe-image-box mr-3">
-                    <#if userChannel.photoUrl??>
+                    <#if user.photoUrl??>
                         <img src="/img/${user.photoUrl}">
                     <#else>
                         <img src="/../../pic/profile-empty.jpg">
