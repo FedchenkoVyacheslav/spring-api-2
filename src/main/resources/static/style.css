@@ -394,6 +394,10 @@ body {
     margin-top: 20px;
 }
 
+.followers-btn {
+    font-size: 13px;
+}
+
 @media (min-width: 550px) {
     .subscribe-body {
         display: flex;
@@ -402,10 +406,14 @@ body {
     .subscribe-btn {
         margin-top: 0;
     }
+
+    .followers-btn {
+        font-size: 1rem;
+    }
 }
 
 .subscribe-text {
-    font-size: 15px;
+    font-size: 13px;
     color: gray;
     margin: 0;
 }
@@ -435,20 +443,45 @@ body {
     object-fit: cover;
 }
 
-.title-subscribe-list {
-    font-size: 1.25rem;
+.title-subscribe-wrapper, .empty-subscribe-list {
+    font-size: 1.5rem;
     font-weight: 400;
+    display: block;
+    text-align: center;
+}
+
+.empty-subscribe-list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+.title-subscribe-title {
     display: inline-block;
 }
 
-.title-subscribe-list span {
-    font-size: 1.25rem;
-}
 
 .link-subscribe-list, .link-subscribe-list:hover {
-    font-size: 15px;
+    font-size: 13px;
     text-decoration: none;
     color: tomato;
+}
+
+.subscribe-list {
+    padding: 0;
+}
+
+@media (min-width: 550px) {
+    .link-subscribe-list, .link-subscribe-list:hover {
+        font-size: 15px;
+    }
+
+    .subscribe-text {
+        font-size: 15px;
+    }
 }
 
 .page-link {

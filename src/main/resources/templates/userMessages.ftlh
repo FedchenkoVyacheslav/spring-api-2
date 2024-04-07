@@ -38,7 +38,7 @@
                                 <a class="subscribe-btn btn btn-info"
                                    href="/user/unsubscribe/${userChannel.id}">Unsubscribe</a>
                             <#else>
-                                <a class="btn btn-info ml-3" href="/user/subscribe/${userChannel.id}">Subscribe</a>
+                                <a class="subscribe-btn btn btn-info" href="/user/subscribe/${userChannel.id}">Subscribe</a>
                             </#if>
                         </#if>
                     </div>
