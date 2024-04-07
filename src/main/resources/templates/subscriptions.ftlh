@@ -8,11 +8,11 @@
     <#if (users?size = 0)>
         <p class="empty-subscribe-list">No ${type}</p>
     </#if>
-    <ul class="list-group col-sm-3">
+    <ul class="list-group col-sm-4 mb-4">
         <#list users as user>
             <li class="list-group-item subscribe-wrapper">
                 <div class="subscribe-image-box mr-3">
-                    <#if user.photoUrl??>
+                    <#if user.photoUrl?has_content>
                         <img src="/img/${user.photoUrl}">
                     <#else>
                         <img src="/../../pic/profile-empty.jpg">

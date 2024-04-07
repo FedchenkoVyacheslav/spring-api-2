@@ -10,7 +10,7 @@
                     <div class="card-body subscribe-body">
                         <div class="subscribe-wrapper">
                             <div class="subscribe-image-box mr-3">
-                                <#if userChannel.photoUrl??>
+                                <#if userChannel.photoUrl?has_content>
                                     <img src="/img/${userChannel.photoUrl}">
                                 <#else>
                                     <img src="../static/pic/profile-empty.jpg">

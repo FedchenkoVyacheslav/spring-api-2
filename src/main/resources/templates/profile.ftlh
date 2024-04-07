@@ -2,7 +2,7 @@
 <@c.page>
     <div class="profile-wrapper">
         <div class="profile-img-box bg-secondary mr-5 mt-2">
-            <#if user.photoUrl??>
+            <#if user.photoUrl?has_content>
                 <img class="profile-img card-img-top" src="/img/${user.photoUrl!""}">
             <#else>
                 <img class="profile-img card-img-top" src="../static/pic/profile-empty.jpg">
