@@ -2,7 +2,7 @@
 <#import "pager.ftlh" as p>
 
 <#macro messageList errorMessage>
-    <#if !message?? && (page.content?size > 0)>
+    <#if !message?? && page.getTotalPages()!=0>
         <@p.pager url page />
     </#if>
     <div>
