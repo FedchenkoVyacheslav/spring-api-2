@@ -512,11 +512,3 @@ body {
         justify-content: space-between;
     }
 }
-
-.followers-list {
-    padding: 0;
-}
-
-.followers-list li:not(:first-child) {
-    display: none;
-}

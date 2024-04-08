@@ -26,24 +26,19 @@
                     </div>
                 </div>
                 <div>
-                    <ul class="followers-list">
-                        <#list user.followers as follower>
-                            <#if user.followers??>
-                                <li>
-                                    <#if follower.id==currentUserId>
-                                        <a class="followers-btn btn btn-info"
-                                           href="/user/unsubscribe/${user.id}">Unsubscribe</a>
-                                    <#elseif user.id==currentUserId && !isCurrentUser>
-                                        <p></p>
-                                    <#else>
-                                        <a class="followers-btn btn btn-info" href="/user/subscribe/${user.id}">Subscribe</a>
-                                    </#if>
-                                </li>
-                            </#if>
+                    <#assign followers = user.followers>
+                    <#if followers??>
+                        <#if followers[0]?? && followers[0].id==currentUserId>
+                            <a class="followers-btn btn btn-info"
+                               href="/user/unsubscribe/${user.id}">Unsubscribe</a>
+                        <#elseif user.id==currentUserId && !isCurrentUser>
+                            <p></p>
                         <#else>
                             <a class="followers-btn btn btn-info" href="/user/subscribe/${user.id}">Subscribe</a>
-                        </#list>
-                    </ul>
+                        </#if>
+                    <#else>
+                        <a class="followers-btn btn btn-info" href="/user/subscribe/${user.id}">Subscribe</a>
+                    </#if>
                 </div>
             </li>
         </#list>
