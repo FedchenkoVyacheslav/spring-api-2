@@ -1,7 +1,5 @@
 package org.example.service;
 
-import jakarta.persistence.EntityManager;
-import org.example.domain.Message;
 import org.example.domain.User;
 import org.example.domain.dto.MessageDto;
 import org.example.repository.MessageRepo;

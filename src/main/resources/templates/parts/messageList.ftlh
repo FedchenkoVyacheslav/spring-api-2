@@ -37,7 +37,7 @@
                                        class="delete-message">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                                             version="1.1" viewBox="0 0 256 256"
+                                             viewBox="0 0 256 256"
                                              xml:space="preserve">
                                         <defs></defs>
                                             <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
