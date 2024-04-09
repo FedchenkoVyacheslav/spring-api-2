@@ -35,7 +35,7 @@
                         </div>
                         <#if !isCurrentUser>
                             <#if isSubscriber>
-                                <a class="subscribe-btn btn btn-info"
+                                <a class="subscribe-btn btn btn-danger"
                                    href="/user/unsubscribe/${userChannel.id}">Unsubscribe</a>
                             <#else>
                                 <a class="subscribe-btn btn btn-info" href="/user/subscribe/${userChannel.id}">Subscribe</a>

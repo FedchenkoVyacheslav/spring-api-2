@@ -29,7 +29,7 @@
                     <#assign followers = user.followers>
                     <#if followers??>
                         <#if followers[0]?? && followers[0].id==currentUserId>
-                            <a class="followers-btn btn btn-info"
+                            <a class="followers-btn btn btn-danger"
                                href="/user/unsubscribe/${user.id}">Unsubscribe</a>
                         <#elseif user.id==currentUserId && !isCurrentUser>
                             <p></p>
