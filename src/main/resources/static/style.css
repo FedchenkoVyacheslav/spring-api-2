@@ -512,3 +512,20 @@ body {
         justify-content: space-between;
     }
 }
+
+.message-like {
+    position: absolute;
+    bottom: 13px;
+    right: 20px;
+    color: crimson;
+    text-decoration: none;
+}
+
+.message-like:hover {
+    color: darkred;
+    text-decoration: none;
+}
+
+.fas, .far {
+    font-size: 20px;
+}

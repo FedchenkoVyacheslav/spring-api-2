@@ -3,6 +3,7 @@ package org.example.controller;
 import jakarta.validation.Valid;
 import org.example.domain.User;
 import org.example.domain.Message;
+import org.example.domain.dto.MessageDto;
 import org.example.repository.MessageRepo;
 import org.example.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,10 @@ public class MessageController {
     @GetMapping("/main")
     public String getMessage(@RequestParam(required = false, defaultValue = "") String filter,
                              Model model,
-                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
+                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable,
+                             @AuthenticationPrincipal User user
     ) {
-        Page<Message> page = messageService.messageList(pageable, filter);
+        Page<MessageDto> page = messageService.messageList(pageable, filter, user);
 
         model.addAttribute("page", page);
         model.addAttribute("url", "/main");
@@ -73,7 +75,7 @@ public class MessageController {
 
             model.mergeAttributes(errors);
             model.addAttribute("message", message);
-            Page<Message> messages = messageRepo.findAll(pageable);
+            Page<MessageDto> messages = messageRepo.findAll(pageable, user);
             model.addAttribute("messages", messages);
             return "main";
         } else {
@@ -86,7 +88,7 @@ public class MessageController {
             messageRepo.save(message);
         }
 
-        Page<Message> messages = messageRepo.findAll(pageable);
+        Page<MessageDto> messages = messageRepo.findAll(pageable, user);
         model.addAttribute("messages", messages);
 
         return "redirect:main";
@@ -112,12 +114,12 @@ public class MessageController {
             @RequestParam(required = false) Message message,
             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<Message> page;
+        Page<MessageDto> page;
 
         if (!StringUtils.isEmpty(message)) {
-            page = messageService.messageById(pageable, author, message.getId());
+            page = messageService.messageById(pageable, currentUser, author, message.getId());
         } else {
-            page = messageService.messageListForUser(pageable, author);
+            page = messageService.messageListForUser(pageable, currentUser, author);
         }
         model.addAttribute("userChannel", author);
         model.addAttribute("subscriptionsCount", author.getSubscriptions().size());

@@ -75,7 +75,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="modal-text">A you sure you want to delete message
+                                                    <p class="modal-text">Are you sure you want to delete message
                                                         "${message.title}"?</p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -95,6 +95,16 @@
                                             <path d="M254.220457 716.393247h110.331678l452.512413-452.512413-107.789474-107.789474L254.220457 610.129096zM780.965243 84.401192l107.789474 107.789473a101.688183 101.688183 0 0 1 0 143.888779l-452.512413 452.512413a101.688183 101.688183 0 0 1-71.690169 29.998014H231.340616A76.266137 76.266137 0 0 1 152.532274 741.815293V610.129096a101.688183 101.688183 0 0 1 29.998014-71.690168l452.512413-452.512414a101.688183 101.688183 0 0 1 145.922542-1.525322zM105.247269 969.596822a50.844091 50.844091 0 1 1 0-101.688182h813.505462a50.844091 50.844091 0 0 1 0 101.688182z"
                                                   fill="#666666"/>
                                         </svg>
+                                    </a>
+                                </#if>
+                                <#if !springMacroRequestContext.requestUri?contains("/user-messages/")>
+                                    <a class="message-like" href="/messages/${message.id}/like">
+                                        <#if message.meLiked>
+                                            <i class="fas fa-heart"></i>
+                                        <#else>
+                                            <i class="far fa-heart"></i>
+                                        </#if>
+                                        ${message.likes}
                                     </a>
                                 </#if>
                             </div>

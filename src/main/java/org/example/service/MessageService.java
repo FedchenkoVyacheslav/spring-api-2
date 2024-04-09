@@ -1,7 +1,9 @@
 package org.example.service;
 
+import jakarta.persistence.EntityManager;
 import org.example.domain.Message;
 import org.example.domain.User;
+import org.example.domain.dto.MessageDto;
 import org.example.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,27 +12,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
     @Autowired
     private MessageRepo messageRepo;
 
-    public Page<Message> messageList(Pageable pageable, String filter) {
+    public Page<MessageDto> messageList(Pageable pageable, String filter, User user) {
         if (filter != null && !filter.isEmpty()) {
-            return messageRepo.findByTextContainingIgnoreCase(filter, pageable);
+            return messageRepo.findByTextContainingIgnoreCase(filter, pageable, user);
         } else {
-            return messageRepo.findAll(pageable);
+            return messageRepo.findAll(pageable, user);
         }
     }
 
-    public Page<Message> messageListForUser(Pageable pageable, User author) {
-        return messageRepo.findByUser(pageable, author);
+    public Page<MessageDto> messageListForUser(Pageable pageable, User currentUser, User author) {
+        return messageRepo.findByUser(pageable, currentUser, author);
     }
 
-    public Page<Message> messageById(Pageable pageable, User author, Long messageId) {
-        List<Message> messages = messageRepo.findByUser(pageable, author).stream().filter(e -> e.getId().equals(messageId)).toList();
+    public Page<MessageDto> messageById(Pageable pageable, User currentUser, User author, Long messageId) {
+        List<MessageDto> messages = messageRepo.findByUser(pageable, currentUser, author).stream().filter(e -> e.getId().equals(messageId)).toList();
         return new PageImpl<>(messages);
     }
 }
