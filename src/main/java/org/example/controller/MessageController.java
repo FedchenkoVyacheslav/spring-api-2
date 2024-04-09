@@ -185,9 +185,7 @@ public class MessageController {
         }
 
         UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
-
-        components.getQueryParams()
-                .forEach(redirectAttributes::addAttribute);
+        components.getQueryParams().forEach(redirectAttributes::addAttribute);
 
         messageRepo.save(message);
 

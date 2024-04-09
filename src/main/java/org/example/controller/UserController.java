@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 
@@ -41,24 +44,34 @@ public class UserController {
     public String subscribe(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User author,
+            RedirectAttributes redirectAttributes,
+            @RequestHeader(required = false) String referer,
             Model model
     ) {
         userService.subscribe(currentUser, author);
         model.addAttribute("isCurrentUser", currentUser.equals(author));
 
-        return "redirect:/user-messages/" + author.getId();
+        UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+        components.getQueryParams().forEach(redirectAttributes::addAttribute);
+
+        return "redirect:" + components.getPath();
     }
 
     @GetMapping("unsubscribe/{author}")
     public String unsubscribe(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User author,
+            RedirectAttributes redirectAttributes,
+            @RequestHeader(required = false) String referer,
             Model model
     ) {
         userService.unsubscribe(currentUser, author);
         model.addAttribute("isCurrentUser", currentUser.equals(author));
 
-        return "redirect:/user-messages/" + author.getId();
+        UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+        components.getQueryParams().forEach(redirectAttributes::addAttribute);
+
+        return "redirect:" + components.getPath();
     }
 
     @GetMapping("{type}/{author}/list")
