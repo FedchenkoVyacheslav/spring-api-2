@@ -25,13 +25,13 @@ body {
 .user-messages {
     text-decoration: none;
     font-weight: 600;
-    color: cornflowerblue;
+    color: tomato;
     transition: all 300ms ease-in-out;
 }
 
 .user-messages:hover {
     text-decoration: none;
-    color: tomato;
+    color: #9b111e;
 }
 
 .edit-message {
@@ -76,10 +76,16 @@ body {
     }
 }
 
-.auth-link, .auth-link:hover {
+.auth-link {
     color: white;
     text-decoration: none;
     font-weight: 600;
+    transition: all 300ms ease-in-out;
+}
+
+.auth-link:hover {
+    color: #e0ffff;
+    text-decoration: none;
 }
 
 .captcha-error {
@@ -247,11 +253,17 @@ body {
     }
 }
 
-.admin-edit-btn, .admin-edit-btn:hover {
+.admin-edit-btn {
     text-decoration: none;
     float: right;
     color: black;
     font-weight: bold;
+    transition: all 300ms ease-in-out;
+}
+
+.admin-edit-btn:hover {
+    text-decoration: none;
+    color: red;
 }
 
 .navbar-nav {
@@ -300,6 +312,18 @@ body {
     .navbar-expand-lg .navbar-nav .nav-link {
         padding-right: 0.5rem;
         padding-left: 0.5rem;
+    }
+
+    .nav-link {
+        transition: all 300ms ease-in-out;
+    }
+
+    .navbar-light .navbar-brand {
+        transition: all 300ms ease-in-out;
+    }
+
+    .navbar-light .navbar-brand:hover {
+        color: darkgray;
     }
 
     .nav-email {
@@ -430,10 +454,18 @@ body {
     font-weight: 600;
 }
 
-.subscribe-link, .subscribe-link:hover {
+.subscribe-link {
     font-size: 15px;
+    font-weight: 600;
     text-decoration: none;
     color: tomato;
+    transition: all 300ms ease-in-out;
+}
+
+.subscribe-link:hover {
+    font-size: 15px;
+    text-decoration: none;
+    color: #9b111e;
 }
 
 .subscribe-image-box {
@@ -471,10 +503,18 @@ body {
 }
 
 
-.link-subscribe-list, .link-subscribe-list:hover {
+.link-subscribe-list {
     font-size: 13px;
+    font-weight: 600;
     text-decoration: none;
     color: tomato;
+    transition: all 300ms ease-in-out;
+}
+
+.link-subscribe-list:hover {
+    font-size: 13px;
+    text-decoration: none;
+    color: #9b111e;
 }
 
 .subscribe-list {
@@ -502,8 +542,8 @@ body {
     color: white;
 }
 
-.btn-info {
-    transition: all 300ms ease-in-out;
+.btn {
+    transition: all 400ms ease-in-out;
 }
 
 .form-control {
@@ -566,4 +606,3 @@ body {
 .edit-message:hover .edit-icon{
     fill: deepskyblue;
 }
-/*fill: dodgerblue;*/
