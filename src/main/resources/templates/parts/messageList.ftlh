@@ -84,7 +84,7 @@
                                         </svg>
                                     </a>
                                 </#if>
-                                <#if !springMacroRequestContext.requestUri?contains("/user-messages/")>
+                                <#if !((message.author.id == currentUserId) && springMacroRequestContext.requestUri?contains("/user-messages/"))>
                                     <a class="message-like" href="/messages/${message.id}/like">
                                         <#if message.meLiked>
                                             <i class="fas fa-heart"></i>
