@@ -120,7 +120,7 @@ public class MessageController {
         if (!StringUtils.isEmpty(message)) {
             page = messageService.messageById(pageable, currentUser, author, message.getId());
         } else {
-            page = messageService.messageListForUser(pageable, currentUser, author);
+            page = messageService.messageListForUser(pageable, author, currentUser);
         }
         model.addAttribute("userChannel", author);
         model.addAttribute("subscriptionsCount", author.getSubscriptions().size());

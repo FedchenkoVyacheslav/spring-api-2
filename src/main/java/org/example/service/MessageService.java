@@ -24,12 +24,12 @@ public class MessageService {
         }
     }
 
-    public Page<MessageDto> messageListForUser(Pageable pageable, User currentUser, User author) {
-        return messageRepo.findByUser(pageable, currentUser, author);
+    public Page<MessageDto> messageListForUser(Pageable pageable, User author, User currentUser) {
+        return messageRepo.findByUser(pageable, author, currentUser);
     }
 
-    public Page<MessageDto> messageById(Pageable pageable, User currentUser, User author, Long messageId) {
-        List<MessageDto> messages = messageRepo.findByUser(pageable, currentUser, author).stream().filter(e -> e.getId().equals(messageId)).toList();
+    public Page<MessageDto> messageById(Pageable pageable, User author, User currentUser, Long messageId) {
+        List<MessageDto> messages = messageRepo.findByUser(pageable, author, currentUser).stream().filter(e -> e.getId().equals(messageId)).toList();
         return new PageImpl<>(messages);
     }
 }
