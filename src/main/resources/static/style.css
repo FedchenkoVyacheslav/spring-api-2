@@ -126,17 +126,31 @@ body {
 }
 
 .greeting-container {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    position: initial;
+    margin-right: 0;
+    transform: none;
     z-index: -1;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 @media (min-width: 767px) {
     .greeting-container {
+        position: absolute;
+        top: 28%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (min-width: 992px) {
+    .greeting-container {
+        position: absolute;
         top: 35%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -266,6 +280,14 @@ body {
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
+}
+
+@media (min-width: 700px) {
+    .profile-row {
+        -ms-flex: 0 0 80%;
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
 }
 
 @media (min-width: 995px) {

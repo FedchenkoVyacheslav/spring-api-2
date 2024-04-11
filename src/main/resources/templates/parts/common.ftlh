@@ -17,7 +17,7 @@
     <body>
     <div class="wrapper">
         <#include "navbar.ftlh">
-        <div class="content container mt-5">
+        <div class="content container my-5">
             <#nested>
         </div>
         <div class="footer">
