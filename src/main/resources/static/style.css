@@ -688,10 +688,6 @@ body {
     fill: deepskyblue;
 }
 
-.footer-description {
-    max-width: 400px;
-}
-
 .footer-link, .footer-link:hover {
     text-decoration: none;
 }
