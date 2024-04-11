@@ -127,10 +127,17 @@ body {
 
 .greeting-container {
     position: absolute;
-    top: 35%;
+    top: 25%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+@media (min-width: 767px) {
+    .greeting-container {
+        top: 35%;
+    }
 }
 
 .card-title, .card-text, .card-date {
@@ -197,15 +204,25 @@ body {
 
 #error-el2 {
     color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    position: initial;
+    margin-right: 0;
     display: block;
-    margin-top: 20vh;
-    font-size: 30px;
+    margin-top: 20px;
+    font-size: 1.25rem;
 }
+
+@media (min-width: 768px) {
+    #error-el2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        margin-top: 20vh;
+        font-size: 30px;
+    }
+}
+
 
 .invalid-feedback {
     margin: 2px 0;
@@ -373,7 +390,7 @@ body {
     margin-left: 0 !important;
 }
 
-@media (min-width: 575px) {
+@media (min-width: 576px) {
     #search-button {
         margin-top: 0;
         margin-left: .5rem !important;
@@ -437,6 +454,7 @@ body {
 .subscribe-wrapper {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .subscribe-body {
@@ -513,6 +531,10 @@ body {
     text-align: center;
 }
 
+.subscribe-list li {
+    flex-wrap: wrap;
+}
+
 .empty-subscribe-list {
     position: absolute;
     top: 50%;
@@ -526,6 +548,19 @@ body {
     display: inline-block;
 }
 
+.subscribe-btn-wrapper {
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+@media (min-width: 450px) {
+    .subscribe-btn-wrapper {
+        width: initial;
+        display: block;
+        margin-top: 0;
+    }
+}
 
 .link-subscribe-list {
     font-size: 13px;

@@ -9,7 +9,7 @@
     <#if (users?size = 0)>
         <p class="empty-subscribe-list">No ${type}</p>
     </#if>
-    <ul class="subscribe-list list-group col-sm-10 mx-auto mb-4">
+    <ul class="subscribe-list list-group col-sm-10 mx-auto mb-5">
         <#list users as user>
             <li class="align-items-center list-group-item d-flex justify-content-between">
                 <div class="subscribe-wrapper">
@@ -25,7 +25,7 @@
                         <p class="subscribe-text">${user.name} ${user.surname}</p>
                     </div>
                 </div>
-                <div>
+                <div class="subscribe-btn-wrapper">
                     <#assign followers = user.followers>
                     <#if followers??>
                         <#if followers[0]?? && followers[0].id==currentUserId>

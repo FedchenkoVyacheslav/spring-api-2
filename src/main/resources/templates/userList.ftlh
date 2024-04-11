@@ -1,6 +1,6 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-    <table class="table table-bordered table-secondary">
+    <table class="table table-bordered table-secondary mb-5">
         <thead>
         <tr>
             <th scope="col">Name</th>
