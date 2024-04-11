@@ -48,7 +48,7 @@ public class MessageController {
     @GetMapping("/main")
     public String getMessage(@RequestParam(required = false, defaultValue = "") String filter,
                              Model model,
-                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable,
+                             @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC, value = 6) Pageable pageable,
                              @AuthenticationPrincipal User user
     ) {
         Page<MessageDto> page = messageService.messageList(pageable, filter, user);
@@ -67,7 +67,7 @@ public class MessageController {
             BindingResult bindingResult,
             Model model,
             @RequestParam("file") MultipartFile file,
-            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC, value = 6) Pageable pageable
     ) throws IOException {
         message.setAuthor(user);
 
@@ -113,7 +113,7 @@ public class MessageController {
             @PathVariable User author,
             Model model,
             @RequestParam(required = false) Message message,
-            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC) Pageable pageable
+            @PageableDefault(sort = {"createdAt"}, direction = Sort.Direction.DESC, value = 6) Pageable pageable
     ) {
         Page<MessageDto> page;
 

@@ -40,7 +40,7 @@
             <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1">Messages per page</a>
             </li>
-            <#list [5, 10, 20] as c>
+            <#list [6, 9, 12] as c>
                 <#if c == page.getSize()>
                     <li class="page-item active">
                         <a class="page-link" href="#" tabindex="-1">${c}</a>
