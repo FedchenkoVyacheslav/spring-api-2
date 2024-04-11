@@ -13,7 +13,7 @@
                         <#if message.filename??>
                             <img class="card-img-top py-2 px-2" src="/img/${message.filename}">
                         <#else>
-                            <img class="card-img-top" src="../static/pic/no-img.png">
+                            <img class="card-img-top py-2 px-2" src="../static/pic/no-img.png">
                         </#if>
                         <div class="card-body">
                             <h5 class="card-title">${message.title}</h5>
