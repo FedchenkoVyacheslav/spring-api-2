@@ -6,7 +6,7 @@
         <@p.pager url page />
     </#if>
     <div>
-        <div class="card-columns">
+        <div class="card-columns mb-4">
             <#if page??>
                 <#list page.content as message>
                     <div class="card my-3">

@@ -9,13 +9,20 @@
               crossorigin="anonymous">
         <title>Spring-web-app</title>
         <link rel="stylesheet" href="/static/style.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+              integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+              crossorigin="anonymous">
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
-    <#include "navbar.ftlh">
-    <div class="container mt-5">
-        <#nested>
+    <div class="wrapper">
+        <#include "navbar.ftlh">
+        <div class="content container mt-5">
+            <#nested>
+        </div>
+        <div class="footer">
+            <#include "footer.ftlh">
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
