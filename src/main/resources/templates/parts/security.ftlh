@@ -13,7 +13,7 @@ known = SPRING_SECURITY_CONTEXT??
     >
 <#else>
     <#assign
-    email = "Not loggen in"
+    email = "Not logged in"
     name = ""
     surname = ""
     isAdmin = false

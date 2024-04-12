@@ -49,7 +49,7 @@
         </div>
         <div class="form-group row mb-4">
             <div class="col-sm-4 mb-2">
-                <input type="password" name="password" placeholder="Enter your password"
+                <input type="password" id="auth-password" name="password" placeholder="Enter your password"
                        value="<#if user??>${user.password}</#if>"
                        class="form-control ${(passwordError??)?string('is-invalid', '')}
                 <#if !isRegisterForm>
@@ -75,13 +75,13 @@
         <#if !isRegisterForm>
         <div class="form-group row mb-2">
             <div class="col-sm-4 mb-2">
-                <input class="mr-2" type="checkbox" name="remember-me" aria-label="Remember me"/>
+                <input class="mr-2" id="auth-remember" type="checkbox" name="remember-me" aria-label="Remember me"/>
                 <p class="remember-me-text">Remember me</p>
             </div>
         </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-info mb-4">${button}</button>
+        <button type="submit" id="auth-button" class="btn btn-info mb-4">${button}</button>
     </form>
     <a class="auth-link" href="${path2}">
         ${link}
