@@ -1,5 +1,7 @@
 package main.ui.pages;
 
+import main.ui.elements.ValidationForm;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +29,7 @@ public abstract class BasePage {
     }
 
     public LoginPage checkNavbarEmailText(String email, boolean loggedIn) {
-        if(loggedIn) {
+        if (loggedIn) {
             assertEquals(navbarEmail.getText(), email);
         } else {
             assertEquals(navbarEmail.getText(), "Not logged in");
@@ -57,4 +59,18 @@ public abstract class BasePage {
         }
         return this;
     }
+
+    public BasePage checkInvalidMessage(String formClass, String innerText) {
+        String message = ValidationForm.getInvalidMessage(driver, formClass);
+        assertEquals(innerText, message);
+        return this;
+    }
+
+    public BasePage clearInvalidInput(String formName) {
+        WebElement input = driver.findElement(By.xpath("//form[@name='" + formName + "']//div[@class='invalid-feedback']/../input"));
+        input.sendKeys(" ");
+        input.clear();
+        return this;
+    }
+
 }

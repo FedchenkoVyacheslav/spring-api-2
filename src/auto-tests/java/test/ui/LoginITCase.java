@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
@@ -28,7 +29,7 @@ public class LoginITCase {
 
     @ParameterizedTest
     @CsvSource({"t1@gmail.com, 1111"})
-    @DisplayName("Should login")
+    @DisplayName("Should login user")
     public void loginUser(String email, String password) {
         myLoginPage
                 .checkNavbarEmailText(email, false)
@@ -57,6 +58,25 @@ public class LoginITCase {
                 .checkCookie("remember-me", false)
                 .checkUrlIsValid(URL + "login?logout")
                 .checkNavbarEmailText(email, false);
+    }
+
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#loginValidationTestData")
+    @DisplayName("Should check validation errors on login")
+    public void checkValidationErrorsOnLogin(String email, String password, String validationError) {
+        myLoginPage
+                .loginWithCredential(email, password, true)
+                .checkErrorInLoginForm(validationError);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"test@test.com, 1"})
+    @DisplayName("Should check validation errors if user not exists")
+    public void checkValidationErrorIfUserNotExists(String email, String password) {
+        myLoginPage
+                .clickOnLogIn()
+                .loginWithCredential(email, password, true)
+                .checkErrorForExistedUser();
     }
 
     @AfterEach
