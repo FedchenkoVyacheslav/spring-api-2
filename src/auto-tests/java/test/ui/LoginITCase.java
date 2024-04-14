@@ -76,7 +76,7 @@ public class LoginITCase {
         myLoginPage
                 .clickOnLogIn()
                 .loginWithCredential(email, password, true)
-                .checkErrorForExistedUser();
+                .checkErrorForNotExistedUser();
     }
 
     @AfterEach

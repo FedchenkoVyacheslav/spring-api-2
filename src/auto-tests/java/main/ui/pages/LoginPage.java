@@ -60,7 +60,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage checkErrorForExistedUser() {
+    public LoginPage checkErrorForNotExistedUser() {
         assertEquals(authErrorMessage.getText(), "That combination of email and password is not recognized");
         checkInvalidInputs(driver, "auth", true);
         return this;
