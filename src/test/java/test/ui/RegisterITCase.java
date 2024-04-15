@@ -3,6 +3,7 @@ package test.ui;
 import main.ui.actions.PrepareDriver;
 import main.ui.pages.LoginPage;
 import main.ui.pages.RegistrationPage;
+import main.ui.util.JDBCService;
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,15 +11,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.time.Duration;
 
 import static main.ui.util.testData.URL;
+import static org.junit.Assert.assertEquals;
 
 public class RegisterITCase {
     static WebDriver driver;
     LoginPage myLoginPage;
     RegistrationPage myRegistrationPage;
+    private final JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCService.mysqlDataSource());
 
     @BeforeEach
     public void setup() {
@@ -46,6 +50,11 @@ public class RegisterITCase {
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", true);
+
+        Integer id = jdbcTemplate.queryForObject(String.format("select id from user order by id desc limit 1", email), Integer.class);
+        assertEquals(email, jdbcTemplate.queryForObject(String.format("select email from user where id=%d", id), String.class));
+        assertEquals(name, jdbcTemplate.queryForObject(String.format("select name from user where id=%d", id), String.class));
+        assertEquals(surname, jdbcTemplate.queryForObject(String.format("select surname from user where id=%d", id), String.class));
     }
 
     @ParameterizedTest
