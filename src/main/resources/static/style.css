@@ -112,12 +112,6 @@ body {
     text-decoration: none;
 }
 
-.captcha-error {
-    color: #dc3545;
-    position: absolute;
-    font-size: 80%;
-}
-
 .reg-error {
     position: absolute;
     top: -35px;

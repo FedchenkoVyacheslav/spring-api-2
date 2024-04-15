@@ -43,16 +43,6 @@
                     <div class="invalid-feedback">${passwordError}</div></#if>
             </div>
         </div>
-        <#if isRegisterForm>
-            <div class="mb-4">
-                <div class="g-recaptcha" data-sitekey="6LeF8aQpAAAAAEz-U17EM4iz79UJ-dCAa7aphn67"></div>
-                <#if captchaError??>
-                    <div class="mt-0 captcha-error">
-                        ${captchaError}
-                    </div>
-                </#if>
-            </div>
-        </#if>
         <#if !isRegisterForm>
             <div class="form-group row mb-2">
                 <div class="col-sm-4 mb-2">

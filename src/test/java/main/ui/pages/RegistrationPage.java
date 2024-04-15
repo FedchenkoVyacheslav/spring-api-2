@@ -25,12 +25,6 @@ public class RegistrationPage extends BasePage {
     private WebElement surnameInput;
     @FindBy(xpath = "//button[@id='auth-button']")
     private WebElement signUpButton;
-    @FindBy(xpath = "//div[@class='recaptcha-checkbox-border' and @role='presentation']")
-    private WebElement reCaptcha;
-    @FindBy(xpath = "//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")
-    private WebElement reCaptchaIframe;
-    @FindBy(xpath = "//div[contains(@class, 'captcha-error')]")
-    private WebElement captchaErrorMessage;
 
     public RegistrationPage clickOnSignUp() {
         signUpButton.click();
@@ -57,25 +51,11 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
-    public RegistrationPage checkReCaptcha() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(reCaptchaIframe));
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.elementToBeClickable(reCaptcha)).click();
-        pause(2000);
-        driver.switchTo().defaultContent();
-        return this;
-    }
-
-    public RegistrationPage checkReCaptchaError() {
-        assertEquals(captchaErrorMessage.getText(), "Fill the captcha!");
-        return this;
-    }
-
-    public RegistrationPage register(String name, String surname, String email, String password, boolean reCaptcha) {
+    public RegistrationPage register(String name, String surname, String email, String password) {
         this.typeName(name);
         this.typeSurname(surname);
         this.typeEmail(email);
         this.typePassword(password);
-        if (reCaptcha) this.checkReCaptcha();
         clickOnSignUp();
         return this;
     }

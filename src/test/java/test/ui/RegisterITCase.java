@@ -34,29 +34,19 @@ public class RegisterITCase {
     @Ignore
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should register new user")
-    public void registerNewUser(String name, String surname, String email, String password, boolean reCaptcha) {
+    public void registerNewUser(String name, String surname, String email, String password) {
         myLoginPage
                 .switchToRegisterPage()
-                .register(name, surname, email, password, reCaptcha);
-    }
-
-    @ParameterizedTest
-    @MethodSource("main.ui.util.testData#invalidCaptchaRegisterData")
-    @DisplayName("Should check captcha error on registration")
-    public void checkCaptchaErrorOnRegistration(String name, String surname, String email, String password, boolean reCaptcha) {
-        myLoginPage
-                .switchToRegisterPage()
-                .register(name, surname, email, password, reCaptcha)
-                .checkReCaptchaError();
+                .register(name, surname, email, password);
     }
 
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#registerValidationTestData")
     @DisplayName("Should check validation errors on registration")
-    public void checkValidationErrorsOnRegistration(String name, String surname, String email, String password, boolean reCaptcha, String validationError) {
+    public void checkValidationErrorsOnRegistration(String name, String surname, String email, String password, String validationError) {
         myLoginPage
                 .switchToRegisterPage()
-                .register(name, surname, email, password, reCaptcha)
+                .register(name, surname, email, password)
                 .checkErrorInForm("register", validationError);
     }
 
