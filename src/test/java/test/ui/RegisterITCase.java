@@ -37,7 +37,15 @@ public class RegisterITCase {
     public void registerNewUser(String name, String surname, String email, String password) {
         myLoginPage
                 .switchToRegisterPage()
-                .register(name, surname, email, password);
+                .register(name, surname, email, password)
+                .loginWithCredential(email, password, true)
+                .checkUrlIsValid(URL)
+                .checkGreetings(name, surname)
+                .pause(2500)
+                .checkUrlIsValid(URL + "main")
+                .checkNavbarEmailText(email, true)
+                .checkCookie("JSESSIONID", true)
+                .checkCookie("remember-me", true);
     }
 
     @ParameterizedTest

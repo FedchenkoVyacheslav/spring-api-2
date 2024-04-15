@@ -23,6 +23,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//li[@class='nav-email']/div")
     private WebElement navbarEmail;
 
+    @FindBy(xpath = "//h1[@class='greeting-title']")
+    private WebElement greetingTitle;
+
     public static String getUserEmail(String name, String surname) {
         return String.format("%s.%s@gmail.com", name, surname).toLowerCase();
     }
@@ -82,6 +85,14 @@ public abstract class BasePage {
         checkInvalidInputs(driver, formName, true);
         clearInvalidInput(formName);
         checkInvalidInputs(driver, formName, false);
+        return this;
+    }
+
+    public BasePage checkGreetings(String name, String surname) {
+        String title = greetingTitle.getText();
+        String[] titleWords = title.substring(0, title.length() - 1).split(" ");
+        assertEquals(titleWords[1], name);
+        assertEquals(titleWords[2], surname);
         return this;
     }
 }

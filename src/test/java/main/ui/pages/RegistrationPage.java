@@ -51,12 +51,12 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
-    public RegistrationPage register(String name, String surname, String email, String password) {
+    public LoginPage register(String name, String surname, String email, String password) {
         this.typeName(name);
         this.typeSurname(surname);
         this.typeEmail(email);
         this.typePassword(password);
         clickOnSignUp();
-        return this;
+        return new LoginPage(driver);
     }
 }
