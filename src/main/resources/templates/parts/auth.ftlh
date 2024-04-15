@@ -4,7 +4,7 @@
         <#if isRegisterForm>
             <div class="form-group row mb-4">
                 <div class="col-sm-4 mb-2">
-                    <input type="text" name="name" placeholder="Enter your name"
+                    <input type="text" id="auth-name" name="name" placeholder="Enter your name"
                            value="<#if user??>${user.name}</#if>"
                            class="form-control ${(nameError??)?string('is-invalid', '')}"/>
                     <#if nameError??>
@@ -16,7 +16,7 @@
             </div>
             <div class="form-group row mb-4">
                 <div class="col-sm-4 mb-2">
-                    <input type="text" name="surname" placeholder="Enter your surname"
+                    <input type="text" id="auth-surname" name="surname" placeholder="Enter your surname"
                            value="<#if user??>${user.surname}</#if>"
                            class="form-control ${(surnameError??)?string('is-invalid', '')}"/>
                     <#if surnameError??>

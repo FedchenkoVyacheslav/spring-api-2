@@ -23,6 +23,10 @@ public abstract class BasePage {
     @FindBy(xpath = "//li[@class='nav-email']/div")
     private WebElement navbarEmail;
 
+    public static String getUserEmail(String name, String surname) {
+        return String.format("%s.%s@gmail.com", name, surname).toLowerCase();
+    }
+
     public BasePage clickOnSignOut() {
         signOutButton.click();
         return this;

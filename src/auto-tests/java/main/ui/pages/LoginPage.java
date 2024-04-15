@@ -24,9 +24,17 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@id='auth-error']")
     private WebElement authErrorMessage;
 
+    @FindBy(xpath = "//a[@class='auth-link']")
+    private WebElement registerLink;
+
     public LoginPage clickOnLogIn() {
         logInButton.click();
         return this;
+    }
+
+    public RegistrationPage switchToRegisterPage() {
+        registerLink.click();
+        return new RegistrationPage(driver);
     }
 
     public LoginPage typeEmail(String email) {
