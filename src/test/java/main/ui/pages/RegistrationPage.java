@@ -1,6 +1,5 @@
 package main.ui.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.Assert.assertEquals;
 
 public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver driver) {
@@ -28,6 +29,8 @@ public class RegistrationPage extends BasePage {
     private WebElement reCaptcha;
     @FindBy(xpath = "//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")
     private WebElement reCaptchaIframe;
+    @FindBy(xpath = "//div[contains(@class, 'captcha-error')]")
+    private WebElement captchaErrorMessage;
 
     public RegistrationPage clickOnSignUp() {
         signUpButton.click();
@@ -62,14 +65,18 @@ public class RegistrationPage extends BasePage {
         return this;
     }
 
-    public LoginPage register(String email, String password, String name, String surname, boolean reCaptcha) {
-        this.typeEmail(email);
-        this.typePassword(password);
+    public RegistrationPage checkReCaptchaError() {
+        assertEquals(captchaErrorMessage.getText(), "Fill the captcha!");
+        return this;
+    }
+
+    public RegistrationPage register(String name, String surname, String email, String password, boolean reCaptcha) {
         this.typeName(name);
         this.typeSurname(surname);
+        this.typeEmail(email);
         this.typePassword(password);
         if (reCaptcha) this.checkReCaptcha();
         clickOnSignUp();
-        return new LoginPage(driver);
+        return this;
     }
 }

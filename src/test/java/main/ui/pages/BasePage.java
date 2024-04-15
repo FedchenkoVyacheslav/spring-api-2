@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static main.ui.elements.ValidationForm.checkInvalidInputs;
 import static org.junit.Assert.*;
 
 public abstract class BasePage {
@@ -19,7 +20,6 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//button[text()='Sign out']")
     private WebElement signOutButton;
-
     @FindBy(xpath = "//li[@class='nav-email']/div")
     private WebElement navbarEmail;
 
@@ -77,4 +77,11 @@ public abstract class BasePage {
         return this;
     }
 
+    public BasePage checkErrorInForm(String formName, String message) {
+        checkInvalidMessage(formName, message);
+        checkInvalidInputs(driver, formName, true);
+        clearInvalidInput(formName);
+        checkInvalidInputs(driver, formName, false);
+        return this;
+    }
 }

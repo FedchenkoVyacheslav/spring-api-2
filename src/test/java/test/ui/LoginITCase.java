@@ -66,7 +66,7 @@ public class LoginITCase {
     public void checkValidationErrorsOnLogin(String email, String password, String validationError) {
         myLoginPage
                 .loginWithCredential(email, password, true)
-                .checkErrorInLoginForm(validationError);
+                .checkErrorInForm("auth", validationError);
     }
 
     @ParameterizedTest

@@ -22,15 +22,26 @@ public class testData {
         );
     }
 
-    public static Stream<Arguments> registerValidationTestData() {
+    public static Stream<Arguments> validRegisterData() {
         return Stream.of(
-                Arguments.of(EMAIL, PASSWORD, NAME, SURNAME, true, "")
+                Arguments.of(NAME, SURNAME, EMAIL, PASSWORD, true)
         );
     }
 
-    public static Stream<Arguments> validRegisterData() {
+    public static Stream<Arguments> invalidCaptchaRegisterData() {
         return Stream.of(
-                Arguments.of(EMAIL, PASSWORD, NAME, SURNAME, true, "")
+                Arguments.of(NAME, SURNAME, EMAIL, PASSWORD, false)
+        );
+    }
+
+    public static Stream<Arguments> registerValidationTestData() {
+        return Stream.of(
+                Arguments.of("", SURNAME, EMAIL, PASSWORD, false, "Name cannot be empty"),
+                Arguments.of(NAME, "", EMAIL, PASSWORD, false, "Surname cannot be empty"),
+                Arguments.of(NAME, SURNAME, "", PASSWORD, false, "Email cannot be empty"),
+                Arguments.of(NAME, SURNAME, "1", PASSWORD, false, "Email is not correct"),
+                Arguments.of(NAME, SURNAME, EMAIL, "", false, "Password cannot be empty")
+//                Arguments.of("Tom", "Anderson", "t1@gmail.com", "1111", true, "User exists!")
         );
     }
 }

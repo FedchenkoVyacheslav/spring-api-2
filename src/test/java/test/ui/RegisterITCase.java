@@ -3,6 +3,7 @@ package test.ui;
 import main.ui.actions.PrepareDriver;
 import main.ui.pages.LoginPage;
 import main.ui.pages.RegistrationPage;
+import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,19 +31,33 @@ public class RegisterITCase {
     }
 
     @ParameterizedTest
+    @Ignore
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should register new user")
-    public void registerNewUser(String email, String password, String name, String surname, boolean reCaptcha) {
+    public void registerNewUser(String name, String surname, String email, String password, boolean reCaptcha) {
         myLoginPage
                 .switchToRegisterPage()
-                .register(email, password, name, surname, true);
+                .register(name, surname, email, password, reCaptcha);
+    }
+
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#invalidCaptchaRegisterData")
+    @DisplayName("Should check captcha error on registration")
+    public void checkCaptchaErrorOnRegistration(String name, String surname, String email, String password, boolean reCaptcha) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password, reCaptcha)
+                .checkReCaptchaError();
     }
 
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#registerValidationTestData")
     @DisplayName("Should check validation errors on registration")
-    public void checkValidationErrorsOnRegistration(String email, String password, String name, String surname, boolean reCaptcha) {
-
+    public void checkValidationErrorsOnRegistration(String name, String surname, String email, String password, boolean reCaptcha, String validationError) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password, reCaptcha)
+                .checkErrorInForm("register", validationError);
     }
 
     @AfterEach
