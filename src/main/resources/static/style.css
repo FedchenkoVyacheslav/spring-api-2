@@ -210,7 +210,7 @@ body {
     color: white
 }
 
-#error-el2 {
+#error-el2, .users-error {
     color: white;
     position: initial;
     margin-right: 0;
@@ -227,6 +227,16 @@ body {
         margin-right: -50%;
         transform: translate(-50%, -50%);
         margin-top: 20vh;
+        font-size: 30px;
+    }
+
+    .users-error {
+        position: absolute;
+        top: 37% !important;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        margin-top: inherit !important;
         font-size: 30px;
     }
 }

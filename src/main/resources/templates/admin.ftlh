@@ -1,6 +1,5 @@
 <#import "parts/common.ftlh" as c>
 <@c.page>
-
     <form action="/admin" method="post" name="admin">
         <div class="form-row">
             <div class="form-group col-md-5 mr-5">

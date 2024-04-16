@@ -3,9 +3,12 @@ package org.example.service;
 import org.example.controller.MessageController;
 import org.example.domain.Role;
 import org.example.domain.User;
+import org.example.domain.dto.MessageDto;
 import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -50,8 +53,12 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public List<User> findAll() {
-        return userRepo.findAll();
+    public List<User> findAll(String filter) {
+        if (filter != null && !filter.isEmpty()) {
+            return userRepo.findByEmailContainingIgnoreCase(filter);
+        } else {
+            return userRepo.findAll();
+        }
     }
 
     public void saveUser(User user, String email, Map<String, String> form) {
