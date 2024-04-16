@@ -26,7 +26,7 @@ public class AdminController {
     @GetMapping
     public String findUser(@RequestParam(required = false, defaultValue = "") String filter,
                            Model model,
-                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<User> page = userService.findUsers(filter, pageable);
         model.addAttribute("page", page);
