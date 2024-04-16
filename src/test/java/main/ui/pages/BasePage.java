@@ -1,17 +1,20 @@
 package main.ui.pages;
 
 import main.ui.elements.ValidationForm;
+import main.ui.util.JDBCService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import static main.ui.elements.ValidationForm.checkInvalidInputs;
 import static org.junit.Assert.*;
 
 public abstract class BasePage {
     protected final WebDriver driver;
+    protected final JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCService.mysqlDataSource());
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -92,6 +95,14 @@ public abstract class BasePage {
         String[] titleWords = title.substring(0, title.length() - 1).split(" ");
         assertEquals(titleWords[1], name);
         assertEquals(titleWords[2], surname);
+        return this;
+    }
+
+    public BasePage verifyParamsOfLastCreatedUserInDB(String... params) {
+        Integer id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
+        for (String param : params) {
+            assertEquals(param, jdbcTemplate.queryForObject(String.format("select '%s' from user where id=%d", param, id), String.class));
+        }
         return this;
     }
 }
