@@ -1,7 +1,6 @@
 package main.ui.util;
 
 import com.github.javafaker.Faker;
-import main.ui.pages.BasePage;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.stream.Stream;
@@ -12,7 +11,7 @@ public class testData {
     public static final String NAME = faker.name().firstName();
     public static final String SURNAME = faker.name().lastName();
     public static final String PASSWORD = faker.internet().password();
-    public static final String EMAIL = BasePage.getUserEmail(NAME, SURNAME);
+    public static final String EMAIL = String.format("%s.%s@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
 
     public static Stream<Arguments> loginValidationTestData() {
         return Stream.of(

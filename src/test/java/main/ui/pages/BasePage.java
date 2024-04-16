@@ -30,10 +30,6 @@ public abstract class BasePage {
     @FindBy(xpath = "//h1[@class='greeting-title']")
     private WebElement greetingTitle;
 
-    public static String getUserEmail(String name, String surname) {
-        return String.format("%s.%s@gmail.com", name, surname).toLowerCase();
-    }
-
     public BasePage clickOnSignOut() {
         signOutButton.click();
         return this;
