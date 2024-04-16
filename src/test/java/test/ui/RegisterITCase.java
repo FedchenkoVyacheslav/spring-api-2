@@ -1,7 +1,6 @@
 package test.ui;
 
 import main.ui.actions.PrepareDriver;
-import main.ui.pages.LoginPage;
 import main.ui.pages.RegistrationPage;
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +18,6 @@ import static main.ui.util.testData.URL;
 
 public class RegisterITCase {
     static WebDriver driver;
-    LoginPage myLoginPage;
     RegistrationPage myRegistrationPage;
 
     @BeforeEach
@@ -27,8 +25,7 @@ public class RegisterITCase {
         driver = PrepareDriver.driverInit("chrome");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get(URL + "login");
-        myLoginPage = new LoginPage(driver);
+        driver.get(URL + "registration");
         myRegistrationPage = new RegistrationPage(driver);
     }
 
@@ -42,8 +39,7 @@ public class RegisterITCase {
         params.put("surname", surname);
         params.put("email", email);
 
-        myLoginPage
-                .switchToRegisterPage()
+        myRegistrationPage
                 .register(name, surname, email, password)
                 .loginWithCredential(email, password, true)
                 .checkUrlIsValid(URL)
@@ -60,8 +56,7 @@ public class RegisterITCase {
     @MethodSource("main.ui.util.testData#registerValidationTestData")
     @DisplayName("Should check validation errors on registration")
     public void checkValidationErrorsOnRegistration(String name, String surname, String email, String password, String validationError) {
-        myLoginPage
-                .switchToRegisterPage()
+        myRegistrationPage
                 .register(name, surname, email, password)
                 .checkErrorInForm("register", validationError);
     }

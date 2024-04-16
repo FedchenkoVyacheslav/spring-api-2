@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.domain.User;
 import org.example.domain.Role;
-import org.example.domain.dto.MessageDto;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
