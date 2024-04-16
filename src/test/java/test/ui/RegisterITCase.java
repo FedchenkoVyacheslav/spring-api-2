@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import static main.ui.util.testData.URL;
 
@@ -35,6 +37,11 @@ public class RegisterITCase {
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should register new user")
     public void registerNewUser(String name, String surname, String email, String password) {
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+        params.put("surname", surname);
+        params.put("email", email);
+
         myLoginPage
                 .switchToRegisterPage()
                 .register(name, surname, email, password)
@@ -46,7 +53,7 @@ public class RegisterITCase {
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", true)
-                .verifyParamsOfLastCreatedUserInDB(email, name, surname);
+                .verifyParamsOfLastCreatedUserInDB(params);
     }
 
     @ParameterizedTest

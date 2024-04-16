@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Map;
+
 import static main.ui.elements.ValidationForm.checkInvalidInputs;
 import static org.junit.Assert.*;
 
@@ -98,10 +100,10 @@ public abstract class BasePage {
         return this;
     }
 
-    public BasePage verifyParamsOfLastCreatedUserInDB(String... params) {
+    public BasePage verifyParamsOfLastCreatedUserInDB(Map<String, String> params) {
         Integer id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
-        for (String param : params) {
-            assertEquals(param, jdbcTemplate.queryForObject(String.format("select '%s' from user where id=%d", param, id), String.class));
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class));
         }
         return this;
     }
