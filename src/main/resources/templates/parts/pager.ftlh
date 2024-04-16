@@ -1,4 +1,4 @@
-<#macro pager url page>
+<#macro pager url page domain users>
     <#if page.getTotalPages() gt 7>
         <#assign
         totalPages = page.getTotalPages()
@@ -38,9 +38,14 @@
 
         <ul class="pagination">
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Messages per page</a>
+                <a class="page-link" href="#" tabindex="-1">${domain} per page</a>
             </li>
-            <#list [6, 9, 12] as c>
+            <#if users>
+                <#assign seq = [10, 20]>
+            <#else>
+                <#assign seq = [6, 9, 12]>
+            </#if>
+            <#list seq as c>
                 <#if c == page.getSize()>
                     <li class="page-item active">
                         <a class="page-link" href="#" tabindex="-1">${c}</a>

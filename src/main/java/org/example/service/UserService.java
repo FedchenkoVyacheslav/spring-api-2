@@ -6,6 +6,8 @@ import org.example.domain.User;
 import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -50,11 +52,11 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public List<User> findAll(String filter) {
+    public Page<User> findUsers(String filter, Pageable pageable) {
         if (filter != null && !filter.isEmpty()) {
-            return userRepo.findByEmailContainingIgnoreCase(filter);
+            return userRepo.findByEmailContainingIgnoreCase(filter, pageable);
         } else {
-            return userRepo.findAll();
+            return userRepo.findAll(pageable);
         }
     }
 

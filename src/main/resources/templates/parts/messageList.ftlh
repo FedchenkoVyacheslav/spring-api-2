@@ -3,7 +3,7 @@
 
 <#macro messageList errorMessage>
     <#if !message?? && page.getTotalPages()!=0>
-        <@p.pager url page />
+        <@p.pager url page "Messages" false/>
     </#if>
     <div>
         <div class="card-columns mb-4">

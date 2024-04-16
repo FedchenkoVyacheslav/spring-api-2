@@ -1,4 +1,6 @@
 <#import "parts/common.ftlh" as c>
+<#import "parts/pager.ftlh" as p>
+
 <@c.page>
     <div class="form-row">
         <div class="form-group col-md-10">
@@ -11,17 +13,20 @@
             </form>
         </div>
     </div>
-    <table class="table table-bordered table-secondary mb-5">
-        <#if users?has_content>
+    <#if !user?? && page.getTotalPages()!=0>
+        <@p.pager url page "Users" true/>
+    </#if>
+    <table class="table table-striped table-light mb-5">
+        <#if !user?? && page.getTotalPages()!=0>
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Role</th>
+                <th scope="col" class="col-sm-8">Name</th>
+                <th scope="col" class="col-sm-2">Role</th>
             </tr>
             </thead>
         </#if>
         <tbody>
-        <#list users as user>
+        <#list page.content as user>
             <tr>
                 <td>${user.email}</td>
                 <td>

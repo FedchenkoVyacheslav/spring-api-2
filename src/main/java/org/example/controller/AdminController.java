@@ -2,8 +2,13 @@ package org.example.controller;
 
 import org.example.domain.User;
 import org.example.domain.Role;
+import org.example.domain.dto.MessageDto;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +25,12 @@ public class AdminController {
 
     @GetMapping
     public String findUser(@RequestParam(required = false, defaultValue = "") String filter,
-                             Model model
+                           Model model,
+                           @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        model.addAttribute("users", userService.findAll(filter));
+        Page<User> page = userService.findUsers(filter, pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/admin");
         model.addAttribute("filter", filter);
 
         return "userList";
