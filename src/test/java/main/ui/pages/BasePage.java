@@ -22,7 +22,6 @@ public abstract class BasePage {
     private WebElement signOutButton;
     @FindBy(xpath = "//li[@class='nav-email']/div")
     private WebElement navbarEmail;
-
     @FindBy(xpath = "//h1[@class='greeting-title']")
     private WebElement greetingTitle;
 
