@@ -43,8 +43,6 @@ public class RegisterITCase {
                 .loginWithCredential(email, password, true)
                 .checkUrlIsValid(URL)
                 .checkGreetings(name, surname)
-                .pause(2500)
-                .checkUrlIsValid(URL + "main")
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", true)

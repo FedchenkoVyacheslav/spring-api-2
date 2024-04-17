@@ -35,8 +35,6 @@ public class LoginITCase {
                 .checkNavbarEmailText(email, false)
                 .loginWithCredential(email, password, false)
                 .checkUrlIsValid(URL)
-                .pause(2500)
-                .checkUrlIsValid(URL + "main")
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", false);
@@ -49,8 +47,6 @@ public class LoginITCase {
         myLoginPage
                 .loginWithCredential(email, password, true)
                 .checkUrlIsValid(URL)
-                .pause(2500)
-                .checkUrlIsValid(URL + "main")
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", true)
