@@ -12,18 +12,16 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//input[@id='auth-email']")
+    @FindBy(id = "auth-email")
     private WebElement emailInput;
-    @FindBy(xpath = "//input[@id='auth-password']")
+    @FindBy(id = "auth-password")
     private WebElement passwordInput;
-    @FindBy(xpath = "//button[@id='auth-button']")
+    @FindBy(id = "auth-button")
     private WebElement logInButton;
-    @FindBy(xpath = "//input[@id='auth-remember']")
+    @FindBy(id = "auth-remember")
     private WebElement rememberMeCheck;
-
-    @FindBy(xpath = "//div[@id='auth-error']")
+    @FindBy(id = "auth-error")
     private WebElement authErrorMessage;
-
     @FindBy(xpath = "//a[@class='auth-link']")
     private WebElement registerLink;
 

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static main.ui.elements.ValidationForm.checkInvalidInputs;
@@ -29,10 +31,14 @@ public abstract class BasePage {
     private WebElement navbarEmail;
     @FindBy(xpath = "//h1[@class='greeting-title']")
     private WebElement greetingTitle;
+    @FindBy(xpath = "//li[@class='nav-item']/a[text()='Admin dashboard']")
+    private WebElement navBarAdminPage;
+    @FindBy(xpath = "//li[@class='nav-item']/a")
+    private List<WebElement> navBarLinks;
 
-    public BasePage clickOnSignOut() {
+    public LoginPage clickOnSignOut() {
         signOutButton.click();
-        return this;
+        return new LoginPage(driver);
     }
 
     public LoginPage checkNavbarEmailText(String email, boolean loggedIn) {
@@ -100,6 +106,24 @@ public abstract class BasePage {
         Integer id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
         for (Map.Entry<String, String> param : params.entrySet()) {
             assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class));
+        }
+        return this;
+    }
+
+    public AdminPage switchToAdminPage() {
+        navBarAdminPage.click();
+        return new AdminPage(driver);
+    }
+
+    public BasePage checkNavBarContainsLink(String link, boolean containLink) {
+        List<String> linksText = new ArrayList<>();
+        for (WebElement navBarLink : navBarLinks) {
+            linksText.add(navBarLink.getText());
+        }
+        if (containLink) {
+            assertTrue(linksText.contains(link));
+        } else {
+            assertFalse(linksText.contains(link));
         }
         return this;
     }

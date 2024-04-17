@@ -9,15 +9,15 @@ public class RegistrationPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//input[@id='auth-email']")
+    @FindBy(id = "auth-email")
     private WebElement emailInput;
-    @FindBy(xpath = "//input[@id='auth-password']")
+    @FindBy(id = "auth-password")
     private WebElement passwordInput;
-    @FindBy(xpath = "//input[@id='auth-name']")
+    @FindBy(id = "auth-name")
     private WebElement nameInput;
-    @FindBy(xpath = "//input[@id='auth-surname']")
+    @FindBy(id = "auth-surname")
     private WebElement surnameInput;
-    @FindBy(xpath = "//button[@id='auth-button']")
+    @FindBy(id = "auth-button")
     private WebElement signUpButton;
 
     public RegistrationPage clickOnSignUp() {

@@ -30,7 +30,6 @@ public class RegisterITCase {
     }
 
     @ParameterizedTest
-    @Ignore
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should register new user")
     public void registerNewUser(String name, String surname, String email, String password) {
