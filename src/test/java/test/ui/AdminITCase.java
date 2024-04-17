@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
-import static main.ui.util.testData.URL;
+import static main.ui.util.testData.*;
 
 public class AdminITCase {
     static WebDriver driver;
@@ -37,7 +37,7 @@ public class AdminITCase {
                 .pause(2500)
                 .checkNavBarContainsLink("Admin dashboard", false)
                 .clickOnSignOut()
-                .loginWithCredential("t1@gmail.com", "1111", false)
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .pause(2500)
                 .checkNavBarContainsLink("Admin dashboard", true)
                 .switchToAdminPage()
@@ -45,7 +45,7 @@ public class AdminITCase {
                 .findUser(email)
                 .checkUserInList(email, true)
                 .checkCountOfUsersOnPage(1)
-                .findUser("11111")
+                .findUser(INVALID_EMAIL)
                 .checkMessageForEmptyList()
                 .findUser("")
                 .checkCountOfUsersOnPage(10);

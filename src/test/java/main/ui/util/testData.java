@@ -12,6 +12,9 @@ public class testData {
     public static final String SURNAME = faker.name().lastName();
     public static final String PASSWORD = faker.internet().password();
     public static final String EMAIL = String.format("%s.%s@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
+    public static final String ADMIN_EMAIL = "t1@gmail.com";
+    public static final String ADMIN_PASSWORD = "1111";
+    public static final String INVALID_EMAIL = "11111";
 
     public static Stream<Arguments> loginValidationTestData() {
         return Stream.of(
@@ -34,7 +37,7 @@ public class testData {
                 Arguments.of(NAME, SURNAME, "", PASSWORD, "Email cannot be empty"),
                 Arguments.of(NAME, SURNAME, "1", PASSWORD, "Email is not correct"),
                 Arguments.of(NAME, SURNAME, EMAIL, "", "Password cannot be empty"),
-                Arguments.of("Tom", "Anderson", "t1@gmail.com", "1111", "User exists!")
+                Arguments.of(NAME, SURNAME, ADMIN_EMAIL, PASSWORD, "User exists!")
         );
     }
 }
