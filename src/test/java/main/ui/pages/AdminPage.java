@@ -1,6 +1,7 @@
 package main.ui.pages;
 
 import main.ui.elements.Filter;
+import main.ui.elements.Paginator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,6 +47,17 @@ public class AdminPage extends BasePage {
 
     public AdminPage checkCountOfUsersOnPage(int count) {
         assertEquals(users.size(), count);
+        return this;
+    }
+
+    public AdminPage changeUsersCountPerPage(int count) {
+        Paginator.changeCountOfElementsPerPage(driver, count);
+        return this;
+    }
+
+    public AdminPage switchToLastPage() {
+        int lastPage = Paginator.getPagesCount(driver);
+        Paginator.switchToPage(driver, lastPage);
         return this;
     }
 }
