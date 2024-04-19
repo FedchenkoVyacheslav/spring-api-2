@@ -51,7 +51,7 @@ public class AdminITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({"t1@gmail.com, 1111"})
+    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
     @DisplayName("Should check changing the number of displayed users on the page")
     public void checkChangingNumberOfUsersPerPage(String email, String password) {
         myLoginPage

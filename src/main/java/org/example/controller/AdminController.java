@@ -12,6 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 
@@ -46,10 +49,15 @@ public class AdminController {
     public String saveUser(
             @RequestParam String email,
             @RequestParam Map<String, String> form,
+            RedirectAttributes redirectAttributes,
+            @RequestHeader(required = false) String referer,
             @RequestParam("userId") User user
     ) {
         userService.saveUser(user, email, form);
 
-        return "redirect:/admin";
+        UriComponents components = UriComponentsBuilder.fromHttpUrl(referer).build();
+        components.getQueryParams().forEach(redirectAttributes::addAttribute);
+
+        return "redirect:" + components.getPath();
     }
 }

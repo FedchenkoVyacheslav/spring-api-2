@@ -2,6 +2,7 @@ package main.ui.pages;
 
 import main.ui.elements.Filter;
 import main.ui.elements.Paginator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,8 @@ public class AdminPage extends BasePage {
 
     @FindBy(xpath = "//tbody/tr/td[1]")
     private List<WebElement> users;
+    @FindBy(xpath = "//tbody/tr/td[2]")
+    private List<WebElement> userRoles;
     @FindBy(id = "error-el2")
     private WebElement messageUserList;
 
@@ -35,6 +38,14 @@ public class AdminPage extends BasePage {
             assertTrue(usersText.contains(email));
         } else {
             assertFalse(usersText.contains(email));
+        }
+        return this;
+    }
+
+    public AdminPage checkUserRole(String email, String ...roles) {
+        WebElement rolesText = driver.findElement(By.xpath(String.format("//tbody/tr/td[text()='%s']/following-sibling::td", email)));
+        for (String role : roles) {
+            assertTrue(rolesText.getText().contains(role.toUpperCase()));
         }
         return this;
     }
@@ -59,5 +70,10 @@ public class AdminPage extends BasePage {
         int lastPage = Paginator.getPagesCount(driver);
         Paginator.switchToPage(driver, lastPage);
         return this;
+    }
+
+    public UserEditPage switchToUserEditPage(String email) {
+        driver.findElement(By.xpath(String.format("//tbody/tr/td[text()='%s']/following-sibling::td/a", email))).click();
+        return new UserEditPage(driver);
     }
 }

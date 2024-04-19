@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
-import static main.ui.util.testData.URL;
+import static main.ui.util.testData.*;
 
 public class LoginITCase {
     static WebDriver driver;
@@ -28,7 +28,7 @@ public class LoginITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({"t1@gmail.com, 1111"})
+    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
     @DisplayName("Should login user")
     public void loginUser(String email, String password) {
         myLoginPage
@@ -41,7 +41,7 @@ public class LoginITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({"t1@gmail.com, 1111"})
+    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
     @DisplayName("Should login user with Remember me")
     public void loginAndLogoutUserWithRememberMe(String email, String password) {
         myLoginPage
