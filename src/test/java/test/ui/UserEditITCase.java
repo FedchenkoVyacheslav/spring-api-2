@@ -52,13 +52,13 @@ public class UserEditITCase {
                 .checkActiveUserRoles("Admin")
                 .clickOnSaveButton()
                 .goBackToAdminPage()
-                .checkUserRole(email,  "Admin");
+                .checkUserRole(email, "Admin");
     }
 
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#editUserValidationTestData")
-    @DisplayName("Should check changing of user email")
-    public void checkChangeOfUserEmail(String email, String password, String newEmail, String validationError) {
+    @DisplayName("Should checking for validation errors when changing user email")
+    public void checkValidationErrorsWhenChangingUserEmail(String email, String password, String newEmail, String validationError) {
         myLoginPage
                 .loginWithCredential(email, password, false)
                 .switchToAdminPage()
@@ -67,6 +67,23 @@ public class UserEditITCase {
                 .typeEmail(newEmail)
                 .clickOnSaveButton()
                 .checkErrorInForm("admin", validationError);
+    }
+
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validRegisterData")
+    @DisplayName("Should check changing of user email")
+    public void checkChangeOfUserEmail(String name, String surname, String email, String password) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password)
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToAdminPage()
+                .switchToLastPage()
+                .switchToUserEditPage(email)
+                .typeEmail(NEW_EMAIL)
+                .clickOnSaveButton()
+                .goBackToAdminPage()
+                .checkUserInList(NEW_EMAIL, true);
     }
 
     @AfterEach
