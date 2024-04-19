@@ -10,6 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 import static main.ui.util.testData.*;
 
@@ -73,6 +75,9 @@ public class UserEditITCase {
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should check changing of user email")
     public void checkChangeOfUserEmail(String name, String surname, String email, String password) {
+        Map<String, String> params = new HashMap<>();
+        params.put("email", NEW_EMAIL);
+
         myLoginPage
                 .switchToRegisterPage()
                 .register(name, surname, email, password)
@@ -83,7 +88,8 @@ public class UserEditITCase {
                 .typeEmail(NEW_EMAIL)
                 .clickOnSaveButton()
                 .goBackToAdminPage()
-                .checkUserInList(NEW_EMAIL, true);
+                .checkUserInList(NEW_EMAIL, true)
+                .verifyParamsOfLastCreatedUserInDB(params);
     }
 
     @AfterEach
