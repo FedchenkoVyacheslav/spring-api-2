@@ -40,4 +40,11 @@ public class testData {
                 Arguments.of(NAME, SURNAME, ADMIN_EMAIL, PASSWORD, "User exists!")
         );
     }
+
+    public static Stream<Arguments> editUserValidationTestData() {
+        return Stream.of(
+                Arguments.of(ADMIN_EMAIL, ADMIN_PASSWORD, INVALID_EMAIL, "Email is not correct"),
+                Arguments.of(ADMIN_EMAIL, ADMIN_PASSWORD, "", "This field is required")
+        );
+    }
 }

@@ -55,6 +55,20 @@ public class UserEditITCase {
                 .checkUserRole(email,  "Admin");
     }
 
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#editUserValidationTestData")
+    @DisplayName("Should check changing of user email")
+    public void checkChangeOfUserEmail(String email, String password, String newEmail, String validationError) {
+        myLoginPage
+                .loginWithCredential(email, password, false)
+                .switchToAdminPage()
+                .switchToUserEditPage(email)
+                .checkEmailIsFilled(email)
+                .typeEmail(newEmail)
+                .clickOnSaveButton()
+                .checkErrorInForm("admin", validationError);
+    }
+
     @AfterEach
     public void quit() {
         driver.quit();

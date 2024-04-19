@@ -16,11 +16,24 @@ public class UserEditPage extends BasePage {
 
     @FindBy(id = "edit-btn")
     private WebElement saveButton;
+    @FindBy(id = "edit-email")
+    private WebElement changeEmailInput;
     @FindBy(id = "check-role")
     private List<WebElement> roleCheckboxes;
 
     public UserEditPage clickOnSaveButton() {
         saveButton.click();
+        return this;
+    }
+
+    public UserEditPage checkEmailIsFilled(String email) {
+        assertTrue(changeEmailInput.getAttribute("value").equals(email));
+        return this;
+    }
+
+    public UserEditPage typeEmail(String email) {
+        changeEmailInput.clear();
+        changeEmailInput.sendKeys(email);
         return this;
     }
 
