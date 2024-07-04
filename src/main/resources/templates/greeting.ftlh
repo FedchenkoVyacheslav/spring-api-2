@@ -16,13 +16,13 @@
         <script>
             setTimeout(function () {
                 window.location = "/main";
-            }, 2000);
+            }, 1000);
         </script>
     <#else>
         <script>
             setTimeout(function () {
                 window.location = "/login";
-            }, 2000);
+            }, 1000);
         </script>
     </#if>
 </@c.page>

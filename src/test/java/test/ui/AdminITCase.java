@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 
@@ -51,7 +50,7 @@ public class AdminITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
+    @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should check changing the number of displayed users on the page")
     public void checkChangingNumberOfUsersPerPage(String email, String password) {
         myLoginPage

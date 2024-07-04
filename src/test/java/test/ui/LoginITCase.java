@@ -28,7 +28,7 @@ public class LoginITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
+    @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should login user")
     public void loginUser(String email, String password) {
         myLoginPage
@@ -41,7 +41,7 @@ public class LoginITCase {
     }
 
     @ParameterizedTest
-    @CsvSource({ADMIN_EMAIL, ADMIN_PASSWORD})
+    @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should login user with Remember me")
     public void loginAndLogoutUserWithRememberMe(String email, String password) {
         myLoginPage

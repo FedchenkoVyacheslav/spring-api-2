@@ -25,6 +25,12 @@ public class testData {
         );
     }
 
+    public static Stream<Arguments> admin() {
+        return Stream.of(
+                Arguments.of(ADMIN_EMAIL, ADMIN_PASSWORD)
+        );
+    }
+
     public static Stream<Arguments> validRegisterData() {
         return Stream.of(
                 Arguments.of(NAME, SURNAME, EMAIL, PASSWORD)
