@@ -22,7 +22,7 @@ public class LoginPage extends BasePage {
     private WebElement rememberMeCheck;
     @FindBy(id = "auth-error")
     private WebElement authErrorMessage;
-    @FindBy(xpath = "//a[@class='auth-link']")
+    @FindBy(className = "auth-link")
     private WebElement registerLink;
 
     public LoginPage clickOnLogIn() {

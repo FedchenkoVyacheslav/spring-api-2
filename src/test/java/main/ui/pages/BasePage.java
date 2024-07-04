@@ -35,15 +35,15 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//button[text()='Sign out']")
     private WebElement signOutButton;
-    @FindBy(xpath = "//li[@class='nav-email']/div")
+    @FindBy(className = "nav-email")
     private WebElement navbarEmail;
-    @FindBy(xpath = "//h1[@class='greeting-title']")
+    @FindBy(className = "greeting-title")
     private WebElement greetingTitle;
-    @FindBy(xpath = "//li[@class='nav-item']/a[text()='Admin dashboard']")
+    @FindBy(linkText = "Admin dashboard")
     private WebElement navBarAdminPage;
-    @FindBy(xpath = "//li[@class='nav-item']/a[text()='Profile']")
+    @FindBy(linkText = "Profile")
     private WebElement navBarProfilePage;
-    @FindBy(xpath = "//li[@class='nav-item']/a")
+    @FindBy(className = "nav-item")
     private List<WebElement> navBarLinks;
 
     public LoginPage clickOnSignOut() {

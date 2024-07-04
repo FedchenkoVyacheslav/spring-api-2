@@ -26,9 +26,9 @@ public class ProfilePage extends BasePage {
     private WebElement photoInput;
     @FindBy(id = "edit-btn")
     private WebElement saveButton;
-    @FindBy(xpath = "//img[contains(@class, 'profile-img')]")
+    @FindBy(className = "profile-img")
     private WebElement profilePhoto;
-    @FindBy(xpath = "//label[@class='custom-file-label']")
+    @FindBy(className = "custom-file-label")
     private WebElement photoLabel;
 
     public ProfilePage typeName(String name) {
