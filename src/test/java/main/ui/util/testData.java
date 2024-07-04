@@ -63,9 +63,20 @@ public class testData {
         );
     }
 
-    public static Stream<Arguments> editUserValidationTestDataProfile() {
+    public static Stream<Arguments> editProfileTestData() {
         return Stream.of(
                 Arguments.of(NAME, SURNAME, EMAIL, PASSWORD, NEW_NAME, NEW_SURNAME, LOCATION, AGE, PATH)
+        );
+    }
+
+    public static Stream<Arguments> editProfileValidationTestData() {
+        return Stream.of(
+                Arguments.of("", NEW_SURNAME, LOCATION, AGE, "This field is required"),
+                Arguments.of("A", NEW_SURNAME, LOCATION, AGE, "Too short name"),
+                Arguments.of(NEW_NAME, "", LOCATION, AGE, "This field is required"),
+                Arguments.of(NEW_NAME, "A", LOCATION, AGE, "Too short surname"),
+                Arguments.of(NEW_NAME, NEW_SURNAME, LOCATION, "9", "Invalid age"),
+                Arguments.of(NEW_NAME, NEW_SURNAME, LOCATION, "101", "Invalid age")
         );
     }
 }

@@ -3,6 +3,7 @@ package main.ui.pages;
 import main.ui.elements.ValidationForm;
 import main.ui.util.JDBCService;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -91,7 +92,8 @@ public abstract class BasePage {
     public BasePage clearInvalidInput(String formName) {
         WebElement input = driver.findElement(By.xpath("//form[@name='" + formName + "']//div[@class='invalid-feedback']/../input"));
         input.sendKeys(" ");
-        input.clear();
+        input.sendKeys(Keys.CONTROL,"a");
+        input.sendKeys(Keys.DELETE);
         return this;
     }
 

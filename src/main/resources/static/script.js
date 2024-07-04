@@ -156,7 +156,7 @@ if (profile !== undefined) {
                 errors.name = 'This field is required';
                 setFormErrors(form, errors);
                 isValid = false;
-            } else if (values.name.length < 3) {
+            } else if (values.name.length < 2) {
                 errors.name = 'Too short name';
                 setFormErrors(form, errors);
                 isValid = false;
@@ -165,8 +165,13 @@ if (profile !== undefined) {
                 errors.surname = 'This field is required';
                 setFormErrors(form, errors);
                 isValid = false;
-            } else if (values.surname.length < 3) {
+            } else if (values.surname.length < 2) {
                 errors.surname = 'Too short surname';
+                setFormErrors(form, errors);
+                isValid = false;
+            }
+            if (values.age < 10 || values.age > 100) {
+                errors.age = 'Invalid age';
                 setFormErrors(form, errors);
                 isValid = false;
             }

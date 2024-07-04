@@ -105,6 +105,17 @@ public class ProfilePage extends BasePage {
         this.uploadPhoto(path);
         this.checkPhotoLabel(Paths.get(path).getFileName().toString());
         clickOnSaveButton();
+        this.checkPhotoLabel("Choose file");
+        return this;
+    }
+
+    public ProfilePage saveProfileData(String name, String surname, String location, String age) {
+        this.typeName(name);
+        this.typeSurname(surname);
+        this.typeLocation(location);
+        this.typeAge(age);
+        clickOnSaveButton();
+        this.checkPhotoLabel("Choose file");
         return this;
     }
 
@@ -114,6 +125,7 @@ public class ProfilePage extends BasePage {
         this.checkLocationFilled(location);
         this.checkAgeFilled(age);
         this.checkPhotoName(fileName);
+        this.checkPhotoLabel("Choose file");
         return this;
     }
 }
