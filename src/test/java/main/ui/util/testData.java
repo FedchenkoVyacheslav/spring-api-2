@@ -1,6 +1,7 @@
 package main.ui.util;
 
 import com.github.javafaker.Faker;
+import main.ui.pages.BasePage;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.stream.Stream;
@@ -10,12 +11,19 @@ public class testData {
     public static final String URL = "http://localhost:8082/";
     public static final String NAME = faker.name().firstName();
     public static final String SURNAME = faker.name().lastName();
+    public static final String LOCATION = faker.address().city();
+    public static final String AGE = String.valueOf((int) (Math.random() * (100 - 18)) + 18);
     public static final String PASSWORD = faker.internet().password();
     public static final String EMAIL = String.format("%s.%s@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
     public static final String NEW_EMAIL = String.format("%s2.%s2@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
     public static final String ADMIN_EMAIL = "t1@gmail.com";
     public static final String ADMIN_PASSWORD = "1111";
     public static final String INVALID_EMAIL = "11111";
+    public static final String PATH = "uploads/admin.jpg";
+    public static final String NEW_NAME = "Keanu";
+    public static final String NEW_SURNAME = "Reeves";
+    public static final String NEW_AGE = String.valueOf(BasePage.getCurrentYear() - 1964);
+    public static final String NEW_LOCATION = "Toronto";
 
     public static Stream<Arguments> loginValidationTestData() {
         return Stream.of(
@@ -52,6 +60,12 @@ public class testData {
         return Stream.of(
                 Arguments.of(ADMIN_EMAIL, ADMIN_PASSWORD, INVALID_EMAIL, "Email is not correct"),
                 Arguments.of(ADMIN_EMAIL, ADMIN_PASSWORD, "", "This field is required")
+        );
+    }
+
+    public static Stream<Arguments> editUserValidationTestDataProfile() {
+        return Stream.of(
+                Arguments.of(NAME, SURNAME, EMAIL, PASSWORD, NEW_NAME, NEW_SURNAME, LOCATION, AGE, PATH)
         );
     }
 }

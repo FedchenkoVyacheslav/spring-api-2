@@ -9,7 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +21,11 @@ import static org.junit.Assert.*;
 public abstract class BasePage {
     protected final WebDriver driver;
     protected final JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCService.mysqlDataSource());
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+
+    public static int getCurrentYear() {
+        return Integer.parseInt(sdf.format(new Date()));
+    }
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -33,6 +40,8 @@ public abstract class BasePage {
     private WebElement greetingTitle;
     @FindBy(xpath = "//li[@class='nav-item']/a[text()='Admin dashboard']")
     private WebElement navBarAdminPage;
+    @FindBy(xpath = "//li[@class='nav-item']/a[text()='Profile']")
+    private WebElement navBarProfilePage;
     @FindBy(xpath = "//li[@class='nav-item']/a")
     private List<WebElement> navBarLinks;
 
@@ -105,7 +114,11 @@ public abstract class BasePage {
     public BasePage verifyParamsOfLastCreatedUserInDB(Map<String, String> params) {
         Integer id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
         for (Map.Entry<String, String> param : params.entrySet()) {
-            assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class));
+            if (param.getKey().equals("photo_url") && param.getValue() != null) {
+                assertTrue(jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class).contains(param.getValue()));
+            } else {
+                assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class));
+            }
         }
         return this;
     }
@@ -113,6 +126,11 @@ public abstract class BasePage {
     public AdminPage switchToAdminPage() {
         navBarAdminPage.click();
         return new AdminPage(driver);
+    }
+
+    public ProfilePage switchToProfilePage() {
+        navBarProfilePage.click();
+        return new ProfilePage(driver);
     }
 
     public BasePage checkNavBarContainsLink(String link, boolean containLink) {
