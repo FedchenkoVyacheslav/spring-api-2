@@ -24,6 +24,8 @@ public class testData {
     public static final String NEW_SURNAME = "Reeves";
     public static final String NEW_AGE = String.valueOf(BasePage.getCurrentYear() - 1964);
     public static final String NEW_LOCATION = "Toronto";
+    public static final String TITLE = faker.howIMetYourMother().catchPhrase();
+    public static final String TEXT = faker.howIMetYourMother().quote();
 
     public static Stream<Arguments> loginValidationTestData() {
         return Stream.of(
@@ -77,6 +79,12 @@ public class testData {
                 Arguments.of(NEW_NAME, "A", LOCATION, AGE, "Too short surname"),
                 Arguments.of(NEW_NAME, NEW_SURNAME, LOCATION, "9", "Invalid age"),
                 Arguments.of(NEW_NAME, NEW_SURNAME, LOCATION, "101", "Invalid age")
+        );
+    }
+
+    public static Stream<Arguments> validMessageData() {
+        return Stream.of(
+                Arguments.of(TITLE, TEXT, PATH)
         );
     }
 }

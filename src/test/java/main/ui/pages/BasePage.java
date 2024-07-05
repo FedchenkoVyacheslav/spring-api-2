@@ -43,6 +43,8 @@ public abstract class BasePage {
     private WebElement navBarAdminPage;
     @FindBy(linkText = "Profile")
     private WebElement navBarProfilePage;
+    @FindBy(linkText = "Spring-boot App")
+    private WebElement navBarMainPage;
     @FindBy(className = "nav-item")
     private List<WebElement> navBarLinks;
 
@@ -92,7 +94,7 @@ public abstract class BasePage {
     public BasePage clearInvalidInput(String formName) {
         WebElement input = driver.findElement(By.xpath("//form[@name='" + formName + "']//div[@class='invalid-feedback']/../input"));
         input.sendKeys(" ");
-        input.sendKeys(Keys.CONTROL,"a");
+        input.sendKeys(Keys.CONTROL, "a");
         input.sendKeys(Keys.DELETE);
         return this;
     }
@@ -113,13 +115,19 @@ public abstract class BasePage {
         return this;
     }
 
-    public BasePage verifyParamsOfLastCreatedUserInDB(Map<String, String> params) {
-        Integer id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
+    public BasePage verifyParamsOfLastCreatedInstanceInDB(String instanceName, Map<String, String> params) {
+        Integer id = null;
+        if (instanceName.equals("user")) {
+            id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
+        } else if (instanceName.equals("message")) {
+            id = jdbcTemplate.queryForObject("select id from message order by id desc limit 1", Integer.class);
+        }
+
         for (Map.Entry<String, String> param : params.entrySet()) {
-            if (param.getKey().equals("photo_url") && param.getValue() != null) {
-                assertTrue(jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class).contains(param.getValue()));
+            if ((param.getKey().equals("photo_url") || param.getKey().equals("filename")) && param.getValue() != null) {
+                assertTrue(jdbcTemplate.queryForObject(String.format("select %s from %s where id=%d", param.getKey(), instanceName, id), String.class).contains(param.getValue()));
             } else {
-                assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from user where id=%d", param.getKey(), id), String.class));
+                assertEquals(param.getValue(), jdbcTemplate.queryForObject(String.format("select %s from %s where id=%d", param.getKey(), instanceName, id), String.class));
             }
         }
         return this;
@@ -133,6 +141,11 @@ public abstract class BasePage {
     public ProfilePage switchToProfilePage() {
         navBarProfilePage.click();
         return new ProfilePage(driver);
+    }
+
+    public MainPage switchToMainPage() {
+        navBarMainPage.click();
+        return new MainPage(driver);
     }
 
     public BasePage checkNavBarContainsLink(String link, boolean containLink) {

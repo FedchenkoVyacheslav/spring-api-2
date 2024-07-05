@@ -89,7 +89,7 @@ public class UserEditITCase {
                 .clickOnSaveButton()
                 .goBackToAdminPage()
                 .checkUserInList(NEW_EMAIL, true)
-                .verifyParamsOfLastCreatedUserInDB(params);
+                .verifyParamsOfLastCreatedInstanceInDB("user", params);
     }
 
     @AfterEach

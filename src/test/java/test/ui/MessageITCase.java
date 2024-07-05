@@ -6,11 +6,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
-import static main.ui.util.testData.URL;
+import static main.ui.util.testData.*;
 
 public class MessageITCase {
     static WebDriver driver;
@@ -26,8 +29,19 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validMessageData")
     @DisplayName("Should add new message")
-    public void addNewMessage() {
+    public void addNewMessage(String title, String text, String path) {
+        Map<String, String> message = new HashMap<>();
+        message.put("title", title);
+        message.put("text", text);
+        message.put("filename", path.split("/")[1]);
+
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .switchToMainPage()
+                .sendMessage(title, text, path)
+                .verifyParamsOfLastCreatedInstanceInDB("message", message);
     }
 
     @ParameterizedTest

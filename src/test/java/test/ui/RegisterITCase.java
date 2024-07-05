@@ -45,7 +45,7 @@ public class RegisterITCase {
                 .checkNavbarEmailText(email, true)
                 .checkCookie("JSESSIONID", true)
                 .checkCookie("remember-me", true)
-                .verifyParamsOfLastCreatedUserInDB(params);
+                .verifyParamsOfLastCreatedInstanceInDB("user", params);
     }
 
     @ParameterizedTest

@@ -52,12 +52,12 @@ public class ProfileITCase {
                 .register(name, surname, email, password)
                 .loginWithCredential(email, password, true)
                 .checkUrlIsValid(URL)
-                .verifyParamsOfLastCreatedUserInDB(paramsAfterReg)
+                .verifyParamsOfLastCreatedInstanceInDB("user", paramsAfterReg)
                 .switchToProfilePage()
                 .checkProfileData(name, surname, "", "", "profile-empty")
                 .saveProfileData(newName, newSurname, location, age, path)
                 .checkProfileData(newName, newSurname, location, age, "admin")
-                .verifyParamsOfLastCreatedUserInDB(paramsAfterUpdate);
+                .verifyParamsOfLastCreatedInstanceInDB("user", paramsAfterUpdate);
     }
 
     @ParameterizedTest
