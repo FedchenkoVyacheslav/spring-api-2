@@ -88,4 +88,38 @@ public class testData {
                 Arguments.of(TITLE, TEXT, PATH)
         );
     }
+
+    public static Stream<Arguments> sendMessageValidationTestData() {
+        return Stream.of(
+                Arguments.of("", TEXT, "Please fill the title of message"),
+                Arguments.of("Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                        "Duis nec volutpat nulla. Fusce at leo lectus. Nunc interdum, sem ut posuere " +
+                        "congue, felis ligula convallis leo, quis interdum massa nibh porttitor nisi. " +
+                        "Etiam id fermentum velit. Aliquam urna erat, bibendum at efficitur at, varius vitae mi. ", TEXT, "Message title is too long"),
+                Arguments.of(TITLE, "", "Please fill the message text"),
+                Arguments.of(TITLE, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                        "Duis nec volutpat nulla. Fusce at leo lectus. Nunc interdum, sem ut posuere congue, " +
+                        "felis ligula convallis leo, quis interdum massa nibh porttitor nisi. Etiam id fermentum velit. " +
+                        "Aliquam urna erat, bibendum at efficitur at, varius vitae mi. Vestibulum ante ipsum primis in " +
+                        "faucibus orci luctus et ultrices posuere cubilia curae; Phasellus semper dui in viverra hendrerit. " +
+                        "Ut maximus dictum sem eu porta. Sed purus nunc, porta a ante at, pharetra pellentesque nunc. " +
+                        "Integer neque libero, congue a faucibus non, dictum eu enim. Nullam volutpat ligula et sapien faucibus, " +
+                        "vel tincidunt felis suscipit. Pellentesque in finibus nunc, eu aliquet neque. Duis laoreet nisi posuere " +
+                        "nibh venenatis sollicitudin ac sit amet ex. Praesent tempus metus non ligula accumsan viverra. " +
+                        "Mauris malesuada rutrum dolor nec vehicula. Nam sit amet erat et libero tempor aliquam. Sed vitae dui " +
+                        "sed odio condimentum auctor convallis at metus. Donec felis lorem, semper ac quam et, ornare finibus lorem. " +
+                        "Mauris non ante vel ex lobortis semper sed eu metus. Praesent eget neque tincidunt, bibendum quam vel, porttitor ipsum. " +
+                        "Sed vulputate at libero non congue. Curabitur quis porttitor risus. Donec venenatis nibh in nulla faucibus viverra. " +
+                        "Integer diam erat, iaculis at consequat vitae, rhoncus vitae turpis.Cras vehicula lobortis leo, eget mattis ex rutrum eu. " +
+                        "Mauris porta eros at justo posuere, non auctor nisl porta. Sed enim magna, cursus a egestas a, commodo at lorem. " +
+                        "Aliquam ipsum felis, mattis eget libero vitae, mollis gravida justo. Maecenas velit ante, condimentum ac elementum ut, " +
+                        "vestibulum eu sapien. Donec congue suscipit odio, sit amet varius lectus dictum eget. Donec ac neque sit amet eros pulvinar " +
+                        "suscipit in commodo lorem. Maecenas ut porta ligula. Nam porttitor tellus et odio finibus vulputate. Morbi consequat est in " +
+                        "tempus consequat. Aliquam id mauris tristique, euismod nisi vel, posuere nibh. Vivamus in venenatis arcu. Curabitur vestibulum " +
+                        "mauris in erat semper rutrum. Proin eleifend velit nec ante interdum, vel faucibus urna imperdiet. Vivamus dignissim porttitor " +
+                        "facilisis. Nunc dignissim porttitor risus, ut viverra mi cursus quis. Donec convallis velit vel sem varius, euismod facilisis " +
+                        "tortor convallis. Integer in eros accumsan, blandit magna id, bibendum nibh. Nam porta, orci nec vehicula facilisis, nisl elit " +
+                        "pharetra magna, at tempor nisl felis in quam.", "Message text is too long")
+                );
+    }
 }

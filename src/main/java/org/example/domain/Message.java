@@ -18,11 +18,11 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Please fill the message")
-    @Length(max = 2048, message = "Message too long")
+    @NotBlank(message = "Please fill the message text")
+    @Length(max = 2048, message = "Message text is too long")
     private String text;
-    @NotBlank(message = "Please fill the message")
-    @Length(max = 255, message = "Title too long")
+    @NotBlank(message = "Please fill the title of message")
+    @Length(max = 255, message = "Message title is too long")
     private String title;
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

@@ -63,8 +63,14 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#sendMessageValidationTestData")
     @DisplayName("Should check validation errors when adding a message")
-    public void checkValidationErrorsOnAddingMessage() {
+    public void checkValidationErrorsOnAddingMessage(String title, String text, String validationError) {
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .switchToMainPage()
+                .sendMessage(title, text)
+                .checkErrorInForm("message", validationError);
     }
 
     @ParameterizedTest
