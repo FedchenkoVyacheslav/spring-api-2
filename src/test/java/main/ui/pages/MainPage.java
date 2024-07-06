@@ -17,6 +17,7 @@ public class MainPage extends BasePage {
     public MainPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//button[@aria-controls='messageForm']")
     private WebElement messageButton;
     @FindBy(id = "message-title")
@@ -44,7 +45,7 @@ public class MainPage extends BasePage {
     @FindBy(css = "div.card:nth-child(1) div.card-author>a.message-like")
     private WebElement lastMessageLikes;
 
-    public MainPage expandSendMessageForm () {
+    public MainPage expandSendMessageForm() {
         assertEquals(messageButton.getText(), "Add new message");
         messageButton.click();
         assertEquals(messageButton.getText(), "Hide message form");
@@ -67,7 +68,7 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public MainPage clickOnAddNewMessageButton () {
+    public MainPage clickOnAddNewMessageButton() {
         addMessageButton.click();
         return this;
     }
@@ -119,6 +120,14 @@ public class MainPage extends BasePage {
         this.typeText(text);
         this.uploadPhoto(path);
         this.checkPhotoLabel(Paths.get(path).getFileName().toString());
+        clickOnAddNewMessageButton();
+        return this;
+    }
+
+    public MainPage sendMessage(String title, String text) {
+        this.expandSendMessageForm();
+        this.typeTitle(title);
+        this.typeText(text);
         clickOnAddNewMessageButton();
         return this;
     }

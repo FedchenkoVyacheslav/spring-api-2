@@ -46,8 +46,20 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validMessageData")
     @DisplayName("Should add new message without image")
-    public void addNewMessageWithoutImage() {
+    public void addNewMessageWithoutImage(String title, String text) {
+        Map<String, String> message = new HashMap<>();
+        message.put("title", title);
+        message.put("text", text);
+        message.put("filename", null);
+
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .switchToMainPage()
+                .sendMessage(title, text)
+                .checkLastCreatedMessage("pic/no-img", title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
+                .verifyParamsOfLastCreatedInstanceInDB("message", message);
     }
 
     @ParameterizedTest
