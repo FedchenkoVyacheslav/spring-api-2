@@ -19,6 +19,7 @@ public class testData {
     public static final String ADMIN_EMAIL = "t1@gmail.com";
     public static final String ADMIN_PASSWORD = "1111";
     public static final String INVALID_EMAIL = "11111";
+    public static final String ADMIN_NAME = "Keanu Reeves";
     public static final String PATH = "uploads/admin.jpg";
     public static final String NEW_NAME = "Keanu";
     public static final String NEW_SURNAME = "Reeves";

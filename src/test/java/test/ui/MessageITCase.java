@@ -41,6 +41,7 @@ public class MessageITCase {
                 .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
                 .switchToMainPage()
                 .sendMessage(title, text, path)
+                .checkLastCreatedMessage(path, title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
                 .verifyParamsOfLastCreatedInstanceInDB("message", message);
     }
 

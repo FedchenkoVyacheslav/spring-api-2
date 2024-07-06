@@ -6,8 +6,12 @@ import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainPage extends BasePage {
     public MainPage(WebDriver driver) {
@@ -25,6 +29,20 @@ public class MainPage extends BasePage {
     private WebElement addMessageButton;
     @FindBy(className = "custom-file-label")
     private WebElement photoInputLabel;
+    @FindBy(css = "div.card:nth-child(1)>img")
+    private WebElement lastMessageImage;
+    @FindBy(css = "div.card:nth-child(1) h5.card-title")
+    private WebElement lastMessageTitle;
+    @FindBy(css = "div.card:nth-child(1) span.card-text")
+    private WebElement lastMessageText;
+    @FindBy(css = "div.card:nth-child(1) div.card-author>span")
+    private WebElement lastMessageAuthorName;
+    @FindBy(css = "div.card:nth-child(1) div.card-author>a")
+    private WebElement lastMessageAuthorEmail;
+    @FindBy(css = "div.card:nth-child(1) div.card-author>p")
+    private WebElement lastMessageDate;
+    @FindBy(css = "div.card:nth-child(1) div.card-author>a.message-like")
+    private WebElement lastMessageLikes;
 
     public MainPage expandSendMessageForm () {
         assertEquals(messageButton.getText(), "Add new message");
@@ -59,6 +77,42 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    public MainPage getMessageImage(String fileName) {
+        File path = new File(lastMessageImage.getAttribute("src"));
+        assertTrue(path.getName().contains(fileName.split("/")[1]));
+        return this;
+    }
+
+    public MainPage getMessageTitle(String title) {
+        assertEquals(lastMessageTitle.getText(), title);
+        return this;
+    }
+
+    public MainPage getMessageText(String text) {
+        assertEquals(lastMessageText.getText(), text);
+        return this;
+    }
+
+    public MainPage getMessageAuthorName(String authorName) {
+        assertEquals(lastMessageAuthorName.getText(), authorName);
+        return this;
+    }
+
+    public MainPage getMessageAuthorEmail(String authorEmail) {
+        assertEquals(lastMessageAuthorEmail.getText(), authorEmail);
+        return this;
+    }
+
+    public MainPage getMessageDate(String date) {
+        assertEquals(lastMessageDate.getText(), date);
+        return this;
+    }
+
+    public MainPage getMessageLikes(int likes) {
+        assertEquals(lastMessageLikes.getText(), String.valueOf(likes));
+        return this;
+    }
+
     public MainPage sendMessage(String title, String text, String path) {
         this.expandSendMessageForm();
         this.typeTitle(title);
@@ -66,6 +120,23 @@ public class MainPage extends BasePage {
         this.uploadPhoto(path);
         this.checkPhotoLabel(Paths.get(path).getFileName().toString());
         clickOnAddNewMessageButton();
+        return this;
+    }
+
+    public String getDateOfLastCreatedMessage() {
+        ZonedDateTime date = jdbcTemplate.queryForObject("select created_at from message order by id desc limit 1", ZonedDateTime.class);
+        ZonedDateTime withLocalZone = date.withZoneSameInstant(ZoneId.systemDefault());
+        return DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm").format(withLocalZone.toLocalDateTime());
+    }
+
+    public MainPage checkLastCreatedMessage(String path, String title, String text, String author, String email, int likes) {
+        this.getMessageImage(path);
+        this.getMessageTitle(title);
+        this.getMessageText(text);
+        this.getMessageAuthorName(author);
+        this.getMessageAuthorEmail(email);
+        this.getMessageDate(getDateOfLastCreatedMessage());
+        this.getMessageLikes(likes);
         return this;
     }
 }
