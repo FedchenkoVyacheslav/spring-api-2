@@ -19,12 +19,10 @@ public class testData {
     public static final String ADMIN_EMAIL = "t1@gmail.com";
     public static final String ADMIN_PASSWORD = "1111";
     public static final String INVALID_EMAIL = "11111";
-    public static final String ADMIN_NAME = "Keanu Reeves";
+    public static final String ADMIN_NAME = "Tom Anderson";
     public static final String PATH = "uploads/admin.jpg";
-    public static final String NEW_NAME = "Keanu";
-    public static final String NEW_SURNAME = "Reeves";
-    public static final String NEW_AGE = String.valueOf(BasePage.getCurrentYear() - 1964);
-    public static final String NEW_LOCATION = "Toronto";
+    public static final String NEW_NAME = new Faker().name().firstName();
+    public static final String NEW_SURNAME = new Faker().name().lastName();
     public static final String TITLE = faker.howIMetYourMother().catchPhrase();
     public static final String TEXT = faker.howIMetYourMother().quote();
     public static final String NEW_TITLE = new Faker().howIMetYourMother().catchPhrase();
