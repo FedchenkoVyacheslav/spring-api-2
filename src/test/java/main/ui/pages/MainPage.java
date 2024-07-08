@@ -13,6 +13,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import static main.ui.util.testData.TEXT;
+import static main.ui.util.testData.TITLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -137,6 +139,13 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    public MainPage sentRandomMessages(int messagesCount) {
+        for (int i = 0; i < messagesCount; i++) {
+            this.sendMessage(TITLE, TEXT);
+        }
+        return this;
+    }
+
     public String getDateOfLastCreatedMessage() {
         ZonedDateTime date = jdbcTemplate.queryForObject("select created_at from message order by id desc limit 1", ZonedDateTime.class);
         ZonedDateTime withLocalZone = date.withZoneSameInstant(ZoneId.systemDefault());
@@ -155,7 +164,7 @@ public class MainPage extends BasePage {
     }
 
     public MainPage checkCountOfMessagesOnPage(int count) {
-        Assert.assertEquals(messages.size(), count);
+        Assert.assertEquals(count, messages.size());
         return this;
     }
 

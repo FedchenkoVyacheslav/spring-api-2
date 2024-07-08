@@ -107,8 +107,21 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should check changing the number of displayed messages on My messages page")
-    public void checkChangingNumberOfMessagesPerPageOnMessagesPage() {
+    public void checkChangingNumberOfMessagesPerPageOnMessagesPage(String name, String surname, String email, String password) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password)
+                .loginWithCredential(email, password, false)
+                .switchToMainPage()
+                .sentRandomMessages(12)
+                .switchToMessagesPage()
+                .checkCountOfMessagesOnPage(6)
+                .changeMessagesCountPerPage(9)
+                .checkCountOfMessagesOnPage(9)
+                .changeMessagesCountPerPage(12)
+                .checkCountOfMessagesOnPage(12);
     }
 
     @AfterEach

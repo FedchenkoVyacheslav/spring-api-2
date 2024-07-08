@@ -45,6 +45,8 @@ public abstract class BasePage {
     private WebElement navBarProfilePage;
     @FindBy(linkText = "Spring-boot App")
     private WebElement navBarMainPage;
+    @FindBy(linkText = "My messages")
+    private WebElement navBarMessagesPage;
     @FindBy(className = "nav-item")
     private List<WebElement> navBarLinks;
 
@@ -146,6 +148,11 @@ public abstract class BasePage {
     public MainPage switchToMainPage() {
         navBarMainPage.click();
         return new MainPage(driver);
+    }
+
+    public MessagesPage switchToMessagesPage() {
+        navBarMessagesPage.click();
+        return new MessagesPage(driver);
     }
 
     public BasePage checkNavBarContainsLink(String link, boolean containLink) {
