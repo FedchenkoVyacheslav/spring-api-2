@@ -15,6 +15,8 @@ public class MessagesPage extends BasePage {
 
     @FindBy(css = "div.card-columns>div.card")
     private List<WebElement> messages;
+    @FindBy(css = "div.card:nth-child(1)  a.edit-message")
+    private WebElement editMessageButton;
 
     public MessagesPage checkCountOfMessagesOnPage(int count) {
         Assert.assertEquals(count, messages.size());
@@ -24,5 +26,10 @@ public class MessagesPage extends BasePage {
     public MessagesPage changeMessagesCountPerPage(int count) {
         Paginator.changeCountOfElementsPerPage(driver, count);
         return this;
+    }
+
+    public MessageEditPage switchToEditMessagePage() {
+        editMessageButton.click();
+        return new MessageEditPage(driver);
     }
 }

@@ -40,6 +40,7 @@ public class MessageITCase {
         myLoginPage
                 .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
+                .expandSendMessageForm()
                 .sendMessage(title, text, path)
                 .checkLastCreatedMessage(path, title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
                 .verifyParamsOfLastCreatedInstanceInDB("message", message);
@@ -57,6 +58,7 @@ public class MessageITCase {
         myLoginPage
                 .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
+                .expandSendMessageForm()
                 .sendMessage(title, text)
                 .checkLastCreatedMessage("pic/no-img", title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
                 .verifyParamsOfLastCreatedInstanceInDB("message", message);
@@ -69,6 +71,7 @@ public class MessageITCase {
         myLoginPage
                 .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
+                .expandSendMessageForm()
                 .sendMessage(title, text)
                 .checkErrorInForm("message", validationError);
     }
@@ -105,6 +108,7 @@ public class MessageITCase {
                 .register(name, surname, email, password)
                 .loginWithCredential(email, password, false)
                 .switchToMainPage()
+                .expandSendMessageForm()
                 .sendMessage(TITLE, TEXT)
                 .getMessageLikes(0)
                 .likeMessage()
@@ -119,8 +123,32 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validMessageData")
     @DisplayName("Should check the message change")
-    public void checkMessageChange() {
+    public void checkMessageChange(String title, String text, String path) {
+        Map<String, String> messageBeforeUpdate = new HashMap<>();
+        messageBeforeUpdate.put("title", title);
+        messageBeforeUpdate.put("text", text);
+        messageBeforeUpdate.put("filename", null);
+
+        Map<String, String> messageAfterUpdate = new HashMap<>();
+        messageAfterUpdate.put("title", NEW_TITLE);
+        messageAfterUpdate.put("text", NEW_TEXT);
+        messageAfterUpdate.put("filename", path.split("/")[1]);
+
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToMainPage()
+                .expandSendMessageForm()
+                .sendMessage(title, text)
+                .checkLastCreatedMessage("pic/no-img", title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
+                .verifyParamsOfLastCreatedInstanceInDB("message", messageBeforeUpdate)
+                .switchToMessagesPage()
+                .switchToEditMessagePage()
+                .sendMessage(NEW_TITLE, NEW_TEXT, path)
+                .switchToMainPage()
+                .checkLastCreatedMessage(path, NEW_TITLE, NEW_TEXT, ADMIN_NAME, ADMIN_EMAIL, 0)
+                .verifyParamsOfLastCreatedInstanceInDB("message", messageAfterUpdate);
     }
 
     @ParameterizedTest

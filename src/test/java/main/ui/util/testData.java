@@ -27,6 +27,8 @@ public class testData {
     public static final String NEW_LOCATION = "Toronto";
     public static final String TITLE = faker.howIMetYourMother().catchPhrase();
     public static final String TEXT = faker.howIMetYourMother().quote();
+    public static final String NEW_TITLE = new Faker().howIMetYourMother().catchPhrase();
+    public static final String NEW_TEXT = new Faker().howIMetYourMother().quote();
 
     public static Stream<Arguments> loginValidationTestData() {
         return Stream.of(

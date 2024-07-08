@@ -3,7 +3,6 @@ package main.ui.pages;
 import main.ui.elements.Filter;
 import main.ui.elements.Paginator;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -68,11 +67,13 @@ public class MainPage extends BasePage {
     }
 
     public MainPage typeTitle(String title) {
+        messageTitleInput.clear();
         messageTitleInput.sendKeys(title);
         return this;
     }
 
     public MainPage typeText(String text) {
+        messageTextInput.clear();
         messageTextInput.sendKeys(text);
         return this;
     }
@@ -130,7 +131,6 @@ public class MainPage extends BasePage {
     }
 
     public MainPage sendMessage(String title, String text, String path) {
-        this.expandSendMessageForm();
         this.typeTitle(title);
         this.typeText(text);
         this.uploadPhoto(path);
@@ -140,7 +140,6 @@ public class MainPage extends BasePage {
     }
 
     public MainPage sendMessage(String title, String text) {
-        this.expandSendMessageForm();
         this.typeTitle(title);
         this.typeText(text);
         clickOnAddNewMessageButton();
