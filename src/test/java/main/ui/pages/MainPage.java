@@ -1,7 +1,9 @@
 package main.ui.pages;
 
+import main.ui.elements.Filter;
 import main.ui.elements.Paginator;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,9 +61,9 @@ public class MainPage extends BasePage {
     private List<WebElement> messages;
 
     public MainPage expandSendMessageForm() {
-        assertEquals(messageButton.getText(), "Add new message");
+        assertEquals("Add new message", messageButton.getText());
         messageButton.click();
-        assertEquals(messageButton.getText(), "Hide message form");
+        assertEquals("Hide message form", messageButton.getText());
         return this;
     }
 
@@ -87,7 +89,7 @@ public class MainPage extends BasePage {
     }
 
     public MainPage checkPhotoLabel(String text) {
-        assertEquals(photoInputLabel.getText(), String.format("%s...", text));
+        assertEquals(String.format("%s...", text), photoInputLabel.getText());
         return this;
     }
 
@@ -98,32 +100,32 @@ public class MainPage extends BasePage {
     }
 
     public MainPage getMessageTitle(String title) {
-        assertEquals(lastMessageTitle.getText(), title);
+        assertEquals(title, lastMessageTitle.getText());
         return this;
     }
 
     public MainPage getMessageText(String text) {
-        assertEquals(lastMessageText.getText(), text);
+        assertEquals(text, lastMessageText.getText());
         return this;
     }
 
     public MainPage getMessageAuthorName(String authorName) {
-        assertEquals(lastMessageAuthorName.getText(), authorName);
+        assertEquals(authorName, lastMessageAuthorName.getText());
         return this;
     }
 
     public MainPage getMessageAuthorEmail(String authorEmail) {
-        assertEquals(lastMessageAuthorEmail.getText(), authorEmail);
+        assertEquals(authorEmail, lastMessageAuthorEmail.getText());
         return this;
     }
 
     public MainPage getMessageDate(String date) {
-        assertEquals(lastMessageDate.getText(), date);
+        assertEquals(date, lastMessageDate.getText());
         return this;
     }
 
     public MainPage getMessageLikes(int likes) {
-        assertEquals(lastMessageLikes.getText(), String.valueOf(likes));
+        assertEquals(String.valueOf(likes), lastMessageLikes.getText());
         return this;
     }
 
@@ -185,13 +187,12 @@ public class MainPage extends BasePage {
     }
 
     public MainPage typeSearchQuery(String text) {
-        searchInput.clear();
-        searchInput.sendKeys(text);
+        Filter.search(driver, text);
         return this;
     }
 
     public MainPage clickOnSearchButton() {
-        searchButton.click();
+        Filter.clickOnSearchButton(driver);
         return this;
     }
 
@@ -203,6 +204,16 @@ public class MainPage extends BasePage {
 
     public MainPage checkErrorMessage(String text) {
         assertEquals(text, errorMessage.getText());
+        return this;
+    }
+
+    public MainPage likeMessage() {
+        lastMessageLikes.click();
+        return this;
+    }
+
+    public MainPage dislikeMessage() {
+        lastMessageLikes.click();
         return this;
     }
 }

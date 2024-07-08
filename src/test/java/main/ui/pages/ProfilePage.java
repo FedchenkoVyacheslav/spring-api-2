@@ -67,22 +67,22 @@ public class ProfilePage extends BasePage {
     }
 
     public ProfilePage checkNameFilled(String name) {
-        assertEquals(nameInput.getAttribute("value"), name);
+        assertEquals(name, nameInput.getAttribute("value"));
         return this;
     }
 
     public ProfilePage checkSurnameFilled(String surname) {
-        assertEquals(surnameInput.getAttribute("value"), surname);
+        assertEquals(surname, surnameInput.getAttribute("value"));
         return this;
     }
 
     public ProfilePage checkLocationFilled(String location) {
-        assertEquals(locationInput.getAttribute("value"), location);
+        assertEquals(location, locationInput.getAttribute("value"));
         return this;
     }
 
     public ProfilePage checkAgeFilled(String age) {
-        assertEquals(ageInput.getAttribute("value"), age);
+        assertEquals(age, ageInput.getAttribute("value"));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class ProfilePage extends BasePage {
     }
 
     public ProfilePage checkPhotoLabel(String text) {
-        assertEquals(photoLabel.getText(), String.format("%s...", text));
+        assertEquals(String.format("%s...", text), photoLabel.getText());
         return this;
     }
 

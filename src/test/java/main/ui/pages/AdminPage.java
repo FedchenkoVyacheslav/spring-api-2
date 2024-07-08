@@ -52,12 +52,12 @@ public class AdminPage extends BasePage {
 
     public AdminPage checkMessageForEmptyList() {
         assertNotNull(messageUserList);
-        assertEquals(messageUserList.getText(), "No results found!");
+        assertEquals("No results found!", messageUserList.getText());
         return this;
     }
 
     public AdminPage checkCountOfUsersOnPage(int count) {
-        assertEquals(users.size(), count);
+        assertEquals(count, users.size());
         return this;
     }
 

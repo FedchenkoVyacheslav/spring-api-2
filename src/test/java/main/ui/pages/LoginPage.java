@@ -59,7 +59,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage checkErrorForNotExistedUser() {
-        assertEquals(authErrorMessage.getText(), "That combination of email and password is not recognized");
+        assertEquals("That combination of email and password is not recognized", authErrorMessage.getText());
         checkInvalidInputs(driver, "auth", true);
         return this;
     }

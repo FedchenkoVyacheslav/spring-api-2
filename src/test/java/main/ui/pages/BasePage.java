@@ -57,15 +57,15 @@ public abstract class BasePage {
 
     public LoginPage checkNavbarEmailText(String email, boolean loggedIn) {
         if (loggedIn) {
-            assertEquals(navbarEmail.getText(), email);
+            assertEquals(email, navbarEmail.getText());
         } else {
-            assertEquals(navbarEmail.getText(), "Not logged in");
+            assertEquals("Not logged in", navbarEmail.getText());
         }
         return new LoginPage(driver);
     }
 
     public BasePage checkUrlIsValid(String url) {
-        assertEquals(driver.getCurrentUrl(), url);
+        assertEquals(url, driver.getCurrentUrl());
         return this;
     }
 
@@ -112,8 +112,8 @@ public abstract class BasePage {
     public BasePage checkGreetings(String name, String surname) {
         String title = greetingTitle.getText();
         String[] titleWords = title.substring(0, title.length() - 1).split(" ");
-        assertEquals(titleWords[1], name);
-        assertEquals(titleWords[2], surname);
+        assertEquals(name, titleWords[1]);
+        assertEquals(surname, titleWords[2]);
         return this;
     }
 

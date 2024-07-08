@@ -97,8 +97,25 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should check likes of message")
-    public void checkMessageLikes() {
+    public void checkMessageLikes(String name, String surname, String email, String password) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password)
+                .loginWithCredential(email, password, false)
+                .switchToMainPage()
+                .sendMessage(TITLE, TEXT)
+                .getMessageLikes(0)
+                .likeMessage()
+                .getMessageLikes(1)
+                .clickOnSignOut()
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToMainPage()
+                .likeMessage()
+                .getMessageLikes(2)
+                .dislikeMessage()
+                .getMessageLikes(1);
     }
 
     @ParameterizedTest

@@ -15,13 +15,17 @@ public class Filter {
         WebElement searchLabel = driver.findElement(By.id("error-el"));
         filter.sendKeys(Keys.CONTROL + "a");
         filter.sendKeys(Keys.DELETE);
-        assertEquals(searchLabel.getText(), "Enter your search query...");
+        assertEquals("Enter your search query...", searchLabel.getText());
         filter.sendKeys(searchQuery);
         if(searchQuery.isEmpty()) {
-            assertEquals(searchLabel.getText(), "Enter your search query...");
+            assertEquals("Enter your search query...", searchLabel.getText());
         } else {
-            assertEquals(searchLabel.getText(), "");
+            assertEquals("", searchLabel.getText());
         }
         confirmBtn.click();
+    }
+
+    public static void clickOnSearchButton(WebDriver driver) {
+        driver.findElement(By.id("search-button")).click();
     }
 }
