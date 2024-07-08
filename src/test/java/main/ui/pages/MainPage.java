@@ -1,5 +1,7 @@
 package main.ui.pages;
 
+import main.ui.elements.Paginator;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,7 @@ import java.nio.file.Paths;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -44,6 +47,8 @@ public class MainPage extends BasePage {
     private WebElement lastMessageDate;
     @FindBy(css = "div.card:nth-child(1) div.card-author>a.message-like")
     private WebElement lastMessageLikes;
+    @FindBy(css = "div.card")
+    private List<WebElement> messages;
 
     public MainPage expandSendMessageForm() {
         assertEquals(messageButton.getText(), "Add new message");
@@ -146,6 +151,16 @@ public class MainPage extends BasePage {
         this.getMessageAuthorEmail(email);
         this.getMessageDate(getDateOfLastCreatedMessage());
         this.getMessageLikes(likes);
+        return this;
+    }
+
+    public MainPage checkCountOfMessagesOnPage(int count) {
+        Assert.assertEquals(messages.size(), count);
+        return this;
+    }
+
+    public MainPage changeMessagesCountPerPage(int count) {
+        Paginator.changeCountOfElementsPerPage(driver, count);
         return this;
     }
 }

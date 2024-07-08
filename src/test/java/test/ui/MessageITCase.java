@@ -38,7 +38,7 @@ public class MessageITCase {
         message.put("filename", path.split("/")[1]);
 
         myLoginPage
-                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
                 .sendMessage(title, text, path)
                 .checkLastCreatedMessage(path, title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
@@ -55,7 +55,7 @@ public class MessageITCase {
         message.put("filename", null);
 
         myLoginPage
-                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
                 .sendMessage(title, text)
                 .checkLastCreatedMessage("pic/no-img", title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
@@ -67,7 +67,7 @@ public class MessageITCase {
     @DisplayName("Should check validation errors when adding a message")
     public void checkValidationErrorsOnAddingMessage(String title, String text, String validationError) {
         myLoginPage
-                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, true)
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
                 .switchToMainPage()
                 .sendMessage(title, text)
                 .checkErrorInForm("message", validationError);
@@ -93,8 +93,18 @@ public class MessageITCase {
     public void checkMessageDeletion() {
     }
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should check changing the number of displayed messages on Main page")
-    public void checkChangingNumberOfMessagesPerPageOnMainPage() {}
+    public void checkChangingNumberOfMessagesPerPageOnMainPage(String email, String password) {
+        myLoginPage
+                .loginWithCredential(email, password, false)
+                .switchToMainPage()
+                .checkCountOfMessagesOnPage(6)
+                .changeMessagesCountPerPage(9)
+                .checkCountOfMessagesOnPage(9)
+                .changeMessagesCountPerPage(12)
+                .checkCountOfMessagesOnPage(12);
+    }
 
     @ParameterizedTest
     @DisplayName("Should check changing the number of displayed messages on My messages page")
