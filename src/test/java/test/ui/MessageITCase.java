@@ -152,8 +152,32 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should check the message deletion")
-    public void checkMessageDeletion() {
+    public void checkMessageDeletion(String email, String password){
+        Map<String, String> firstMessage = new HashMap<>();
+        firstMessage.put("title", TITLE);
+        firstMessage.put("text", TEXT);
+        firstMessage.put("filename", null);
+
+        myLoginPage
+                .loginWithCredential(email, password, false)
+                .switchToMainPage()
+                .expandSendMessageForm()
+                .sendMessage(TITLE, TEXT)
+                .expandSendMessageForm()
+                .sendMessage(NEW_TITLE, NEW_TEXT)
+                .switchToMessagesPage()
+                .deleteLastCreatedMessage()
+                .cancelDeletion()
+                .switchToMainPage()
+                .checkLastCreatedMessage("pic/no-img", NEW_TITLE, NEW_TEXT, ADMIN_NAME, ADMIN_EMAIL, 0)
+                .switchToMessagesPage()
+                .deleteLastCreatedMessage()
+                .confirmDeletion()
+                .switchToMainPage()
+                .checkLastCreatedMessage("pic/no-img", TITLE, TEXT, ADMIN_NAME, ADMIN_EMAIL, 0)
+                .verifyParamsOfLastCreatedInstanceInDB("message", firstMessage);
     }
 
     @ParameterizedTest
