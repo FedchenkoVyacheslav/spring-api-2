@@ -89,6 +89,13 @@ public class testData {
         );
     }
 
+    public static Stream<Arguments> searchMessageData() {
+        return Stream.of(
+                Arguments.of("eagle", "img/Blog34", "Curious Facts About the Bald Eagle.", "Bald Eagle is a large bird of prey with a wingspan of more than 2 meters. It is one of the national symbols of the USA.", "Joi Dream", "joi@gmail.com", 12),
+                Arguments.of("viper", "img/Blog17", "The most poisonous snakes in the world.", "The viper-like deadly snake is a very venomous snake living in Australia, New Guinea and the surrounding area. She is considered one of the deadliest snakes in the world.", "Officer K", "key@gmail.com", 16)
+        );
+    }
+
     public static Stream<Arguments> sendMessageValidationTestData() {
         return Stream.of(
                 Arguments.of("", TEXT, "Please fill the title of message"),
@@ -120,6 +127,12 @@ public class testData {
                         "facilisis. Nunc dignissim porttitor risus, ut viverra mi cursus quis. Donec convallis velit vel sem varius, euismod facilisis " +
                         "tortor convallis. Integer in eros accumsan, blandit magna id, bibendum nibh. Nam porta, orci nec vehicula facilisis, nisl elit " +
                         "pharetra magna, at tempor nisl felis in quam.", "Message text is too long")
-                );
+        );
+    }
+
+    public static Stream<Arguments> searchMessageValidationTestData() {
+        return Stream.of(
+                Arguments.of("1234567890", "No results found!")
+        );
     }
 }

@@ -74,8 +74,26 @@ public class MessageITCase {
     }
 
     @ParameterizedTest
+    @MethodSource("main.ui.util.testData#searchMessageData")
     @DisplayName("Should check search of message")
-    public void checkSearchOfMessage() {
+    public void checkSearchOfMessage(String searchQuery, String path, String title, String text, String userName, String userEmail, int likesCount) {
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToMainPage()
+                .findTheMessage(searchQuery)
+                .checkMessage(path, title, text, userName, userEmail, likesCount)
+                .checkCountOfMessagesOnPage(1);
+    }
+
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#searchMessageValidationTestData")
+    @DisplayName("Should check error message when the search result is empty")
+    public void checkErrorMessageWhenSearchResultIsEmpty(String searchQuery, String validationError) {
+        myLoginPage
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToMainPage()
+                .findTheMessage(searchQuery)
+                .checkErrorMessage(validationError);
     }
 
     @ParameterizedTest
@@ -92,6 +110,7 @@ public class MessageITCase {
     @DisplayName("Should check the message deletion")
     public void checkMessageDeletion() {
     }
+
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should check changing the number of displayed messages on Main page")

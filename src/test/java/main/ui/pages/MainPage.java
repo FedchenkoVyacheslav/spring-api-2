@@ -23,6 +23,12 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
+    @FindBy(id = "search-input")
+    private WebElement searchInput;
+    @FindBy(id = "search-button")
+    private WebElement searchButton;
+    @FindBy(id = "error-el2")
+    private WebElement errorMessage;
     @FindBy(xpath = "//button[@aria-controls='messageForm']")
     private WebElement messageButton;
     @FindBy(id = "message-title")
@@ -153,12 +159,17 @@ public class MainPage extends BasePage {
     }
 
     public MainPage checkLastCreatedMessage(String path, String title, String text, String author, String email, int likes) {
+        this.checkMessage(path, title, text, author, email, likes);
+        this.getMessageDate(getDateOfLastCreatedMessage());
+        return this;
+    }
+
+    public MainPage checkMessage(String path, String title, String text, String author, String email, int likes) {
         this.getMessageImage(path);
         this.getMessageTitle(title);
         this.getMessageText(text);
         this.getMessageAuthorName(author);
         this.getMessageAuthorEmail(email);
-        this.getMessageDate(getDateOfLastCreatedMessage());
         this.getMessageLikes(likes);
         return this;
     }
@@ -170,6 +181,28 @@ public class MainPage extends BasePage {
 
     public MainPage changeMessagesCountPerPage(int count) {
         Paginator.changeCountOfElementsPerPage(driver, count);
+        return this;
+    }
+
+    public MainPage typeSearchQuery(String text) {
+        searchInput.clear();
+        searchInput.sendKeys(text);
+        return this;
+    }
+
+    public MainPage clickOnSearchButton() {
+        searchButton.click();
+        return this;
+    }
+
+    public MainPage findTheMessage(String text) {
+        this.typeSearchQuery(text);
+        this.clickOnSearchButton();
+        return this;
+    }
+
+    public MainPage checkErrorMessage(String text) {
+        assertEquals(text, errorMessage.getText());
         return this;
     }
 }
