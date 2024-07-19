@@ -39,7 +39,7 @@ values (1, 5, '2023-06-12 17:40:23.560000', '2023-06-12 17:40:23.560000', 'Blog1
             'The viper-like deadly snake is a very venomous snake living in Australia, New Guinea and the surrounding area. She is considered one of the deadliest snakes in the world.'),
        (18, 4, '2022-11-03 14:28:17.560000', '2022-11-03 14:28:17.560000', 'Blog18.jpg', 'How long does a raven live?',
             'It is believed that black crows have been living for 300 years, but although they are long-livers, this period is much shorter.'),
-       (19, 5, '2020-11-04 04:41:37.560000', '2020-11-04 04:41:37.560000', 'Blog19.jpg', 'All shades of iguanas.',
+       (19, 5, '2020-01-01 08:09:37.560000', '2020-01-01 08:09:37.560000', 'Blog19.jpg', 'All shades of iguanas.',
             'Newborn iguanas are bright green, which allows them to hide in foliage. Iguanas originating from Colombia have, as a rule, a very pale green coloration of the head.'),
        (20, 4, '2023-08-19 07:31:37.560000', '2023-08-19 07:31:37.560000', 'Blog20.jpg', 'Why does a lemur have a long tail?',
             'The long tail serves as feline lemurs for signals between relatives, as a distributor of smells, as well as to maintain balance when climbing and jumping.'),

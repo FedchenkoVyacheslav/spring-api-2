@@ -1,6 +1,7 @@
 package main.ui.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,10 @@ public class FollowersPage extends BasePage {
     @FindBy(className = "title-subscribe-title")
     private WebElement authorTitle;
 
-    @FindBy(className = "link-subscribe-list")
+    @FindBy(className = "empty-subscribe-list")
+    private WebElement followersMessage;
+
+    @FindBy(className = "subscribe-item")
     private List<WebElement> followers;
 
     public FollowersPage checkFollowersPageTitle(String authorName) {
@@ -31,10 +35,14 @@ public class FollowersPage extends BasePage {
     public FollowersPage checkFollowerExistsInList(String email) {
         boolean followerExists = false;
         for (WebElement follower : followers) {
-            if (follower.getText().equals(email)) followerExists = true;
-            else followerExists = false;
+            if (follower.findElement(By.className("link-subscribe-list")).getText().equals(email)) followerExists = true;
         }
         Assert.assertTrue(followerExists);
+        return this;
+    }
+
+    public FollowersPage checkThatFollowersListIsEmpty() {
+        Assert.assertEquals("No followers", followersMessage.getText());
         return this;
     }
 }

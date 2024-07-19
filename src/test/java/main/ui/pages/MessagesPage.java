@@ -72,6 +72,13 @@ public class MessagesPage extends BasePage {
         return this;
     }
 
+    public MessagesPage unsubscribeFromUser() {
+        Assert.assertEquals("Unsubscribe", subscribeButton.getText());
+        subscribeButton.click();
+        Assert.assertEquals("Subscribe", subscribeButton.getText());
+        return this;
+    }
+
     public MessagesPage checkFollowersCount(int count) {
         Assert.assertEquals(count, Integer.parseInt(followersLink.getText()));
         return this;
@@ -82,8 +89,18 @@ public class MessagesPage extends BasePage {
         return this;
     }
 
+    public MessagesPage clickOnSubscriptionsLink() {
+        subscriptionsLink.click();
+        return this;
+    }
+
     public FollowersPage switchToFollowersPage() {
         this.clickOnFollowersLink();
         return new FollowersPage(driver);
+    }
+
+    public SubscriptionsPage switchToSubscriptionsPage() {
+        this.clickOnSubscriptionsLink();
+        return new SubscriptionsPage(driver);
     }
 }

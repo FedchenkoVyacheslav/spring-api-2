@@ -3,6 +3,7 @@ package main.ui.pages;
 import main.ui.elements.Filter;
 import main.ui.elements.Paginator;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -224,5 +225,21 @@ public class MainPage extends BasePage {
     public MessagesPage switchToMessagesPageFromMessageLink() {
         this.clickOnLastMessageAuthorEmail();
         return new MessagesPage(driver);
+    }
+
+    public MessagesPage switchToMessagesPageFromMessageLink(String email) {
+        driver.findElements(By.linkText(email)).getFirst().click();
+        return new MessagesPage(driver);
+    }
+
+    public MainPage changeCountOfMessagesPerPage(int count) {
+        Paginator.changeCountOfElementsPerPage(driver, count);
+        return this;
+    }
+
+    public MainPage switchToLastPage() {
+        int lastPage = Paginator.getPagesCount(driver);
+        Paginator.switchToPage(driver, lastPage);
+        return this;
     }
 }

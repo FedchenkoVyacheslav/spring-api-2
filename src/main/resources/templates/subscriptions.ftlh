@@ -11,7 +11,7 @@
     </#if>
     <ul class="subscribe-list list-group col-sm-10 mx-auto mb-5">
         <#list users as user>
-            <li class="align-items-center list-group-item d-flex justify-content-between">
+            <li class="align-items-center list-group-item d-flex justify-content-between subscribe-item">
                 <div class="subscribe-wrapper">
                     <div class="subscribe-image-box mr-3">
                         <#if user.photoUrl?has_content>

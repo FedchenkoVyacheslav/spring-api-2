@@ -1,7 +1,6 @@
 package main.ui.util;
 
 import com.github.javafaker.Faker;
-import main.ui.pages.BasePage;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.stream.Stream;
@@ -17,6 +16,7 @@ public class testData {
     public static final String EMAIL = String.format("%s.%s@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
     public static final String NEW_EMAIL = String.format("%s2.%s2@%s", NAME, SURNAME, faker.internet().domainName()).toLowerCase();
     public static final String ADMIN_EMAIL = "t1@gmail.com";
+    public static final String USER_EMAIL = "rickD@gmail.com";
     public static final String ADMIN_PASSWORD = "1111";
     public static final String INVALID_EMAIL = "11111";
     public static final String ADMIN_NAME = "Tom Anderson";
