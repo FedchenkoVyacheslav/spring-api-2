@@ -215,4 +215,14 @@ public class MainPage extends BasePage {
         lastMessageLikes.click();
         return this;
     }
+
+    public MainPage clickOnLastMessageAuthorEmail() {
+        lastMessageAuthorEmail.click();
+        return this;
+    }
+
+    public MessagesPage switchToMessagesPageFromMessageLink() {
+        this.clickOnLastMessageAuthorEmail();
+        return new MessagesPage(driver);
+    }
 }

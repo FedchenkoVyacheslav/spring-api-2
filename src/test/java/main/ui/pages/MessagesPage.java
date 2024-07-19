@@ -26,6 +26,12 @@ public class MessagesPage extends BasePage {
     private WebElement confirmDeleteMessageButton;
     @FindBy(css = "div.card:nth-child(1) button.btn")
     private WebElement cancelDeleteMessageButton;
+    @FindBy(className = "subscribe-btn")
+    private WebElement subscribeButton;
+    @FindBy(css = "div:nth-child(1) > a.subscribe-link")
+    private WebElement subscriptionsLink;
+    @FindBy(css = "div:nth-child(2) > a.subscribe-link")
+    private WebElement followersLink;
 
     public MessagesPage checkCountOfMessagesOnPage(int count) {
         Assert.assertEquals(count, messages.size());
@@ -57,5 +63,27 @@ public class MessagesPage extends BasePage {
     public MessagesPage confirmDeletion() {
         confirmDeleteMessageButton.click();
         return this;
+    }
+
+    public MessagesPage subscribeToUser() {
+        Assert.assertEquals("Subscribe", subscribeButton.getText());
+        subscribeButton.click();
+        Assert.assertEquals("Unsubscribe", subscribeButton.getText());
+        return this;
+    }
+
+    public MessagesPage checkFollowersCount(int count) {
+        Assert.assertEquals(count, Integer.parseInt(followersLink.getText()));
+        return this;
+    }
+
+    public MessagesPage clickOnFollowersLink() {
+        followersLink.click();
+        return this;
+    }
+
+    public FollowersPage switchToFollowersPage() {
+        this.clickOnFollowersLink();
+        return new FollowersPage(driver);
     }
 }
