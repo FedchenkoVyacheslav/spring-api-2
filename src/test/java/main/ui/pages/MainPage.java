@@ -227,11 +227,6 @@ public class MainPage extends BasePage {
         return new MessagesPage(driver);
     }
 
-    public MainPage changeCountOfMessagesPerPage(int count) {
-        Paginator.changeCountOfElementsPerPage(driver, count);
-        return this;
-    }
-
     public MainPage switchToLastPage() {
         int lastPage = Paginator.getPagesCount(driver);
         Paginator.switchToPage(driver, lastPage);

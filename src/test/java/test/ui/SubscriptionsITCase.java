@@ -66,7 +66,6 @@ public class SubscriptionsITCase {
                 .switchToMainPage()
                 .expandSendMessageForm()
                 .sendMessage(TITLE, TEXT)
-                .changeCountOfMessagesPerPage(12)
                 .switchToLastPage()
                 .switchToMessagesPageFromMessageLink(USER_EMAIL)
                 .subscribeToUser()
@@ -84,6 +83,37 @@ public class SubscriptionsITCase {
                 .checkSubscriptionInList(USER_EMAIL, false);
     }
 
+    @ParameterizedTest
+    @MethodSource("main.ui.util.testData#validRegisterData")
+    @DisplayName("Should subscribe to user and unsubscribe from user on Followers page")
+    public void subscribeAndUnsubscribeOnFollowersPage(String name, String surname, String email, String password) {
+        myLoginPage
+                .switchToRegisterPage()
+                .register(name, surname, email, password)
+                .loginWithCredential(email, password, false)
+                .switchToMainPage()
+                .switchToLastPage()
+                .switchToMessagesPageFromMessageLink(USER_EMAIL)
+                .subscribeToUser()
+                .clickOnSignOut()
+                .loginWithCredential(ADMIN_EMAIL, ADMIN_PASSWORD, false)
+                .switchToMainPage()
+                .switchToLastPage()
+                .switchToMessagesPageFromMessageLink(USER_EMAIL)
+                .switchToFollowersPage()
+                .subscribeToUser(email)
+                .switchToMessagesPage()
+                .switchToSubscriptionsPage()
+                .checkSubscriptionInList(email, true)
+                .switchToMainPage()
+                .switchToLastPage()
+                .switchToMessagesPageFromMessageLink(USER_EMAIL)
+                .switchToFollowersPage()
+                .unsubscribeFromUser(email)
+                .switchToMessagesPage()
+                .switchToSubscriptionsPage()
+                .checkSubscriptionInList(email, false);
+    }
 
     @AfterEach
     public void quit() {

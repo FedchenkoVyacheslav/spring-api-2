@@ -45,4 +45,24 @@ public class FollowersPage extends BasePage {
         Assert.assertEquals("No followers", followersMessage.getText());
         return this;
     }
+
+    public FollowersPage subscribeToUser(String email) {
+        for (WebElement follower : followers) {
+            if (follower.findElement(By.className("link-subscribe-list")).getText().equals(email)) {
+                Assert.assertEquals("Subscribe", follower.findElement(By.className("followers-btn")).getText());
+                follower.findElement(By.className("followers-btn")).click();
+            }
+        }
+        return this;
+    }
+
+    public FollowersPage unsubscribeFromUser(String email) {
+        for (WebElement follower : followers) {
+            if (follower.findElement(By.className("link-subscribe-list")).getText().equals(email)) {
+                Assert.assertEquals("Unsubscribe", follower.findElement(By.className("followers-btn")).getText());
+                follower.findElement(By.className("followers-btn")).click();
+            }
+        }
+        return this;
+    }
 }

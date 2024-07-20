@@ -167,4 +167,9 @@ public abstract class BasePage {
         }
         return this;
     }
+
+    public BasePage switchToPreviousPage() {
+        driver.navigate().back();
+        return this;
+    }
 }
