@@ -222,11 +222,6 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public MessagesPage switchToMessagesPageFromMessageLink() {
-        this.clickOnLastMessageAuthorEmail();
-        return new MessagesPage(driver);
-    }
-
     public MessagesPage switchToMessagesPageFromMessageLink(String email) {
         driver.findElements(By.linkText(email)).getFirst().click();
         return new MessagesPage(driver);

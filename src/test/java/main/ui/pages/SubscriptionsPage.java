@@ -15,11 +15,14 @@ public class SubscriptionsPage extends BasePage {
 
     @FindBy(className = "subscribe-item")
     private List<WebElement> subscriptions;
+    @FindBy(className = "title-subscribe-title")
+    private WebElement authorTitle;
 
     public SubscriptionsPage checkSubscriptionInList(String email, boolean exists) {
         boolean subscriptionExists = false;
         for (WebElement subscription : subscriptions) {
-            if (subscription.findElement(By.className("link-subscribe-list")).getText().equals(email)) subscriptionExists = true;
+            if (subscription.findElement(By.className("link-subscribe-list")).getText().equals(email))
+                subscriptionExists = true;
         }
         if (exists) {
             Assert.assertTrue(subscriptionExists);
@@ -46,6 +49,11 @@ public class SubscriptionsPage extends BasePage {
                 subscription.findElement(By.className("followers-btn")).click();
             }
         }
+        return this;
+    }
+
+    public SubscriptionsPage checkSubscriptionsPageTitle(String authorName) {
+        Assert.assertEquals(authorName + "'s", authorTitle.getText());
         return this;
     }
 }
