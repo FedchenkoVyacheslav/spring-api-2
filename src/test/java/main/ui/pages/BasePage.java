@@ -10,9 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +20,6 @@ import static org.junit.Assert.*;
 public abstract class BasePage {
     protected final WebDriver driver;
     protected final JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCService.mysqlDataSource());
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-
-    public static int getCurrentYear() {
-        return Integer.parseInt(sdf.format(new Date()));
-    }
 
     public BasePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -66,15 +59,6 @@ public abstract class BasePage {
 
     public BasePage checkUrlIsValid(String url) {
         assertEquals(url, driver.getCurrentUrl());
-        return this;
-    }
-
-    public BasePage pause(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return this;
     }
 
