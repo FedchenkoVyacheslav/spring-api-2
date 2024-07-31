@@ -54,7 +54,8 @@ public class UserEditITCase {
                 .checkActiveUserRoles("Admin")
                 .clickOnSaveButton()
                 .goBackToAdminPage()
-                .checkUserRole(email, "Admin");
+                .checkUserRole(email, "Admin")
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest
@@ -89,7 +90,8 @@ public class UserEditITCase {
                 .clickOnSaveButton()
                 .goBackToAdminPage()
                 .checkUserInList(NEW_EMAIL, true)
-                .verifyParamsOfLastCreatedInstanceInDB("user", params);
+                .verifyParamsOfLastCreatedInstanceInDB("user", params)
+                .removeLastCreatedInstance("user");
     }
 
     @AfterEach

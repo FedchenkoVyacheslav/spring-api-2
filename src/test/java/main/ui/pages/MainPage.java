@@ -149,6 +149,7 @@ public class MainPage extends BasePage {
 
     public MainPage sentRandomMessages(int messagesCount) {
         for (int i = 0; i < messagesCount; i++) {
+            this.expandSendMessageForm();
             this.sendMessage(TITLE, TEXT);
         }
         return this;

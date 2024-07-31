@@ -52,7 +52,8 @@ public class SubscriptionsITCase {
                 .unsubscribeFromUser()
                 .checkFollowersCount(0)
                 .switchToFollowersPage()
-                .checkThatFollowersListIsEmpty();
+                .checkThatFollowersListIsEmpty()
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest
@@ -80,7 +81,8 @@ public class SubscriptionsITCase {
                 .switchToSubscriptionsPage()
                 .checkSubscriptionInList(USER_EMAIL, true)
                 .unsubscribeFromUser(USER_EMAIL)
-                .checkSubscriptionInList(USER_EMAIL, false);
+                .checkSubscriptionInList(USER_EMAIL, false)
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest
@@ -112,7 +114,8 @@ public class SubscriptionsITCase {
                 .unsubscribeFromUser(email)
                 .switchToMessagesPage()
                 .switchToSubscriptionsPage()
-                .checkSubscriptionInList(email, false);
+                .checkSubscriptionInList(email, false)
+                .removeLastCreatedInstance("user");
     }
 
     @AfterEach

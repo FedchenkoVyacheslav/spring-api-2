@@ -43,7 +43,8 @@ public class MessageITCase {
                 .expandSendMessageForm()
                 .sendMessage(title, text, path)
                 .checkLastCreatedMessage(path, title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
-                .verifyParamsOfLastCreatedInstanceInDB("message", message);
+                .verifyParamsOfLastCreatedInstanceInDB("message", message)
+                .removeLastCreatedInstance("message");
     }
 
     @ParameterizedTest
@@ -61,7 +62,8 @@ public class MessageITCase {
                 .expandSendMessageForm()
                 .sendMessage(title, text)
                 .checkLastCreatedMessage("pic/no-img", title, text, ADMIN_NAME, ADMIN_EMAIL, 0)
-                .verifyParamsOfLastCreatedInstanceInDB("message", message);
+                .verifyParamsOfLastCreatedInstanceInDB("message", message)
+                .removeLastCreatedInstance("message");
     }
 
     @ParameterizedTest
@@ -119,7 +121,9 @@ public class MessageITCase {
                 .likeMessage()
                 .getMessageLikes(2)
                 .dislikeMessage()
-                .getMessageLikes(1);
+                .getMessageLikes(1)
+                .removeLastCreatedInstance("message")
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest
@@ -148,7 +152,8 @@ public class MessageITCase {
                 .sendMessage(NEW_TITLE, NEW_TEXT, path)
                 .switchToMainPage()
                 .checkLastCreatedMessage(path, NEW_TITLE, NEW_TEXT, ADMIN_NAME, ADMIN_EMAIL, 0)
-                .verifyParamsOfLastCreatedInstanceInDB("message", messageAfterUpdate);
+                .verifyParamsOfLastCreatedInstanceInDB("message", messageAfterUpdate)
+                .removeLastCreatedInstance("message");
     }
 
     @ParameterizedTest
@@ -177,7 +182,8 @@ public class MessageITCase {
                 .confirmDeletion()
                 .switchToMainPage()
                 .checkLastCreatedMessage("pic/no-img", TITLE, TEXT, ADMIN_NAME, ADMIN_EMAIL, 0)
-                .verifyParamsOfLastCreatedInstanceInDB("message", firstMessage);
+                .verifyParamsOfLastCreatedInstanceInDB("message", firstMessage)
+                .removeLastCreatedInstance("message");
     }
 
     @ParameterizedTest
@@ -209,7 +215,9 @@ public class MessageITCase {
                 .changeMessagesCountPerPage(9)
                 .checkCountOfMessagesOnPage(9)
                 .changeMessagesCountPerPage(12)
-                .checkCountOfMessagesOnPage(12);
+                .checkCountOfMessagesOnPage(12)
+                .removeLastInstances("message", 12)
+                .removeLastCreatedInstance("user");
     }
 
     @AfterEach

@@ -46,7 +46,8 @@ public class AdminITCase {
                 .findUser(INVALID_EMAIL)
                 .checkMessageForEmptyList()
                 .findUser("")
-                .checkCountOfUsersOnPage(10);
+                .checkCountOfUsersOnPage(10)
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest
@@ -76,7 +77,8 @@ public class AdminITCase {
                 .switchToAdminPage()
                 .checkUserInList(email, false)
                 .switchToLastPage()
-                .checkUserInList(email, true);
+                .checkUserInList(email, true)
+                .removeLastCreatedInstance("user");
     }
 
     @AfterEach

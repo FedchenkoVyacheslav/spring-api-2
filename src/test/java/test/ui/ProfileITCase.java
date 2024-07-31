@@ -57,7 +57,8 @@ public class ProfileITCase {
                 .checkProfileData(name, surname, "", "", "profile-empty")
                 .saveProfileData(newName, newSurname, location, age, path)
                 .checkProfileData(newName, newSurname, location, age, "admin")
-                .verifyParamsOfLastCreatedInstanceInDB("user", paramsAfterUpdate);
+                .verifyParamsOfLastCreatedInstanceInDB("user", paramsAfterUpdate)
+                .removeLastCreatedInstance("user");
     }
 
     @ParameterizedTest

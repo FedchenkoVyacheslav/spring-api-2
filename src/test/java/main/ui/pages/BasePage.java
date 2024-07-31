@@ -119,6 +119,25 @@ public abstract class BasePage {
         return this;
     }
 
+    public BasePage removeLastCreatedInstance(String instanceName) {
+        Integer id = null;
+        if (instanceName.equals("user")) {
+            id = jdbcTemplate.queryForObject("select id from user order by id desc limit 1", Integer.class);
+            jdbcTemplate.execute(String.format("delete from user where id=%d", id));
+        } else if (instanceName.equals("message")) {
+            id = jdbcTemplate.queryForObject("select id from message order by id desc limit 1", Integer.class);
+            jdbcTemplate.execute(String.format("delete from message where id=%d", id));
+        }
+        return this;
+    }
+
+    public BasePage removeLastInstances(String instanceName, int count) {
+        for (int i = 0; i < count; i++) {
+            removeLastCreatedInstance(instanceName);
+        }
+        return this;
+    }
+
     public AdminPage switchToAdminPage() {
         navBarAdminPage.click();
         return new AdminPage(driver);

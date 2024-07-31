@@ -41,7 +41,7 @@ create table user_role
 );
 
 alter table message
-    add constraint message_user_fk foreign key (user_id) references user (id);
+    add constraint message_user_fk foreign key (user_id) references user (id) on delete cascade;
 
 alter table user_role
-    add constraint user_role_user_fk foreign key (user_id) references user (id);
+    add constraint user_role_user_fk foreign key (user_id) references user (id) on delete cascade;
