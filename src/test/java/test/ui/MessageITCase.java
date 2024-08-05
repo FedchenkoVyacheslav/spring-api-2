@@ -1,33 +1,15 @@
 package test.ui;
 
-import main.ui.actions.PrepareDriver;
-import main.ui.pages.LoginPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 import static main.ui.util.testData.*;
 
-public class MessageITCase {
-    static WebDriver driver;
-    LoginPage myLoginPage;
-
-    @BeforeEach
-    public void setup() {
-        driver = PrepareDriver.driverInit("chrome");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get(URL + "login");
-        myLoginPage = new LoginPage(driver);
-    }
-
+public class MessageITCase extends BaseITCase {
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#validMessageData")
     @DisplayName("Should add new message")
@@ -159,7 +141,7 @@ public class MessageITCase {
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#admin")
     @DisplayName("Should check the message deletion")
-    public void checkMessageDeletion(String email, String password){
+    public void checkMessageDeletion(String email, String password) {
         Map<String, String> firstMessage = new HashMap<>();
         firstMessage.put("title", TITLE);
         firstMessage.put("text", TEXT);
@@ -218,10 +200,5 @@ public class MessageITCase {
                 .checkCountOfMessagesOnPage(12)
                 .removeLastInstances("message", 12)
                 .removeLastCreatedInstance("user");
-    }
-
-    @AfterEach
-    public void quit() {
-        driver.quit();
     }
 }

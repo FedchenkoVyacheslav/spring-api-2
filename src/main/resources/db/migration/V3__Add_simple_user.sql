@@ -30,6 +30,12 @@ values (2, 'joi@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOF
        (16, 'thomas-sarah@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFnpLbR8vLm', 'Sarah', 'Thomas', 31,
         'Boston', '2022-03-12 09:04:04.560000', '2022-03-12 09:04:04.560000', '', true),
        (17, 'el@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFnpLbR8vLm', 'Edward', 'Lee', 50,
+        'Chicago', '2023-01-12 17:39:22.560000', '2023-01-12 17:39:22.560000', '', true),
+       (18, 'kelly@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFnpLbR8vLm', 'Kelly', 'Wilson', 21,
+        'Atlanta', '2023-05-12 14:54:44.560000', '2023-05-12 14:54:44.560000', '', true),
+       (19, 'rick-sarah@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFnpLbR8vLm', 'Rick', 'Thomas', 32,
+        'Boston', '2022-03-12 09:04:04.560000', '2022-03-12 09:04:04.560000', '', true),
+       (20, 's1234@gmail.com', '$2a$12$CS/36EDoW1EzCTmFZCJ0Rem0Eyr/qOzUkWOlPngqgYOFnpLbR8vLm', 'Sam', 'Lee', 51,
         'Chicago', '2023-01-12 17:39:22.560000', '2023-01-12 17:39:22.560000', '', true);
 
 insert into user_role (user_id, roles)
@@ -48,4 +54,7 @@ values (2, 'USER'),
        (14, 'USER'),
        (15, 'USER'),
        (16, 'USER'),
-       (17, 'USER');
+       (17, 'USER'),
+       (18, 'USER'),
+       (19, 'USER'),
+       (20, 'USER');

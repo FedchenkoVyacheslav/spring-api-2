@@ -1,33 +1,15 @@
 package test.ui;
 
-import main.ui.actions.PrepareDriver;
-import main.ui.pages.LoginPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 import static main.ui.util.testData.*;
 
-public class UserEditITCase {
-    static WebDriver driver;
-    LoginPage myLoginPage;
-
-    @BeforeEach
-    public void setup() {
-        driver = PrepareDriver.driverInit("chrome");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        driver.get(URL + "login");
-        myLoginPage = new LoginPage(driver);
-    }
-
+public class UserEditITCase extends BaseITCase {
     @ParameterizedTest
     @MethodSource("main.ui.util.testData#validRegisterData")
     @DisplayName("Should check changing of user roles")
@@ -92,10 +74,5 @@ public class UserEditITCase {
                 .checkUserInList(NEW_EMAIL, true)
                 .verifyParamsOfLastCreatedInstanceInDB("user", params)
                 .removeLastCreatedInstance("user");
-    }
-
-    @AfterEach
-    public void quit() {
-        driver.quit();
     }
 }
